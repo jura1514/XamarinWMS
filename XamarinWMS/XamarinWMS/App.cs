@@ -12,18 +12,18 @@ namespace XamarinWMS
         public App()
         {
             // The root page of your application
-            MainPage = new ContentPage
+            MainPage = new NavigationPage(new MainMenu());
             {
-                Content = new StackLayout
-                {
-                    VerticalOptions = LayoutOptions.Center,
-                    Children = {
-                        new Label {
-                            HorizontalTextAlignment = TextAlignment.Center,
-                            Text = "Welcome to Xamarin Forms!"
-                        }
-                    }
-                }
+                //Content = new StackLayout
+                //{
+                //    VerticalOptions = LayoutOptions.Center,
+                //    Children = {
+                //        new Label {
+                //            HorizontalTextAlignment = TextAlignment.Center,
+                //            Text = "Welcome to Xamarin Forms!"
+                //        }
+                //    }
+                //}
             };
         }
 

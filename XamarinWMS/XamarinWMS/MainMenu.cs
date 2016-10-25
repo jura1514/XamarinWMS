@@ -25,11 +25,11 @@ namespace XamarinWMS
             };
             var buttonStockMove = new Button
             {
-                Text = "Stock Move"
+                Text = "Move"
             };
             var buttonPickAndDispatch = new Button
             {
-                Text = "Pick & Dispatch"
+                Text = "Picking"
             };
             Content = new StackLayout
             {

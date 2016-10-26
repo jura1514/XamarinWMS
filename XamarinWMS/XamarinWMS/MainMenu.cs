@@ -40,12 +40,9 @@ namespace XamarinWMS
             {
                 Content = pageLabel
             };
-            //var navPage = new NavigationPage(new ContentPage
-            //{
-            //    Title = "Xamarin WMS System",
-            //    Content = Content
-            //});
-            buttonReceive.Clicked += (sender, args) => Navigation.PushAsync(newPage);
+            var database = new RandomThoughtDatabase();
+
+            buttonReceive.Clicked += (sender, args) => Navigation.PushAsync(new DeliveryTable(database));
             buttonStockMove.Clicked += (sender, args) => Navigation.PushAsync(newPage);
             buttonPickAndDispatch.Clicked += (sender, args) => Navigation.PushAsync(newPage);
             buttonInfo.Clicked += (sender, args) => Navigation.PushAsync(new PageInfo());

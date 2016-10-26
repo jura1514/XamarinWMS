@@ -36,9 +36,15 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="DeliveryTable.cs" />
+    <Compile Include="ISQLite.cs" />
     <Compile Include="MainMenu.cs" />
     <Compile Include="PageInfo.cs" />
+    <Compile Include="PageReceive.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RandomData.cs" />
+    <Compile Include="RandomThoughtDatabase.cs" />
+    <Compile Include="ThoughtEntryPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="GettingStarted.Xamarin" />
@@ -64,6 +70,9 @@
     <Reference Include="Xamarin.Forms.Xaml, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xamarin.Forms.2.3.2.127\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="Xamarin.iOS">
+      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\Xamarin.iOS\v1.0\Xamarin.iOS.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />

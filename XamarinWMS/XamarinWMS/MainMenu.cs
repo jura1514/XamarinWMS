@@ -40,7 +40,7 @@ namespace XamarinWMS
             {
                 Content = pageLabel
             };
-            var database = new RandomThoughtDatabase();
+            var database = new DeliveryDatabase();
 
             buttonReceive.Clicked += (sender, args) => Navigation.PushAsync(new DeliveryTable(database));
             buttonStockMove.Clicked += (sender, args) => Navigation.PushAsync(newPage);

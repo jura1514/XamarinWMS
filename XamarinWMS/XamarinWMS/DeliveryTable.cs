@@ -10,35 +10,38 @@ using Xamarin.Forms;
 namespace XamarinWMS
 {
     public class DeliveryTable : ContentPage{
-        private RandomThoughtDatabase _database;
-        private ListView _thoughtList;
+        private DeliveryDatabase _database;
+        private ListView _deliveryList;
 
-        public DeliveryTable(RandomThoughtDatabase database)
+        public DeliveryTable(DeliveryDatabase database)
         {
             _database = database;
-            Title = "Random Thoughts";
-            var thoughts = _database.GetThoughts();
+            Title = "List of Deliveries";
+            var deliveries = _database.GetDeliveries();
 
-            _thoughtList = new ListView();
-            _thoughtList.ItemsSource = thoughts;
-            _thoughtList.ItemTemplate = new DataTemplate(typeof(TextCell));
-            _thoughtList.ItemTemplate.SetBinding(TextCell.TextProperty, "Thought");
-            _thoughtList.ItemTemplate.SetBinding(TextCell.DetailProperty, "CreatedOn");
+            _deliveryList = new ListView();
+            _deliveryList.ItemsSource = deliveries;
+            _deliveryList.ItemTemplate = new DataTemplate(typeof(TextCell));
+            _deliveryList.ItemTemplate.SetBinding(TextCell.TextProperty, "DeliveryId");
+            _deliveryList.ItemTemplate.SetBinding(TextCell.DetailProperty, "Name");
+            _deliveryList.ItemTemplate.SetBinding(TextCell.DetailProperty, "Status");
+            _deliveryList.ItemTemplate.SetBinding(TextCell.DetailProperty, "ExpectedDate");
+            _deliveryList.ItemTemplate.SetBinding(TextCell.DetailProperty, "StatusChangeTime");
 
             var toolbarItem = new ToolbarItem
             {
                 Text = "Add",
-                Command = new Command(() => Navigation.PushAsync(new ThoughtEntryPage(this, database)))
+                Command = new Command(() => Navigation.PushAsync(new DeliveryEntryPage(this, database)))
             };
 
             ToolbarItems.Add(toolbarItem);
 
-            Content = _thoughtList;
+            Content = _deliveryList;
         }
 
         public void Refresh()
         {
-            _thoughtList.ItemsSource = _database.GetThoughts();
+            _deliveryList.ItemsSource = _database.GetDeliveries();
         }
     }
 }

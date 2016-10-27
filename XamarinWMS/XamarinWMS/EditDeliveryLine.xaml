@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinWMS.EditDeliveryLine"
+             Title="Edit Delivery Line">
+  <ContentView.Content>
+    <TableView Intent="Settings">
+      <TableRoot>
+        <TableSection Title="Edit Delivery Line">
+          <EntryCell x:Name="txtDelLineId" Label="Del. Line Id" Text ="{Binding DeliveryLineId}" Keyboard="Numeric" />
+          <EntryCell x:Name="txtName" Label="Name" Text ="{Binding Name}" Keyboard="Text" />
+          <EntryCell x:Name="txtDelId" Label="Delivery Id" Text ="{Binding DeliveryId}" Keyboard="Numeric" />
+          <EntryCell x:Name="txtAccQty" Label="Acc. Qty" Text ="{Binding AcceptedQty}" Keyboard="Numeric" />
+          <EntryCell x:Name="txtExpQty" Label="Exp. Qty" Text ="{Binding ExpectedQty}" Keyboard="Numeric" />
+          <EntryCell x:Name="txtRejQty" Label="Rej. Qty" Text ="{Binding RejectedQty}" Keyboard="Numeric" />
+          <ViewCell>
+            <ContentView Padding="0,0">
+              <ContentView.Content>
+                <Button Text="Save" Clicked="OnSaveClicked" />
+              </ContentView.Content>
+            </ContentView>
+          </ViewCell>
+        </TableSection>
+      </TableRoot>
+    </TableView>
+  </ContentView.Content>
+</ContentPage>

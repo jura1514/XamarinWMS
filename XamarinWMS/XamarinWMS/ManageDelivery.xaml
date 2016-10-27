@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinWMS.ManageDelivery"
+             Title="Manage Deliveries">
+<ContentPage.Content>
+  <ListView x:Name="lstData" HasUnevenRows="false" Header="Header Value" Footer="Footer" ItemSelected="OnSelection" >
+    <ListView.HeaderTemplate>
+      <DataTemplate>
+        <StackLayout Orientation="Horizontal" BackgroundColor="Blue" Padding="5,5,5,5">
+          <Label Text="Delivery Id" FontSize="Medium" FontAttributes="Bold"/>
+          <Label Text="Name" FontSize="Medium" FontAttributes="Bold"/>
+          <Label Text="Exp. Date" FontSize="Medium" FontAttributes="Bold"/>
+          <Label Text="Status" FontSize="Medium" FontAttributes="Bold"/>
+          <Label Text="Status Change Time" FontSize="Medium" FontAttributes="Bold"/>
+        </StackLayout>
+      </DataTemplate>
+    </ListView.HeaderTemplate>
+    <ListView.ItemTemplate>
+      <DataTemplate>
+        <ViewCell>
+          <StackLayout Orientation="Horizontal">
+            <Label Text="{Binding DeliveryId}" FontSize="Medium" />
+            <Label Text="{Binding Name}" FontSize="Medium" />
+            <Label Text="{Binding ExpectedDate}" FontSize="Medium" />
+            <Label Text="{Binding Status}" FontSize="Medium" />
+            <Label Text="{Binding StatusChangeTime}" FontSize="Medium" />
+          </StackLayout>
+        </ViewCell>
+      </DataTemplate>
+    </ListView.ItemTemplate>
+    <ListView.FooterTemplate>
+      <DataTemplate>
+        <StackLayout Orientation="Horizontal" Padding="5,5,5,5">
+          <Button Text="Add New Delivery" Clicked="OnNewClicked" />
+        </StackLayout>
+      </DataTemplate>
+    </ListView.FooterTemplate>
+  </ListView>
+</ContentPage.Content>
+</ContentPage>

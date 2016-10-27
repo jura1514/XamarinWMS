@@ -1,5 +1,6 @@
 ﻿using SQLite.Net.Interop;
 using System;
+using System.Diagnostics;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -23,15 +24,17 @@ namespace XamarinWMS.WinPhone
 
         public SQLite.Net.SQLiteConnection GetConnection()
         {
-            var fileName = "RandomData.db3";
+            var fileName = "XamarinWMS.db3";
             var path = Path.Combine(ApplicationData.Current.LocalFolder.Path, fileName);
-
             var platform = new SQLite.Net.Platform.WinRT.SQLitePlatformWinRT();
             var connection = new SQLite.Net.SQLiteConnection(platform, path);
+            connection.CreateDatabaseBackup(platform);
 
             return connection;
         }
 
         #endregion
+
+
     }
 }

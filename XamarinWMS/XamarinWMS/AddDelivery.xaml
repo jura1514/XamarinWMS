@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinWMS.AddDelivery"
+             Title="Add Delivery">
+  <ContentView.Content>
+    <TableView Intent="Settings">
+      <TableRoot>
+        <TableSection Title="Add New Delivery">
+          <EntryCell x:Name="txtDelId" Label="Delivery Id" Keyboard="Numeric" />
+          <EntryCell x:Name="txtName" Label="Name" Keyboard="Text" />
+          <EntryCell x:Name="txtStatus" Label="Status" Keyboard="Text" />
+          <!--<EntryCell x:Name="txtExpDate" Label="Exp. Date" Keyboard="Text" />
+          <EntryCell x:Name="txtChangeTime" Label="State Change Time" Keyboard="Text" />-->
+          <ViewCell>
+            <ContentView Padding="0,0">
+              <ContentView.Content>
+                <Button Text="Save"  Clicked="OnSaveClicked" />
+              </ContentView.Content>
+            </ContentView>
+          </ViewCell>
+        </TableSection>
+      </TableRoot>
+    </TableView>
+  </ContentView.Content>
+</ContentPage>

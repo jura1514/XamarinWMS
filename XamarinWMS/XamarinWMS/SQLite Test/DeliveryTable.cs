@@ -24,9 +24,6 @@ namespace XamarinWMS
             _deliveryList.ItemTemplate = new DataTemplate(typeof(TextCell));
             _deliveryList.ItemTemplate.SetBinding(TextCell.TextProperty, "DeliveryId");
             _deliveryList.ItemTemplate.SetBinding(TextCell.DetailProperty, "Name");
-            _deliveryList.ItemTemplate.SetBinding(TextCell.DetailProperty, "Status");
-            _deliveryList.ItemTemplate.SetBinding(TextCell.DetailProperty, "ExpectedDate");
-            _deliveryList.ItemTemplate.SetBinding(TextCell.DetailProperty, "StatusChangeTime");
 
             var toolbarItem = new ToolbarItem
             {

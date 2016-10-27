@@ -9,22 +9,36 @@ namespace XamarinWMS
 {
     public class App : Application
     {
+        static DeliveryDatabase dbUtils;
+        static DeliveryLineDatabase dbLineUtils;
         public App()
         {
+
             // The root page of your application
             MainPage = new NavigationPage(new MainMenu());
+
+        }
+        public static DeliveryDatabase DelDatabase
+        {
+            get
             {
-                //Content = new StackLayout
-                //{
-                //    VerticalOptions = LayoutOptions.Center,
-                //    Children = {
-                //        new Label {
-                //            HorizontalTextAlignment = TextAlignment.Center,
-                //            Text = "Welcome to Xamarin Forms!"
-                //        }
-                //    }
-                //}
-            };
+                if (dbUtils == null)
+                {
+                    dbUtils = new DeliveryDatabase();
+                }
+                return dbUtils;
+            }
+        }
+        public static DeliveryLineDatabase DelLineDatabase
+        {
+            get
+            {
+                if (dbLineUtils == null)
+                {
+                    dbLineUtils = new DeliveryLineDatabase();
+                }
+                return dbLineUtils;
+            }
         }
 
         protected override void OnStart()

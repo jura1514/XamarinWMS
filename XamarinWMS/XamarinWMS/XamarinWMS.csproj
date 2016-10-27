@@ -35,8 +35,29 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="AddDelivery.xaml.cs">
+      <DependentUpon>AddDelivery.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddDeliveryLine.xaml.cs">
+      <DependentUpon>AddDeliveryLine.xaml</DependentUpon>
+    </Compile>
     <Compile Include="App.cs" />
-    <Compile Include="DeliveryTable.cs" />
+    <Compile Include="DeliveryLineDatabase.cs" />
+    <Compile Include="EditDelivery.xaml.cs">
+      <DependentUpon>EditDelivery.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditDeliveryLine.xaml.cs">
+      <DependentUpon>EditDeliveryLine.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManageDelivery.xaml.cs">
+      <DependentUpon>ManageDelivery.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManageDeliveryLines.xaml.cs">
+      <DependentUpon>ManageDeliveryLines.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ShowDelivery.xaml.cs">
+      <DependentUpon>ShowDelivery.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ISQLite.cs" />
     <Compile Include="MainMenu.cs" />
     <Compile Include="Models\DeliveryData.cs" />
@@ -46,6 +67,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DeliveryDatabase.cs" />
     <Compile Include="DeliveryEntryPage.cs" />
+    <Compile Include="ShowDeliveryLine.xaml.cs">
+      <DependentUpon>ShowDeliveryLine.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -83,7 +107,54 @@
       <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\Xamarin.iOS\v1.0\Xamarin.iOS.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="ManageDelivery.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ShowDelivery.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="EditDelivery.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AddDelivery.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ManageDeliveryLines.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ShowDeliveryLine.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="EditDeliveryLine.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AddDeliveryLine.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Forms.2.3.2.127\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.3.2.127\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

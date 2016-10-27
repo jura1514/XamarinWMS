@@ -42,7 +42,7 @@ namespace XamarinWMS
             };
             var database = new DeliveryDatabase();
 
-            buttonReceive.Clicked += (sender, args) => Navigation.PushAsync(new DeliveryTable(database));
+            buttonReceive.Clicked += (sender, args) => Navigation.PushAsync(new ManageDelivery());
             buttonStockMove.Clicked += (sender, args) => Navigation.PushAsync(newPage);
             buttonPickAndDispatch.Clicked += (sender, args) => Navigation.PushAsync(newPage);
             buttonInfo.Clicked += (sender, args) => Navigation.PushAsync(new PageInfo());

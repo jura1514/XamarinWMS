@@ -19,34 +19,21 @@ namespace XamarinWMS
             _connection.CreateTable<DeliveryData>();
         }
 
-        public IEnumerable<DeliveryData> GetDeliveries()
+        public List<DeliveryData> GetAllDeliveries()
         {
-            return (from t in _connection.Table<DeliveryData>()
-                    select t).ToList();
+            return _connection.Query<DeliveryData>("Select * From [DeliveryData]");
         }
-
-        public DeliveryData GetDelivery(int id)
+        public int SaveDelivery(DeliveryData aDelivery)
         {
-            return _connection.Table<DeliveryData>().FirstOrDefault(t => t.DeliveryId == id);
+            return _connection.Insert(aDelivery);
         }
-
-        public void DeleteDelivery(int id)
+        public int DeleteDelivery(DeliveryData aDelivery)
         {
-            _connection.Delete<DeliveryData>(id);
+            return _connection.Delete(aDelivery);
         }
-
-        public void AddDelivery(int deliveryId, string name, string status)
+        public int EditDelivery(DeliveryData aDelivery)
         {
-            var newDelivery = new DeliveryData
-            {
-                DeliveryId = deliveryId,
-                Name = name,
-                Status = status,
-                StatusChangeTime = DateTime.Now,
-                ExpectedDate = DateTime.Now
-            };
-
-            _connection.Insert(newDelivery);
+            return _connection.Update(aDelivery);
         }
     }
 }

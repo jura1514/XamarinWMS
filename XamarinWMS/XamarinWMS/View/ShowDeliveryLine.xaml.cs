@@ -12,17 +12,18 @@ namespace XamarinWMS
     public partial class ShowDeliveryLine : ContentPage
     {
         DeliveryLineData mSelDelLine;
-        DeliveryData aSelectedDel;
-        public ShowDeliveryLine(DeliveryLineData aSelectedDelLine)
+        DeliveryData mSelectedDel;
+        public ShowDeliveryLine(DeliveryLineData aSelectedDelLine, DeliveryData aSelectedDel)
         {
             InitializeComponent();
             mSelDelLine = aSelectedDelLine;
+            mSelectedDel = aSelectedDel;
             BindingContext = mSelDelLine;
         }
 
         public void OnEditClicked(object sender, EventArgs args)
         {
-            Navigation.PushAsync(new EditDeliveryLine(mSelDelLine));
+            Navigation.PushAsync(new EditDeliveryLine(mSelDelLine, mSelectedDel));
         }
 
         public async void OnDeleteClicked(object sender, EventArgs args)
@@ -32,7 +33,7 @@ namespace XamarinWMS
             {
                 App.DelLineDatabase.DeleteDelLine(mSelDelLine);
             }
-            await Navigation.PushAsync(new ManageDeliveryLines(aSelectedDel));
+            await Navigation.PushAsync(new ManageDeliveryLines(mSelectedDel));
         }
     }
 }

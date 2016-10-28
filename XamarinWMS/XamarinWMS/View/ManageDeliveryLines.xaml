@@ -4,7 +4,38 @@
              x:Class="XamarinWMS.ManageDeliveryLines"
              Title="Delivery Lines">
   <ContentPage.Content>
-    <ListView x:Name="lstData" HasUnevenRows="false" Header="Header Value" Footer="Footer" ItemSelected="OnSelection" >
+    <StackLayout Padding="30">
+      <Label Text="Delivery Lines" FontSize="20"/>
+      <ListView x:Name="lstData" HasUnevenRows="false" Footer="Footer" ItemSelected="OnSelection" >
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <!--<ViewCell>
+              <ViewCell.View>-->           
+                  <TextCell Text="{Binding DeliveryLineId}" Detail="{Binding Name}" />
+
+                <!--<StackLayout  Padding="10">
+                  <StackLayout Orientation="Horizontal">
+                    <Label Text="{Binding DeliveryLineId}" FontSize="14" FontAttributes="Bold"/>
+                    <Label Text="{Binding Name}" FontSize="14" FontAttributes="Bold"/>
+                  </StackLayout>
+                </StackLayout>-->
+              <!--</ViewCell.View>      
+            </ViewCell>-->       
+          </DataTemplate>
+        </ListView.ItemTemplate>
+        <ListView.FooterTemplate>
+          <DataTemplate>
+            <StackLayout Orientation="Horizontal" Padding="5,5,5,5">
+              <Button Text="Add New Delivery Line" Clicked="OnNewClicked" />
+            </StackLayout>
+          </DataTemplate>
+        </ListView.FooterTemplate>
+      </ListView>
+    </StackLayout>
+  </ContentPage.Content>
+</ContentPage>   
+    
+    <!--<ListView x:Name="lstData" HasUnevenRows="false" Header="Header Value" Footer="Footer" ItemSelected="OnSelection" >
       <ListView.HeaderTemplate>
         <DataTemplate>
           <StackLayout Orientation="Horizontal" BackgroundColor="Blue" Padding="5,5,5,5">
@@ -34,4 +65,4 @@
       </ListView.FooterTemplate>
     </ListView>
   </ContentPage.Content>
-</ContentPage>
+</ContentPage>-->

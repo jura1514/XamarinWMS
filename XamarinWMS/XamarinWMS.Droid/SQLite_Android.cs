@@ -28,6 +28,7 @@ namespace XamarinWMS.Droid
         {
             var sqliteFilename = "XamarinWMS.db3";
             string documentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal); // Documents folder
+           // string libraryPath = Path.Combine(documentsPath, "..", "Library");
             var path = Path.Combine(documentsPath, sqliteFilename);
             Console.WriteLine(path);
             if (!File.Exists(path)) File.Create(path);

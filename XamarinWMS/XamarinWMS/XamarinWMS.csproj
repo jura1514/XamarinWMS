@@ -35,39 +35,38 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="AddDelivery.xaml.cs">
+    <Compile Include="View\AddDelivery.xaml.cs">
       <DependentUpon>AddDelivery.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AddDeliveryLine.xaml.cs">
+    <Compile Include="View\AddDeliveryLine.xaml.cs">
       <DependentUpon>AddDeliveryLine.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.cs" />
-    <Compile Include="DeliveryLineDatabase.cs" />
-    <Compile Include="EditDelivery.xaml.cs">
+    <Compile Include="Data\DeliveryLineDatabase.cs" />
+    <Compile Include="View\EditDelivery.xaml.cs">
       <DependentUpon>EditDelivery.xaml</DependentUpon>
     </Compile>
-    <Compile Include="EditDeliveryLine.xaml.cs">
+    <Compile Include="View\EditDeliveryLine.xaml.cs">
       <DependentUpon>EditDeliveryLine.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ManageDelivery.xaml.cs">
+    <Compile Include="View\ManageDelivery.xaml.cs">
       <DependentUpon>ManageDelivery.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ManageDeliveryLines.xaml.cs">
+    <Compile Include="View\ManageDeliveryLines.xaml.cs">
       <DependentUpon>ManageDeliveryLines.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ShowDelivery.xaml.cs">
+    <Compile Include="View\ShowDelivery.xaml.cs">
       <DependentUpon>ShowDelivery.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ISQLite.cs" />
+    <Compile Include="Data\ISQLite.cs" />
     <Compile Include="MainMenu.cs" />
-    <Compile Include="Models\DeliveryData.cs" />
-    <Compile Include="Models\DeliveryLineData.cs" />
+    <Compile Include="Model\DeliveryData.cs" />
+    <Compile Include="Model\DeliveryLineData.cs" />
     <Compile Include="PageInfo.cs" />
     <Compile Include="PageReceive.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DeliveryDatabase.cs" />
-    <Compile Include="DeliveryEntryPage.cs" />
-    <Compile Include="ShowDeliveryLine.xaml.cs">
+    <Compile Include="Data\DeliveryDatabase.cs" />
+    <Compile Include="View\ShowDeliveryLine.xaml.cs">
       <DependentUpon>ShowDeliveryLine.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -108,49 +107,49 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ManageDelivery.xaml">
+    <EmbeddedResource Include="View\ManageDelivery.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ShowDelivery.xaml">
+    <EmbeddedResource Include="View\ShowDelivery.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="EditDelivery.xaml">
+    <EmbeddedResource Include="View\EditDelivery.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="AddDelivery.xaml">
+    <EmbeddedResource Include="View\AddDelivery.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ManageDeliveryLines.xaml">
+    <EmbeddedResource Include="View\ManageDeliveryLines.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ShowDeliveryLine.xaml">
+    <EmbeddedResource Include="View\ShowDeliveryLine.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="EditDeliveryLine.xaml">
+    <EmbeddedResource Include="View\EditDeliveryLine.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="AddDeliveryLine.xaml">
+    <EmbeddedResource Include="View\AddDeliveryLine.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

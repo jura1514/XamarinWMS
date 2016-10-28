@@ -40,7 +40,7 @@
       <Label Grid.Row="5" Grid.Column="2" Text ="{Binding StatusChangeTime}"/>
       <Button Grid.Row ="6" Grid.Column="1" Text="Edit Details" Clicked="OnEditClicked" />
       <Button Grid.Row="6" Grid.Column="2" Text="Delete" Clicked="OnDeleteClicked" />
-      <Button Grid.Row="7" Grid.Column="1" Text="Show Delivery Lines" Clicked="OnShowClicked" />
+      <Button Grid.Row="7" Grid.ColumnSpan="4" Text="Show Delivery Lines" Clicked="OnShowClicked" />
     </Grid>
   </ContentView.Content>
 </ContentPage>

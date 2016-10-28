@@ -11,12 +11,13 @@ namespace XamarinWMS
 {
     public partial class ManageDeliveryLines : ContentPage
     {
-
+        DeliveryData dData;
         public ManageDeliveryLines(DeliveryData aSelectedDel)
         {
             InitializeComponent();
             var vList = App.DelLineDatabase.GetAllDelLinesForDelID(aSelectedDel);
             lstData.ItemsSource = vList;
+            dData = aSelectedDel;
         }
 
         void OnSelection(object sender, SelectedItemChangedEventArgs e)
@@ -28,11 +29,11 @@ namespace XamarinWMS
                 //which results in SelectedItem being set to null
             }
             var vSelUser = (DeliveryLineData)e.SelectedItem;
-            Navigation.PushAsync(new ShowDeliveryLine(vSelUser));
+            Navigation.PushAsync(new ShowDeliveryLine(vSelUser, dData));
         }
         public void OnNewClicked(object sender, EventArgs args)
         {
-            Navigation.PushAsync(new AddDeliveryLine());
+            Navigation.PushAsync(new AddDeliveryLine(dData));
         }
     }
 }

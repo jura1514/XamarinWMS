@@ -13,10 +13,11 @@ namespace XamarinWMS
     {
         DeliveryLineData mSelDelLine;
         DeliveryData mSelDel;
-        public EditDeliveryLine(DeliveryLineData aSelectedDelLine)
+        public EditDeliveryLine(DeliveryLineData aSelectedDelLine, DeliveryData aSelDel)
         {
             InitializeComponent();
             mSelDelLine = aSelectedDelLine;
+            mSelDel = aSelDel;
             BindingContext = mSelDelLine;
         }
 

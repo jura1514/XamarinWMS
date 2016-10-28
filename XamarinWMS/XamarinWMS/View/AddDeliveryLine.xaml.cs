@@ -12,9 +12,10 @@ namespace XamarinWMS
     public partial class AddDeliveryLine : ContentPage
     {
         DeliveryData dData;
-        public AddDeliveryLine()
+        public AddDeliveryLine(DeliveryData dSelectedData)
         {
             InitializeComponent();
+            dData = dSelectedData;
         }
         public void OnSaveClicked(object sender, EventArgs args)
         {

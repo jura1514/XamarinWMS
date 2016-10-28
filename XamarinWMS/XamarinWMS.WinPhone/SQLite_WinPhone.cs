@@ -25,7 +25,9 @@ namespace XamarinWMS.WinPhone
         public SQLite.Net.SQLiteConnection GetConnection()
         {
             var fileName = "XamarinWMS.db3";
-            var path = Path.Combine(ApplicationData.Current.LocalFolder.Path, fileName);
+            var documentsPath = Path.Combine(ApplicationData.Current.LocalFolder.Path, fileName);
+            var path = Path.Combine(documentsPath, fileName);
+            // var path = "/users/george/documents/wms.db3"
             var platform = new SQLite.Net.Platform.WinRT.SQLitePlatformWinRT();
             var connection = new SQLite.Net.SQLiteConnection(platform, path);
             connection.CreateDatabaseBackup(platform);

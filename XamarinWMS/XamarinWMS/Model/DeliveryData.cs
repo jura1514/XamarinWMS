@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace XamarinWMS.Models
+namespace XamarinWMS.Model
 {
     public class DeliveryData
     {

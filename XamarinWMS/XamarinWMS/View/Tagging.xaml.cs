@@ -3,33 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 using Xamarin.Forms;
+using XamarinWMS.Models;
 using ZXing.Net.Mobile.Forms;
 
-namespace XamarinWMS
+namespace XamarinWMS.View
 {
-    class PageInfo : ContentPage
+    public partial class Tagging : ContentPage
     {
-        public PageInfo() : base()
+        DeliveryLineData mSelDelLine;
+        public Tagging(DeliveryLineData aSelectedDelLine)
         {
-
-
-            Title = "Info Page";
-            var button = new Button
-            {
-
-                Text = "Scan Barcode"
-            };
-            Content = new StackLayout
-            {
-                VerticalOptions = LayoutOptions.Center,
-                Children = {
-                    button
-               }
-            };
-            button.Clicked += OnScan;
+            InitializeComponent();
+            mSelDelLine = aSelectedDelLine;
         }
-        async void OnScan(object sender, EventArgs e)
+
+        public async void OnBarcodeClicked(object sender, EventArgs e)
         {
             var scanPage = new ZXingScannerPage();
             scanPage.OnScanResult += (result) => {
@@ -41,10 +31,13 @@ namespace XamarinWMS
                     Navigation.PopAsync();
                     DisplayAlert("Scanned Barcode", result.Text, "OK");
 
-
                 });
             };
             await Navigation.PushAsync(scanPage);
+        }
+        public void OnNfcClicked(object sender, EventArgs e)
+        {
+            DisplayAlert("Alert", "This feature is coming soon!", "OK");
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using XamarinWMS.Models;
+using XamarinWMS.View;
 
 namespace XamarinWMS
 {
@@ -24,6 +25,11 @@ namespace XamarinWMS
         public void OnEditClicked(object sender, EventArgs args)
         {
             Navigation.PushAsync(new EditDeliveryLine(mSelDelLine, mSelectedDel));
+        }
+
+        public void OnContinueClicked(object sender, EventArgs args)
+        {
+            Navigation.PushAsync(new Tagging(mSelDelLine));
         }
 
         public async void OnDeleteClicked(object sender, EventArgs args)

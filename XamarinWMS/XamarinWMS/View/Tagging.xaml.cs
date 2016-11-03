@@ -17,6 +17,7 @@ namespace XamarinWMS.View
         {
             InitializeComponent();
             mSelDelLine = aSelectedDelLine;
+            BindingContext = mSelDelLine;
         }
 
         public async void OnBarcodeClicked(object sender, EventArgs e)
@@ -36,6 +37,10 @@ namespace XamarinWMS.View
             await Navigation.PushAsync(scanPage);
         }
         public void OnNfcClicked(object sender, EventArgs e)
+        {
+            DisplayAlert("Alert", "This feature is coming soon!", "OK");
+        }
+        public void OnTagClicked(object sender, EventArgs e)
         {
             DisplayAlert("Alert", "This feature is coming soon!", "OK");
         }

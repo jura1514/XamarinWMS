@@ -14,7 +14,7 @@ using XamarinWMS.WinPhone;
 
 namespace XamarinWMS.WinPhone
 {
-    class SQLite_WinPhone : ISQLite
+    class SQLite_WinPhone
     {
         public SQLite_WinPhone()
         {
@@ -22,18 +22,22 @@ namespace XamarinWMS.WinPhone
 
         #region ISQLite implementation
 
-        public SQLite.Net.SQLiteConnection GetConnection()
-        {
-            var fileName = "XamarinWMS.db3";
-            var documentsPath = Path.Combine(ApplicationData.Current.LocalFolder.Path, fileName);
-            var path = Path.Combine(documentsPath, fileName);
-            // var path = "/users/george/documents/wms.db3"
-            var platform = new SQLite.Net.Platform.WinRT.SQLitePlatformWinRT();
-            var connection = new SQLite.Net.SQLiteConnection(platform, path);
-            connection.CreateDatabaseBackup(platform);
+        //public SQLite.Net.SQLiteConnection GetConnection()
+        //{
+        //    //var fileName = "XamarinWMS.db3";
+        //    //var documentsPath = Path.Combine(ApplicationData.Current.LocalFolder.Path, fileName);
+        //    //var path = Path.Combine(documentsPath, fileName);
+        //    //// var path = "/users/george/documents/wms.db3"
+        //    //var platform = new SQLite.Net.Platform.WinRT.SQLitePlatformWinRT();
+        //    //var connection = new SQLite.Net.SQLiteConnection(platform, path);
+        //    //connection.CreateDatabaseBackup(platform);
 
-            return connection;
-        }
+        //    //var sqliteFilename = "XamarinWMS.db3";
+        //    //string path = Path.Combine(ApplicationData.Current.LocalFolder.Path, sqliteFilename);
+        //    //var platform = new SQLite.Net.Platform.WinRT.SQLitePlatformWinRT();
+        //    //var conn = new SQLite.Net.SQLiteConnection(platform, path);
+        //    //return conn;
+        //}
 
         #endregion
 

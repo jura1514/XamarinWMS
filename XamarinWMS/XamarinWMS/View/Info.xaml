@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinWMS.View.Info"
+             Title="Info">
+  <StackLayout VerticalOptions="Center" Spacing="10">
+    
+    <Label Text="Stock Info from entry"
+           HorizontalOptions="Center"/>
+    <Entry Text="Binding StockId"
+           HorizontalOptions="Center"
+           Keyboard="Text"/>
+    <Button Text="Stock Info"
+              HorizontalOptions="Center"
+              Clicked="OnStockInfoClicked"/>
+    
+    <Label Text="Location Info from entry"
+       HorizontalOptions="Center"/>
+    <Entry Text="Binding LocationId"
+           HorizontalOptions="Center"
+           Keyboard="Text"/>
+    <Button Text="Location Info"
+              HorizontalOptions="Center"
+              Clicked="OnLocationInfoClicked"/>
+    
+    <Button Text="Barcode"
+              HorizontalOptions="Center"
+              Clicked="OnInfoBarcodeClicked"/>
+    <Button Text="NFC"
+            HorizontalOptions="Center"
+            Clicked="OnInfoNfcClicked"/>
+  </StackLayout>
+</ContentPage>

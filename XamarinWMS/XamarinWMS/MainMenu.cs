@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using XamarinWMS.View;
 using ZXing.Net.Mobile.Forms;
 
 namespace XamarinWMS
@@ -44,9 +45,9 @@ namespace XamarinWMS
             var database = new DeliveryDatabase();
 
             buttonReceive.Clicked += (sender, args) => Navigation.PushAsync(new ManageDelivery());
-            buttonStockMove.Clicked += (sender, args) => Navigation.PushAsync(newPage);
+            buttonStockMove.Clicked += (sender, args) => Navigation.PushAsync(new Move());
             buttonPickAndDispatch.Clicked += (sender, args) => Navigation.PushAsync(newPage);
-            buttonInfo.Clicked += (sender, args) => Navigation.PushAsync(new PageInfo());
+            buttonInfo.Clicked += (sender, args) => Navigation.PushAsync(new Info());
 
         }
         //async void OnNextPageButtonClicked(object sender, EventArgs e)

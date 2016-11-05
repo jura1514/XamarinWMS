@@ -35,6 +35,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Data\LocationDatabase.cs" />
+    <Compile Include="Data\OrderDatabase.cs" />
+    <Compile Include="Data\PickDatabase.cs" />
+    <Compile Include="Data\StockDatabase.cs" />
+    <Compile Include="Model\LocationData.cs" />
+    <Compile Include="Model\OrderData.cs" />
+    <Compile Include="Model\PickData.cs" />
+    <Compile Include="Model\ProductData.cs" />
+    <Compile Include="Model\StockData.cs" />
     <Compile Include="View\AddDelivery.xaml.cs">
       <DependentUpon>AddDelivery.xaml</DependentUpon>
     </Compile>

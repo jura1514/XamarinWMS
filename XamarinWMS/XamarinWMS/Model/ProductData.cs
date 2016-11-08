@@ -9,9 +9,11 @@ namespace XamarinWMS.Model
 {
     public class ProductData
     {
-        [PrimaryKey, AutoIncrement]
+        [PrimaryKey]
         public string ProdId { get; set; }
+
         public string ProdState { get; set; }
+
         public DateTime StateChangeTime { get; set; }
     }
 }

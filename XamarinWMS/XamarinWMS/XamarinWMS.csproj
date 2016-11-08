@@ -38,6 +38,7 @@
     <Compile Include="Data\LocationDatabase.cs" />
     <Compile Include="Data\OrderDatabase.cs" />
     <Compile Include="Data\PickDatabase.cs" />
+    <Compile Include="Data\ProdDatabase.cs" />
     <Compile Include="Data\StockDatabase.cs" />
     <Compile Include="Model\LocationData.cs" />
     <Compile Include="Model\OrderData.cs" />

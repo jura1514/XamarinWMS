@@ -11,6 +11,9 @@ namespace XamarinWMS.Model
     {
         [PrimaryKey]
         public string LocationId { get; set; }
+
         public string LocState { get; set; }
+
+        public DateTime StateChangeTime { get; set; }
     }
 }

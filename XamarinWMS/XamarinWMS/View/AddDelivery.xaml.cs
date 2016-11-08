@@ -22,9 +22,9 @@ namespace XamarinWMS
             {
                 DeliveryId = int.Parse(txtDelId.Text),
                 Name = txtName.Text,
-                Status = txtStatus.Text,
+                State = txtStatus.Text,
                 ExpectedDate = DateTime.Now,/*DateTime.Parse(txtExpDate.Text),*/
-                StatusChangeTime = DateTime.Now, /*DateTime.Parse(txtChangeTime.Text)*/
+                StateChangeTime = DateTime.Now, /*DateTime.Parse(txtChangeTime.Text)*/
             };
             App.DelDatabase.SaveDelivery(vDelivery);
             Navigation.PushAsync(new ManageDelivery());

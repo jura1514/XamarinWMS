@@ -16,7 +16,7 @@ namespace XamarinWMS.Model
         public string Name { get; set; }
 
         [ForeignKey(typeof(DeliveryLineData))]    
-        public string DeliveryLineId { get; set; }
+        public int DeliveryLineId { get; set; }
 
         [ForeignKey(typeof(ProductData))]
         public string Product { get; set; }

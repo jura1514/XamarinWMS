@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinWMS.View.Stock.EditStock"
+             Title="Edit Stock">
+  <ContentView.Content>
+    <TableView Intent="Settings">
+      <TableRoot>
+        <TableSection Title="Edit Stock">
+          <EntryCell x:Name="txtStockId" Label="Stock Id" Text ="{Binding StockId}" Keyboard="Numeric" />
+          <EntryCell x:Name="txtName" Label="Name" Text ="{Binding Name}" Keyboard="Text" />
+          <EntryCell x:Name="txtDelLineId" Label="Del. Line Id" Text ="{Binding DeliveryLineId}" Keyboard="Numeric" />
+          <EntryCell x:Name="txtProduct" Label="Product" Text ="{Binding Product}" Keyboard="Text" />
+          <EntryCell x:Name="txtLocation" Label="Location" Text ="{Binding Location}" Keyboard="Text" />
+          <EntryCell x:Name="txtState" Label="State" Text ="{Binding StockState}" Keyboard="Text" />
+          <EntryCell x:Name="txtQty" Label="Qty" Text ="{Binding Qty}" Keyboard="Numeric" />
+          <ViewCell>
+            <ContentView Padding="0,0">
+              <ContentView.Content>
+                <Button Text="Save" Clicked="OnSaveClicked" />
+              </ContentView.Content>
+            </ContentView>
+          </ViewCell>
+        </TableSection>
+      </TableRoot>
+    </TableView>
+  </ContentView.Content>
+</ContentPage>

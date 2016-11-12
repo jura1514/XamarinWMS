@@ -3,15 +3,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="XamarinWMS.View.Tagging"
              Title="Tagging">
-  <StackLayout VerticalOptions="Center">
-    <Label Text="Tagging from entry"
+  <StackLayout VerticalOptions="Center" Spacing="10">
+    <Label Text="Tag Delivery Line Below"
            HorizontalOptions="Center"/>
-    <Entry Text="{Binding DeliveryLineId}"
+    <Label Text="{Binding DeliveryLineId}"
            HorizontalOptions="Center"
-           Keyboard="Text"/>
-    <Button Text="Move from entry"
+           WidthRequest="200"
+           HorizontalTextAlignment="Center"/>
+        <Label Text="{Binding isUsedForStock}"
+           HorizontalOptions="Center"
+           WidthRequest="200"
+           HorizontalTextAlignment="Center"/>
+    <Button Text="Tag"
             HorizontalOptions="Center"
             Clicked="OnTagClicked"/>
+    <Label Text="Tag Using Barcode or NFC"
+            HorizontalOptions="Center"/>
     <Button Text="Barcode"
             HorizontalOptions="Center"
             Clicked="OnBarcodeClicked"/>

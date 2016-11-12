@@ -1,19 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="XamarinWMS.AddDelivery"
-             Title="Add Delivery">
+             x:Class="XamarinWMS.View.EditLocation"
+             Title="Edit Location">
   <ContentView.Content>
     <TableView Intent="Settings">
       <TableRoot>
-        <TableSection Title="Add New Delivery">
-          <EntryCell x:Name="txtDelId" Label="Delivery Id" Keyboard="Numeric" />
-          <EntryCell x:Name="txtName" Label="Name" Keyboard="Text" />
-          <EntryCell x:Name="txtState" Label="State" Keyboard="Text" />
+        <TableSection Title="Edit Location">
+          <EntryCell x:Name="txtLocId" Label="Location Id" Text ="{Binding LocationId}" Keyboard="Text" />
+          <EntryCell x:Name="txtState" Label="State" Text ="{Binding LocState}" Keyboard="Text" />
           <ViewCell>
             <ContentView Padding="0,0">
               <ContentView.Content>
-                <Button Text="Save"  Clicked="OnSaveClicked" />
+                <Button Text="Save" Clicked="OnSaveClicked" />
               </ContentView.Content>
             </ContentView>
           </ViewCell>

@@ -25,6 +25,7 @@ namespace XamarinWMS
         {
             mSelDelLine.DeliveryId = int.Parse(txtDelId.Text);
             mSelDelLine.Name = txtName.Text;
+            mSelDelLine.Product = txtProd.Text;
             mSelDelLine.DeliveryLineId = int.Parse(txtDelLineId.Text);
             mSelDelLine.AcceptedQty = int.Parse(txtAccQty.Text);
             mSelDelLine.ExpectedQty = int.Parse(txtExpQty.Text);

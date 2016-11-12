@@ -1,25 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="XamarinWMS.ManageDeliveryLines"
-             Title="Delivery Lines">
+             x:Class="XamarinWMS.View.ManageLocation"
+             Title="List of locations">
   <ContentPage.Content>
     <StackLayout Padding="30">
-      <Label Text="Delivery Lines" FontSize="20"/>
+      <Label Text="Locations" FontSize="20"/>
       <ListView x:Name="lstData" HasUnevenRows="false" Footer="Footer" ItemSelected="OnSelection" >
         <ListView.ItemTemplate>
-          <DataTemplate>      
-                  <TextCell Text="{Binding DeliveryLineId}" Detail="{Binding Name}" />   
+          <DataTemplate>
+            <TextCell Text="{Binding LocationId}" Detail="{Binding LocState}" />
           </DataTemplate>
         </ListView.ItemTemplate>
         <ListView.FooterTemplate>
           <DataTemplate>
             <StackLayout Orientation="Horizontal" Padding="5,5,5,5">
-              <Button Text="Add New Delivery Line" Clicked="OnNewClicked" />
+              <Button Text="Add New Location" Clicked="OnNewClicked" />
             </StackLayout>
           </DataTemplate>
         </ListView.FooterTemplate>
       </ListView>
     </StackLayout>
   </ContentPage.Content>
-</ContentPage>   
+</ContentPage>

@@ -1,14 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="XamarinWMS.ShowDeliveryLine"
-             Title="View Delivery Line">
+             x:Class="XamarinWMS.View.ShowLocation"
+             Title="View Location">
   <ContentView.Content>
     <Grid>
       <Grid.RowDefinitions>
-        <RowDefinition Height="*"/>
-        <RowDefinition Height="*"/>
-        <RowDefinition Height="*"/>
         <RowDefinition Height="*"/>
         <RowDefinition Height="*"/>
         <RowDefinition Height="*"/>
@@ -24,18 +21,13 @@
         <ColumnDefinition Width="10"/>
       </Grid.ColumnDefinitions>
 
-      <Label Grid.Row ="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Delivery Details" />
-      <Label Grid.Row ="1" Grid.Column="1" Text="Del. Line Id" />
-      <Label Grid.Row="1" Grid.Column="2" Text ="{Binding DeliveryLineId}" />
+      <Label Grid.Row ="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Location Details" />
+      <Label Grid.Row ="1" Grid.Column="1" Text="Location Id" />
+      <Label Grid.Row="1" Grid.Column="2" Text ="{Binding LocationId}" />
       <Label Grid.Row ="2" Grid.Column="1" Text="Name" />
-      <Label Grid.Row="2" Grid.Column="2" Text ="{Binding Name}"/>
-      <Label Grid.Row ="3" Grid.Column="1" Text="Delivery Id" />
-      <Label Grid.Row="3" Grid.Column="2" Text ="{Binding DeliveryId}"/>
-      <Label Grid.Row ="4" Grid.Column="1" Text="Product" />
-      <Label Grid.Row="4" Grid.Column="2" Text ="{Binding Product}"/>
+      <Label Grid.Row="2" Grid.Column="2" Text ="{Binding LocState}"/>
       <Button Grid.Row ="6" Grid.Column="1" Text="Edit Details" Clicked="OnEditClicked" />
       <Button Grid.Row="6" Grid.Column="2" Text="Delete" Clicked="OnDeleteClicked" />
-      <Button Grid.Row="7" Grid.ColumnSpan="4" Text="Continue" Clicked="OnContinueClicked" />
     </Grid>
- </ContentView.Content>
+  </ContentView.Content>
 </ContentPage>

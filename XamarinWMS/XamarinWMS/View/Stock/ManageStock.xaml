@@ -1,25 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="XamarinWMS.ManageDeliveryLines"
-             Title="Delivery Lines">
+             x:Class="XamarinWMS.View.Stock.ManageStock"
+             Title="List of stocks">
   <ContentPage.Content>
     <StackLayout Padding="30">
-      <Label Text="Delivery Lines" FontSize="20"/>
+      <Label Text="Stock" FontSize="20"/>
       <ListView x:Name="lstData" HasUnevenRows="false" Footer="Footer" ItemSelected="OnSelection" >
         <ListView.ItemTemplate>
-          <DataTemplate>      
-                  <TextCell Text="{Binding DeliveryLineId}" Detail="{Binding Name}" />   
+          <DataTemplate>
+            <TextCell Text="{Binding StockId}" Detail="{Binding Name}" />
           </DataTemplate>
         </ListView.ItemTemplate>
         <ListView.FooterTemplate>
           <DataTemplate>
             <StackLayout Orientation="Horizontal" Padding="5,5,5,5">
-              <Button Text="Add New Delivery Line" Clicked="OnNewClicked" />
+              <Button Text="Return to Other" Clicked="OnBackClicked" />
             </StackLayout>
           </DataTemplate>
         </ListView.FooterTemplate>
       </ListView>
     </StackLayout>
   </ContentPage.Content>
-</ContentPage>   
+</ContentPage>

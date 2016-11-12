@@ -53,11 +53,17 @@
     </Compile>
     <Compile Include="App.cs" />
     <Compile Include="Data\DeliveryLineDatabase.cs" />
+    <Compile Include="View\Location\AddLocation.xaml.cs">
+      <DependentUpon>AddLocation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\EditDelivery.xaml.cs">
       <DependentUpon>EditDelivery.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\EditDeliveryLine.xaml.cs">
       <DependentUpon>EditDeliveryLine.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Location\EditLocation.xaml.cs">
+      <DependentUpon>EditLocation.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Info.xaml.cs">
       <DependentUpon>Info.xaml</DependentUpon>
@@ -68,8 +74,26 @@
     <Compile Include="View\ManageDeliveryLines.xaml.cs">
       <DependentUpon>ManageDeliveryLines.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Location\ManageLocation.xaml.cs">
+      <DependentUpon>ManageLocation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Move.xaml.cs">
       <DependentUpon>Move.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Other.xaml.cs">
+      <DependentUpon>Other.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Product\AddProduct.xaml.cs">
+      <DependentUpon>AddProduct.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Product\EditProduct.xaml.cs">
+      <DependentUpon>EditProduct.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Product\ManageProduct.xaml.cs">
+      <DependentUpon>ManageProduct.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Product\ShowProduct.xaml.cs">
+      <DependentUpon>ShowProduct.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ShowDelivery.xaml.cs">
       <DependentUpon>ShowDelivery.xaml</DependentUpon>
@@ -84,6 +108,18 @@
     <Compile Include="Data\DeliveryDatabase.cs" />
     <Compile Include="View\ShowDeliveryLine.xaml.cs">
       <DependentUpon>ShowDeliveryLine.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Location\ShowLocation.xaml.cs">
+      <DependentUpon>ShowLocation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Stock\EditStock.xaml.cs">
+      <DependentUpon>EditStock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Stock\ManageStock.xaml.cs">
+      <DependentUpon>ManageStock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Stock\ShowStock.xaml.cs">
+      <DependentUpon>ShowStock.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Tagging.xaml.cs">
       <DependentUpon>Tagging.xaml</DependentUpon>
@@ -206,6 +242,78 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="View\Info.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\Other.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\Location\ManageLocation.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\Location\AddLocation.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\Location\ShowLocation.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\Location\EditLocation.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\Stock\ManageStock.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\Stock\ShowStock.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\Stock\EditStock.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\Product\ManageProduct.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\Product\AddProduct.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\Product\EditProduct.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\Product\ShowProduct.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 
 using Xamarin.Forms;
+using XamarinWMS.Data;
 
 namespace XamarinWMS
 {
@@ -11,6 +12,9 @@ namespace XamarinWMS
     {
         static DeliveryDatabase dbUtils;
         static DeliveryLineDatabase dbLineUtils;
+        static StockDatabase dbStock;
+        static LocationDatabase dbLocation;
+        static ProdDatabase dbProd;
         public App()
         {
 
@@ -38,6 +42,42 @@ namespace XamarinWMS
                     dbLineUtils = new DeliveryLineDatabase();
                 }
                 return dbLineUtils;
+            }
+        }
+
+        public static StockDatabase StkDatabase
+        {
+            get
+            {
+                if (dbStock == null)
+                {
+                    dbStock = new StockDatabase();
+                }
+                return dbStock;
+            }
+        }
+
+        public static LocationDatabase locDatabase
+        {
+            get
+            {
+                if (dbLocation == null)
+                {
+                    dbLocation = new LocationDatabase();
+                }
+                return dbLocation;
+            }
+        }
+
+        public static ProdDatabase prodDatabase
+        {
+            get
+            {
+                if (dbProd == null)
+                {
+                    dbProd = new ProdDatabase();
+                }
+                return dbProd;
             }
         }
 

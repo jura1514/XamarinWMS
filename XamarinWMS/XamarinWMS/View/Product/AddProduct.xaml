@@ -1,14 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="XamarinWMS.AddDelivery"
-             Title="Add Delivery">
+             x:Class="XamarinWMS.View.Product.AddProduct"
+             Title="Add Product">
   <ContentView.Content>
     <TableView Intent="Settings">
       <TableRoot>
-        <TableSection Title="Add New Delivery">
-          <EntryCell x:Name="txtDelId" Label="Delivery Id" Keyboard="Numeric" />
-          <EntryCell x:Name="txtName" Label="Name" Keyboard="Text" />
+        <TableSection Title="Add New Product">
+          <EntryCell x:Name="txtProdId" Label="Product Id" Keyboard="Text" />
           <EntryCell x:Name="txtState" Label="State" Keyboard="Text" />
           <ViewCell>
             <ContentView Padding="0,0">

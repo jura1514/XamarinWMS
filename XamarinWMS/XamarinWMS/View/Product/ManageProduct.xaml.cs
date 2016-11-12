@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using XamarinWMS.Model;
 
-namespace XamarinWMS
+namespace XamarinWMS.View.Product
 {
-    public partial class ManageDelivery : ContentPage
+    public partial class ManageProduct : ContentPage
     {
-        public ManageDelivery()
+        public ManageProduct()
         {
             InitializeComponent();
-            var vList = App.DelDatabase.GetAllDeliveries();
+            var vList = App.prodDatabase.GetAllProducts();
             lstData.ItemsSource = vList;
         }
 
@@ -24,12 +24,12 @@ namespace XamarinWMS
             {
                 return;
             }
-            var vSelUser = (DeliveryData)e.SelectedItem;
-            Navigation.PushAsync(new ShowDelivery(vSelUser));
+            var vSelUser = (ProductData)e.SelectedItem;
+            Navigation.PushAsync(new ShowProduct(vSelUser));
         }
         public void OnNewClicked(object sender, EventArgs args)
         {
-            Navigation.PushAsync(new AddDelivery());
+            Navigation.PushAsync(new AddProduct());
         }
     }
 }

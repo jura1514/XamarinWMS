@@ -9,9 +9,7 @@
         <TableSection Title="Edit Delivery">
           <EntryCell x:Name="txtDelId" Label="Delivery Id" Text ="{Binding DeliveryId}" Keyboard="Numeric" />
           <EntryCell x:Name="txtName" Label="Name" Text ="{Binding Name}" Keyboard="Text" />
-          <EntryCell x:Name="txtStatus" Label="Status" Text ="{Binding Status}" Keyboard="Text" />
-          <!--<EntryCell x:Name="txtExpDate" Label="Exp. Date" Text ="{Binding ExpectedDate}" Keyboard="Text" />
-          <EntryCell x:Name="txtChangeTime" Label="Status Change Time" Text ="{Binding StatusChangeTime}" Keyboard="Text" />-->
+          <EntryCell x:Name="txtState" Label="State" Text ="{Binding State}" Keyboard="Text" />
           <ViewCell>
             <ContentView Padding="0,0">
               <ContentView.Content>

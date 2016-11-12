@@ -27,6 +27,8 @@ namespace XamarinWMS.Model
 
         public int RejectedQty { get; set; }
 
+        public bool isUsedForStock { get; set; }
+
         public DeliveryLineData()
         {
         }

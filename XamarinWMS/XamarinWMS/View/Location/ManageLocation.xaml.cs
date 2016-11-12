@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using XamarinWMS.Model;
 
-namespace XamarinWMS
+namespace XamarinWMS.View
 {
-    public partial class ManageDelivery : ContentPage
+    public partial class ManageLocation : ContentPage
     {
-        public ManageDelivery()
+        public ManageLocation()
         {
             InitializeComponent();
-            var vList = App.DelDatabase.GetAllDeliveries();
+            var vList = App.locDatabase.GetAllLoc();
             lstData.ItemsSource = vList;
         }
 
@@ -24,12 +24,12 @@ namespace XamarinWMS
             {
                 return;
             }
-            var vSelUser = (DeliveryData)e.SelectedItem;
-            Navigation.PushAsync(new ShowDelivery(vSelUser));
+            var vSelUser = (LocationData)e.SelectedItem;
+            Navigation.PushAsync(new ShowLocation(vSelUser));
         }
         public void OnNewClicked(object sender, EventArgs args)
         {
-            Navigation.PushAsync(new AddDelivery());
+            Navigation.PushAsync(new AddLocation());
         }
     }
 }

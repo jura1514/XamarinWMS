@@ -9,6 +9,7 @@
         <TableSection Title="Edit Delivery Line">
           <EntryCell x:Name="txtDelLineId" Label="Del. Line Id" Text ="{Binding DeliveryLineId}" Keyboard="Numeric" />
           <EntryCell x:Name="txtName" Label="Name" Text ="{Binding Name}" Keyboard="Text" />
+          <EntryCell x:Name="txtProd" Label="Product" Text ="{Binding Product}" Keyboard="Text" />
           <EntryCell x:Name="txtDelId" Label="Delivery Id" Text ="{Binding DeliveryId}" Keyboard="Numeric" />
           <EntryCell x:Name="txtAccQty" Label="Acc. Qty" Text ="{Binding AcceptedQty}" Keyboard="Numeric" />
           <EntryCell x:Name="txtExpQty" Label="Exp. Qty" Text ="{Binding ExpectedQty}" Keyboard="Numeric" />

@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinWMS.View.Stock.ShowStock"
+             Title="View Stock">
+  <ContentView.Content>
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="*"/>
+      </Grid.RowDefinitions>
+
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="10"/>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="10"/>
+      </Grid.ColumnDefinitions>
+
+      <Label Grid.Row ="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Stock Details" />
+      <Label Grid.Row ="1" Grid.Column="1" Text="Stock Id" />
+      <Label Grid.Row="1" Grid.Column="2" Text ="{Binding StockId}" />
+      <Label Grid.Row ="2" Grid.Column="1" Text="Name" />
+      <Label Grid.Row="2" Grid.Column="2" Text ="{Binding Name}"/>
+      <Label Grid.Row ="3" Grid.Column="1" Text="Del. Line Id" />
+      <Label Grid.Row="3" Grid.Column="2" Text ="{Binding DeliveryLineId}"/>
+      <Label Grid.Row ="4" Grid.Column="1" Text="Product" />
+      <Label Grid.Row="4" Grid.Column="2" Text ="{Binding Product}" />
+      <Label Grid.Row ="5" Grid.Column="1" Text="Location" />
+      <Label Grid.Row="5" Grid.Column="2" Text ="{Binding Location}"/>
+      <Label Grid.Row ="6" Grid.Column="1" Text="Stock State" />
+      <Label Grid.Row="6" Grid.Column="2" Text ="{Binding StockState}"/>
+      <Label Grid.Row ="7" Grid.Column="1" Text="Stock Qty" />
+      <Label Grid.Row="7" Grid.Column="2" Text ="{Binding Qty}"/>
+      
+      <Button Grid.Row ="9" Grid.Column="1" Text="Edit Details" Clicked="OnEditClicked" />
+      <Button Grid.Row="9" Grid.Column="2" Text="Delete" Clicked="OnDeleteClicked" />
+    </Grid>
+  </ContentView.Content>
+</ContentPage>

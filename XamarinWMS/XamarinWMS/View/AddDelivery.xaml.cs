@@ -22,7 +22,7 @@ namespace XamarinWMS
             {
                 DeliveryId = int.Parse(txtDelId.Text),
                 Name = txtName.Text,
-                State = txtStatus.Text,
+                State = txtState.Text,
                 ExpectedDate = DateTime.Now,/*DateTime.Parse(txtExpDate.Text),*/
                 StateChangeTime = DateTime.Now, /*DateTime.Parse(txtChangeTime.Text)*/
             };

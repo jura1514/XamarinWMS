@@ -33,10 +33,14 @@ namespace XamarinWMS
             {
                 Text = "Picking"
             };
+            var buttonOther = new Button
+            {
+                Text = "Other"
+            };
             Content = new StackLayout
             {
                 VerticalOptions = LayoutOptions.Center,
-                Children = { rootLabel, buttonReceive, buttonStockMove, buttonPickAndDispatch, buttonInfo }
+                Children = { rootLabel, buttonReceive, buttonStockMove, buttonPickAndDispatch, buttonInfo, buttonOther }
             };
             var newPage = new ContentPage
             {
@@ -48,6 +52,7 @@ namespace XamarinWMS
             buttonStockMove.Clicked += (sender, args) => Navigation.PushAsync(new Move());
             buttonPickAndDispatch.Clicked += (sender, args) => Navigation.PushAsync(newPage);
             buttonInfo.Clicked += (sender, args) => Navigation.PushAsync(new Info());
+            buttonOther.Clicked += (sender, args) => Navigation.PushAsync(new Other());
 
         }
         //async void OnNextPageButtonClicked(object sender, EventArgs e)

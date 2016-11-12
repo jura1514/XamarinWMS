@@ -8,7 +8,9 @@
              HorizontalOptions="Center"/>
       <Entry Text="Binding StockId"
              HorizontalOptions="Center"
-             Keyboard="Text"/>
+             Keyboard="Text"
+             WidthRequest="200"
+             HorizontalTextAlignment="Center"/>
       <Button Text="Move from entry"
                 HorizontalOptions="Center"
                 Clicked="OnMoveClicked"/>

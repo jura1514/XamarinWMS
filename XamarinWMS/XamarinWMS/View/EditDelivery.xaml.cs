@@ -23,7 +23,7 @@ namespace XamarinWMS
         {
             mSelDelivery.DeliveryId = int.Parse(txtDelId.Text);
             mSelDelivery.Name = txtName.Text;
-            mSelDelivery.State = txtStatus.Text;
+            mSelDelivery.State = txtState.Text;
             mSelDelivery.ExpectedDate = DateTime.Now;/*DateTime.Parse(txtExpDate.Text);*/
             mSelDelivery.StateChangeTime = DateTime.Now;/*DateTime.Parse(txtChangeTime.Text);*/
             App.DelDatabase.EditDelivery(mSelDelivery);

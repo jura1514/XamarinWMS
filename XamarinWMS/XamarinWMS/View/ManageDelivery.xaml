@@ -11,8 +11,8 @@
           <Label Text="Delivery Id" FontSize="Medium" FontAttributes="Bold"/>
           <Label Text="Name" FontSize="Medium" FontAttributes="Bold"/>
           <Label Text="Exp. Date" FontSize="Medium" FontAttributes="Bold"/>
-          <Label Text="Status" FontSize="Medium" FontAttributes="Bold"/>
-          <Label Text="Status Change Time" FontSize="Medium" FontAttributes="Bold"/>
+          <Label Text="State" FontSize="Medium" FontAttributes="Bold"/>
+          <Label Text="State Change Time" FontSize="Medium" FontAttributes="Bold"/>
         </StackLayout>
       </DataTemplate>
     </ListView.HeaderTemplate>
@@ -23,8 +23,8 @@
             <Label Text="{Binding DeliveryId}" FontSize="Medium" />
             <Label Text="{Binding Name}" FontSize="Medium" />
             <Label Text="{Binding ExpectedDate}" FontSize="Medium" />
-            <Label Text="{Binding Status}" FontSize="Medium" />
-            <Label Text="{Binding StatusChangeTime}" FontSize="Medium" />
+            <Label Text="{Binding State}" FontSize="Medium" />
+            <Label Text="{Binding StateChangeTime}" FontSize="Medium" />
           </StackLayout>
         </ViewCell>
       </DataTemplate>

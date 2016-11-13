@@ -24,6 +24,7 @@ namespace XamarinWMS.Data
         {
             return _connection.Query<LocationData>("Select * From [LocationData]");
         }
+
         public int SaveLoc(LocationData aLoc)
         {
             return _connection.Insert(aLoc);

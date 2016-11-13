@@ -27,7 +27,8 @@ namespace XamarinWMS
                 Product = txtProd.Text,
                 AcceptedQty = int.Parse(txtAccQty.Text),
                 ExpectedQty = int.Parse(txtExpQty.Text),
-                RejectedQty = int.Parse(txtRejQty.Text)
+                RejectedQty = int.Parse(txtRejQty.Text),
+                isUsedForStock = false
             };
             App.DelLineDatabase.SaveDelLine(vDelivery);
             Navigation.PushAsync(new ManageDeliveryLines(dData));

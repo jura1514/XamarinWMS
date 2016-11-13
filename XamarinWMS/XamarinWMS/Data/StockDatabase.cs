@@ -24,6 +24,10 @@ namespace XamarinWMS.Data
         {
             return _connection.Query<StockData>("Select * From [StockData]");
         }
+        public StockData GetStock(int StockId)
+        {
+            return _connection.Find<StockData>(StockId);
+        }
         public int SaveStock(StockData aStock)
         {
             return _connection.Insert(aStock);

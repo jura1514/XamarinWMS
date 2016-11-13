@@ -1,8 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:XamarinWMS.Controls;assembly=XamarinWMS"
              x:Class="XamarinWMS.View.Tagging"
              Title="Tagging">
+
   <StackLayout VerticalOptions="Center" Spacing="10">
     <Label Text="Tag Delivery Line Below"
            HorizontalOptions="Center"/>
@@ -10,10 +12,17 @@
            HorizontalOptions="Center"
            WidthRequest="200"
            HorizontalTextAlignment="Center"/>
-        <Label Text="{Binding isUsedForStock}"
+    <Label Text="{Binding isUsedForStock}"
            HorizontalOptions="Center"
            WidthRequest="200"
            HorizontalTextAlignment="Center"/>
+    <Label Text="Choose Location"
+           HorizontalOptions="Center"
+           WidthRequest="200"
+           HorizontalTextAlignment="Center"/>
+
+    <!--<controls:BindablePicker  x:Name="Picker1" ItemsSource="{Binding DeliveryLineId}" SelectedIndex="{Binding DeliveryLineId, Mode=TwoWay}" />-->
+    
     <Button Text="Tag"
             HorizontalOptions="Center"
             Clicked="OnTagClicked"/>

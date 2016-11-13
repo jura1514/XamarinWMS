@@ -35,6 +35,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Controls\BindablePicker.cs" />
     <Compile Include="Data\LocationDatabase.cs" />
     <Compile Include="Data\OrderDatabase.cs" />
     <Compile Include="Data\PickDatabase.cs" />
@@ -77,8 +78,11 @@
     <Compile Include="View\Location\ManageLocation.xaml.cs">
       <DependentUpon>ManageLocation.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Move.xaml.cs">
-      <DependentUpon>Move.xaml</DependentUpon>
+    <Compile Include="View\Move\MoveWhat.xaml.cs">
+      <DependentUpon>MoveWhat.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Move\MoveWhere.xaml.cs">
+      <DependentUpon>MoveWhere.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Other.xaml.cs">
       <DependentUpon>Other.xaml</DependentUpon>
@@ -235,7 +239,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="View\Move.xaml">
+    <EmbeddedResource Include="View\Move\MoveWhat.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -314,6 +318,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="View\Product\ShowProduct.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\Move\MoveWhere.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

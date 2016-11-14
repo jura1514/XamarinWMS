@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:controls="clr-namespace:XamarinWMS.Controls;assembly=XamarinWMS"
              x:Class="XamarinWMS.View.Tagging"
              Title="Tagging">
 
@@ -21,7 +20,7 @@
            WidthRequest="200"
            HorizontalTextAlignment="Center"/>
 
-    <!--<controls:BindablePicker  x:Name="Picker1" ItemsSource="{Binding DeliveryLineId}" SelectedIndex="{Binding DeliveryLineId, Mode=TwoWay}" />-->
+    <Picker x:Name="LocationPicker" Title="Select Location" HorizontalOptions="Center"></Picker>
     
     <Button Text="Tag"
             HorizontalOptions="Center"

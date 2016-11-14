@@ -14,16 +14,33 @@ namespace XamarinWMS.View
     public partial class Tagging : ContentPage
     {
         DeliveryLineData mSelDelLine;
-        //List<LocationData> LocationIds;
-
+        List<LocationData> Locations;
+        string LocationId;
+        
         public Tagging(DeliveryLineData aSelectedDelLine)
         {
-            //LocationIds = App.locDatabase.GetAllLoc();
+            Locations = App.locDatabase.GetAllLoc();
             InitializeComponent();
             mSelDelLine = aSelectedDelLine;
             BindingContext = mSelDelLine;
+            
+            for ( int i=0; i < Locations.Count; i++)
+            {
+                LocationPicker.Items.Add(Locations[i].LocationId);
 
-
+            }
+            LocationPicker.SelectedIndexChanged += (sender, args) =>
+            {
+                if (LocationPicker.SelectedIndex == -1)
+                {
+                    string defaultValue = "Click to select";
+                    defaultValue = LocationPicker.Items[LocationPicker.SelectedIndex];
+                }
+                else
+                {
+                    LocationId = LocationPicker.Items[LocationPicker.SelectedIndex];
+                }
+            };
         }
 
         public void CreateStock(DeliveryLineData FoundDelLine)
@@ -36,7 +53,7 @@ namespace XamarinWMS.View
                 StockState = "PENDING",
                 StateChangeTime = DateTime.Now,
                 Qty = FoundDelLine.ExpectedQty,
-                Location = "TestLocation"
+                Location = LocationId
             };
             App.StkDatabase.SaveStock(vStock);
             // update delivery line that we would not use it again
@@ -66,30 +83,16 @@ namespace XamarinWMS.View
                         if ((FoundDelLine.DeliveryLineId != 0) &&
                                 FoundDelLine.DeliveryLineId > 0)
                         {
-                            //var stockList = App.StkDatabase.GetAllStock();
-
-                            //if (stockList.Any())
-                            //{
-                            //    for (int i = 0; i < stockList.Count; i++)
-                            //    {
-                                    if ( FoundDelLine.isUsedForStock == false )
-                                    {
-                                        CreateStock(FoundDelLine);
-                                        DisplayAlert("Stock Created, Scanned Barcode:", result.Text, "OK");
-                                        Navigation.PushAsync(new MainMenu());
-                                    }
-                                    else
-                                    {
-                                        DisplayAlert("Alert", "Stock with this delivery line id already in use", "OK");
-                                    }
-                            //    }
-                            //}
-                            //else
-                            //{
-                            //    CreateStock(FoundDelLine);
-                            //    DisplayAlert("Stock Created, Scanned Barcode:", result.Text, "OK");
-                            //    Navigation.PushAsync(new MainMenu());
-                            //}
+                            if ( FoundDelLine.isUsedForStock == false )
+                            {
+                                CreateStock(FoundDelLine);
+                                DisplayAlert("Stock Created, Scanned Barcode:", result.Text, "OK");
+                                Navigation.PushAsync(new MainMenu());
+                            }
+                            else
+                            {
+                                DisplayAlert("Alert", "Stock with this delivery line id already in use", "OK");
+                            }
                         }
                         else
                         {
@@ -113,32 +116,16 @@ namespace XamarinWMS.View
 
         public void OnTagClicked(object sender, EventArgs e)
         {
-            //var stockList = App.StkDatabase.GetAllStock();
-
-            //if (stockList.Any())
-            //{
-              //  for (int i = 0; i < stockList.Count; i++)
-             //   {
-                    //if ((stockList[i].DeliveryLineId != mSelDelLine.DeliveryLineId)
-                    //    && mSelDelLine.isUsedForStock == false)
-                    if ( mSelDelLine.isUsedForStock == false)
-                    {
-                        CreateStock(mSelDelLine);
-                        DisplayAlert("Alert", "Stock Created", "OK");
-                        Navigation.PushAsync(new MainMenu());
-                    }
-                    else
-                    {
-                        DisplayAlert("Alert", "Stock with this delivery line id already in use", "OK");
-                    }
-            // }
-            //}
-            //else
-            //{
-            //    CreateStock(mSelDelLine);
-            //    DisplayAlert("Alert", "Stock Created", "OK");
-            //    Navigation.PushAsync(new MainMenu());
-            //}
+            if ( mSelDelLine.isUsedForStock == false)
+            {
+                CreateStock(mSelDelLine);
+                DisplayAlert("Alert", "Stock Created", "OK");
+                Navigation.PushAsync(new MainMenu());
+            }
+            else
+            {
+                DisplayAlert("Alert", "Stock with this delivery line id already in use", "OK");
+            }
         }
     }
 }

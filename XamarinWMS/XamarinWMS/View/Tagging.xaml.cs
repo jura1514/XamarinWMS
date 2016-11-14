@@ -63,50 +63,59 @@ namespace XamarinWMS.View
 
         public async void OnBarcodeClicked(object sender, EventArgs e)
         {
-            var scanPage = new ZXingScannerPage();
-            scanPage.OnScanResult += (result) => {
-                // Stop scanning
-                scanPage.IsScanning = false;
+            if (!String.IsNullOrEmpty(LocationId))
+            {
+                var scanPage = new ZXingScannerPage();
+                scanPage.OnScanResult += (result) =>
+                {
+                    // Stop scanning
+                    scanPage.IsScanning = false;
 
-                // Pop the page and show the result
-                Device.BeginInvokeOnMainThread(() => {
-                    Navigation.PopAsync();
-
-                    int resultId;
-                    bool isNumeric = int.TryParse(result.Text, out resultId);
-
-                    if (isNumeric)
+                    // Pop the page and show the result
+                    Device.BeginInvokeOnMainThread(() =>
                     {
+                        Navigation.PopAsync();
 
-                        DeliveryLineData FoundDelLine = App.DelLineDatabase.GetDeliveryLine(resultId);
+                        int resultId;
+                        bool isNumeric = int.TryParse(result.Text, out resultId);
 
-                        if ((FoundDelLine.DeliveryLineId != 0) &&
-                                FoundDelLine.DeliveryLineId > 0)
+                        if (isNumeric)
                         {
-                            if ( FoundDelLine.isUsedForStock == false )
+
+                            DeliveryLineData FoundDelLine = App.DelLineDatabase.GetDeliveryLine(resultId);
+
+                            if ((FoundDelLine.DeliveryLineId != 0) &&
+                                    FoundDelLine.DeliveryLineId > 0)
                             {
-                                CreateStock(FoundDelLine);
-                                DisplayAlert("Stock Created, Scanned Barcode:", result.Text, "OK");
-                                Navigation.PushAsync(new MainMenu());
+                                if (FoundDelLine.isUsedForStock == false)
+                                {
+                                    CreateStock(FoundDelLine);
+                                    DisplayAlert("Stock Created, Scanned Barcode:", result.Text, "OK");
+                                    Navigation.PushAsync(new MainMenu());
+                                }
+                                else
+                                {
+                                    DisplayAlert("Alert", "Stock with this delivery line id already in use", "OK");
+                                }
                             }
                             else
                             {
-                                DisplayAlert("Alert", "Stock with this delivery line id already in use", "OK");
+                                DisplayAlert("Alert", "Could not find a Delivery Line", "OK");
                             }
                         }
                         else
                         {
-                            DisplayAlert("Alert", "Could not find a Delivery Line", "OK");
+                            DisplayAlert("Alert", "Delivery Line should be a Numeric!", "OK");
                         }
-                    }
-                    else
-                    {
-                        DisplayAlert("Alert", "Delivery Line should be a Numeric!", "OK");
-                    }
 
-                });
-            };
-            await Navigation.PushAsync(scanPage);
+                    });
+                };
+                await Navigation.PushAsync(scanPage);
+            }
+            else
+            {
+                DisplayAlert("Alert", "Select a Location First!", "OK");
+            }
         }
 
         public void OnNfcClicked(object sender, EventArgs e)
@@ -116,15 +125,22 @@ namespace XamarinWMS.View
 
         public void OnTagClicked(object sender, EventArgs e)
         {
-            if ( mSelDelLine.isUsedForStock == false)
+            if (!String.IsNullOrEmpty(LocationId))
             {
-                CreateStock(mSelDelLine);
-                DisplayAlert("Alert", "Stock Created", "OK");
-                Navigation.PushAsync(new MainMenu());
+                if (mSelDelLine.isUsedForStock == false)
+                {
+                    CreateStock(mSelDelLine);
+                    DisplayAlert("Alert", "Stock Created", "OK");
+                    Navigation.PushAsync(new MainMenu());
+                }
+                else
+                {
+                    DisplayAlert("Alert", "Stock with this delivery line id already in use", "OK");
+                }
             }
             else
             {
-                DisplayAlert("Alert", "Stock with this delivery line id already in use", "OK");
+                DisplayAlert("Alert", "Select a Location First!", "OK");
             }
         }
     }

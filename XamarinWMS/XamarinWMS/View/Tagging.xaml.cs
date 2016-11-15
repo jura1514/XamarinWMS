@@ -50,7 +50,7 @@ namespace XamarinWMS.View
                 DeliveryLineId = FoundDelLine.DeliveryLineId,
                 Name = FoundDelLine.Name,
                 Product = FoundDelLine.Product,
-                StockState = "PENDING",
+                StockState = "CREATED",
                 StateChangeTime = DateTime.Now,
                 Qty = FoundDelLine.ExpectedQty,
                 Location = LocationId

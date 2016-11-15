@@ -14,13 +14,15 @@ namespace XamarinWMS.View.Move
     {
         StockData mFoundStock;
         List<LocationData> Locations;
-        string LocationId;
+        string PickerLocationId;
+        string test;
 
         public MoveWhere(StockData aFoundStock)
         {
             InitializeComponent();
             mFoundStock = aFoundStock;
             Locations = App.locDatabase.GetAllLoc();
+            BindingContext = mFoundStock;
 
             for (int i = 0; i < Locations.Count; i++)
             {
@@ -36,28 +38,73 @@ namespace XamarinWMS.View.Move
                 }
                 else
                 {
-                    LocationId = LocationPicker.Items[LocationPicker.SelectedIndex];
+                    PickerLocationId = LocationPicker.Items[LocationPicker.SelectedIndex];
                 }
             };
         }
 
+        public void UpdateStockLocation(LocationData foundLoc)
+        {
+            mFoundStock.Location = foundLoc.LocationId;          
+            App.StkDatabase.EditStock(mFoundStock);
+            DisplayAlert("Moved to Location:", foundLoc.LocationId, "OK");
+            Navigation.PushAsync(new MainMenu());
+        }
+
         public void OnMoveClicked(object sender, EventArgs e)
         {
-           DisplayAlert("Alert", "Stock Id should be a Numeric!", "OK");
+            if (!String.IsNullOrEmpty(PickerLocationId))
+            {
+                LocationData foundLoc = App.locDatabase.GetLocationById(PickerLocationId);
+                if (foundLoc != null)
+                {
+                    UpdateStockLocation(foundLoc);
+                }
+                else
+                {
+                    DisplayAlert("Alert", "Could not find a Location!", "OK");
+                }
+            }
+            else
+            {
+                DisplayAlert("Alert", "Choose a Location!", "OK");
+            }
+        }
 
+        public async void OnMoveYesorNo(LocationData barcodeLocation)
+        {
+            var answer = await DisplayAlert("Attention!", "Would you like to move to this Location", "Yes", "No");
+            if (answer.Equals(true))
+            {
+                UpdateStockLocation(barcodeLocation);
+            }
         }
 
         public async void OnMoveBarcodeClicked(object sender, EventArgs e)
         {
             var scanPage = new ZXingScannerPage();
-            scanPage.OnScanResult += (result) => {
+            scanPage.OnScanResult += (result) =>
+            {
                 // Stop scanning
                 scanPage.IsScanning = false;
 
-                Device.BeginInvokeOnMainThread(() => {
+                Device.BeginInvokeOnMainThread(() =>
+                {
                     Navigation.PopAsync();
 
-                    DisplayAlert("Stock Found: ", result.Text, "OK");
+                LocationData barcodeLocation = App.locDatabase.GetLocationById(result.Text);
+        
+                    if (barcodeLocation != null)
+                    {
+
+                        OnMoveYesorNo(barcodeLocation);
+                        DisplayAlert("Found Location:", result.Text, "OK"); 
+
+                    }
+                    else
+                    {
+                        DisplayAlert("Alert", "Could not find a Location!", "OK");
+                    }
                 });
             };
             await Navigation.PushAsync(scanPage);

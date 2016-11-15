@@ -19,8 +19,8 @@ namespace XamarinWMS.View
         
         public Tagging(DeliveryLineData aSelectedDelLine)
         {
-            Locations = App.locDatabase.GetAllLoc();
             InitializeComponent();
+            Locations = App.locDatabase.GetAllLoc();
             mSelDelLine = aSelectedDelLine;
             BindingContext = mSelDelLine;
             
@@ -83,24 +83,30 @@ namespace XamarinWMS.View
                         {
 
                             DeliveryLineData FoundDelLine = App.DelLineDatabase.GetDeliveryLine(resultId);
-
-                            if ((FoundDelLine.DeliveryLineId != 0) &&
-                                    FoundDelLine.DeliveryLineId > 0)
+                            if (FoundDelLine != null)
                             {
-                                if (FoundDelLine.isUsedForStock == false)
+                                if ((FoundDelLine.DeliveryLineId != 0) &&
+                                        FoundDelLine.DeliveryLineId > 0)
                                 {
-                                    CreateStock(FoundDelLine);
-                                    DisplayAlert("Stock Created, Scanned Barcode:", result.Text, "OK");
-                                    Navigation.PushAsync(new MainMenu());
+                                    if (FoundDelLine.isUsedForStock == false)
+                                    {
+                                        CreateStock(FoundDelLine);
+                                        DisplayAlert("Stock Created, Scanned Barcode:", result.Text, "OK");
+                                        Navigation.PushAsync(new MainMenu());
+                                    }
+                                    else
+                                    {
+                                        DisplayAlert("Alert", "Stock with this delivery line id already in use", "OK");
+                                    }
                                 }
                                 else
                                 {
-                                    DisplayAlert("Alert", "Stock with this delivery line id already in use", "OK");
+                                    DisplayAlert("Alert", "Could not find a Delivery Line", "OK");
                                 }
                             }
                             else
                             {
-                                DisplayAlert("Alert", "Could not find a Delivery Line", "OK");
+                                DisplayAlert("Alert", "Could not find a Delivery Line!", "OK");
                             }
                         }
                         else
@@ -114,7 +120,7 @@ namespace XamarinWMS.View
             }
             else
             {
-                DisplayAlert("Alert", "Select a Location First!", "OK");
+                await DisplayAlert("Alert", "Select a Location First!", "OK");
             }
         }
 

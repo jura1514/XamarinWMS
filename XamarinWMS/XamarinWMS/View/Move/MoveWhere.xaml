@@ -1,6 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="XamarinWMS.View.Move.MoveWhere">
-  <Label Text="{Binding MainText}" VerticalOptions="Center" HorizontalOptions="Center" />
+             x:Class="XamarinWMS.View.Move.MoveWhere"
+             Title="Where to Move?">
+<ContentView.Content>
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="*"/>
+      </Grid.RowDefinitions>
+
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="10"/>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="10"/>
+      </Grid.ColumnDefinitions>
+
+      <Label Grid.Row ="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Choose Location" />
+      <Label Grid.Row ="1" Grid.Column="1" Text="Move from:" />
+      <Label Grid.Row="1" Grid.Column="2" Text ="{Binding LocationId}" />
+      <Label Grid.Row ="2" Grid.Column="1" Text="Move to:" />
+      <Picker Grid.Row="2" Grid.Column="2" x:Name="LocationPicker" Title=" Select Location"></Picker>
+      <Button Grid.Row ="6" Grid.Column="1" Text="Move" Clicked="OnMoveClicked" />
+      <Button Grid.Row="6" Grid.Column="2" Text="Move using Barcode" Clicked="OnMoveBarcodeClicked" />
+    </Grid>
+  </ContentView.Content>
 </ContentPage>

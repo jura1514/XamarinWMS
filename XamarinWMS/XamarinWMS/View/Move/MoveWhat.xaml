@@ -6,16 +6,15 @@
   <StackLayout VerticalOptions="Center" Spacing="10">
     <Label Text="Type Stock Id"
            HorizontalOptions="Center"/>
-    <Entry Text="Enter id"
-           HorizontalOptions="Center"
+    <Entry HorizontalOptions="Center"
            WidthRequest="200"
            HorizontalTextAlignment="Center"
-           x:Name="txtEntry"/>
-
+           x:Name="txtEntry"
+           Keyboard="Numeric"/>
 
     <Button Text="Move"
             HorizontalOptions="Center"
-            Clicked="OnTagClicked"/>
+            Clicked="OnMoveClicked"/>
     <Label Text="Move Using Barcode or NFC"
             HorizontalOptions="Center"/>
       <Button Text="Barcode"

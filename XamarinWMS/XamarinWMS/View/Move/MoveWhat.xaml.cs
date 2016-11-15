@@ -19,23 +19,28 @@ namespace XamarinWMS.View.Move
 
         public void OnMoveClicked(object sender, EventArgs e)
         {
-            DisplayAlert("Alert", "This feature is coming soon!", "OK");
             int validEntry;
             bool isNumeric = int.TryParse(txtEntry.Text, out validEntry);
 
             if(isNumeric)
             {
                 StockData foundStock = App.StkDatabase.GetStock(validEntry);
-
-                if ((foundStock.StockId != 0) &&
-                                    foundStock.StockId > 0)
+                if (foundStock != null)
                 {
-                    DisplayAlert("Stock Found: ", foundStock.StockId.ToString(), "OK");
-                    Navigation.PushAsync(new MoveWhere());
+                    if ((foundStock.StockId != 0) &&
+                                        foundStock.StockId > 0)
+                    {
+                        DisplayAlert("Stock Found: ", foundStock.StockId.ToString(), "OK");
+                        Navigation.PushAsync(new MoveWhere(foundStock));
+                    }
+                    else
+                    {
+                        DisplayAlert("Alert", "Could not find a Stock", "OK");
+                    }
                 }
                 else
                 {
-                    DisplayAlert("Alert", "Could not find a Stock", "OK");
+                    DisplayAlert("Alert", "Could not find a Stock!", "OK");
                 }
             }
             else
@@ -45,7 +50,7 @@ namespace XamarinWMS.View.Move
 
         }
 
-        public void OnMoveBarcodeClicked(object sender, EventArgs e)
+        public async void OnMoveBarcodeClicked(object sender, EventArgs e)
         {
             var scanPage = new ZXingScannerPage();
             scanPage.OnScanResult += (result) => {
@@ -66,7 +71,7 @@ namespace XamarinWMS.View.Move
                                 foundStock.StockId > 0)
                         {
                             DisplayAlert("Stock Found: ", result.Text, "OK");
-                            Navigation.PushAsync(new MoveWhere());
+                            Navigation.PushAsync(new MoveWhere(foundStock));
                         }
                         else
                         {
@@ -80,7 +85,7 @@ namespace XamarinWMS.View.Move
 
                 });
             };
-          //  await Navigation.PushAsync(scanPage);
+            await Navigation.PushAsync(scanPage);
         }
 
         public void OnMoveNfcClicked(object sender, EventArgs e)

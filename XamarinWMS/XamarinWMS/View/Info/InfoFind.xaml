@@ -1,8 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="XamarinWMS.View.Info"
+             x:Class="XamarinWMS.View.Info.InfoFind"
              Title="Info">
+
+  <ContentPage.ToolbarItems>
+    <ToolbarItem Text="Test Button" Order="Primary" />
+  </ContentPage.ToolbarItems>
+
   <StackLayout VerticalOptions="Center" Spacing="10">
     
     <Label Text="Stock Info from entry"
@@ -24,12 +29,16 @@
     <Button Text="Location Info"
               HorizontalOptions="Center"
               Clicked="OnLocationInfoClicked"/>
-    
-    <Button Text="Barcode"
-              HorizontalOptions="Center"
-              Clicked="OnInfoBarcodeClicked"/>
-    <Button Text="NFC"
-            HorizontalOptions="Center"
-            Clicked="OnInfoNfcClicked"/>
+
+    <Label Text="Find Stock or Location Using Barcode and NFC"
+        HorizontalOptions="Center"/>
+    <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+      <Button Text="Barcode"
+             HorizontalOptions="Center"
+             Clicked="OnInfoBarcodeClicked"/>
+      <Button Text="NFC"
+           HorizontalOptions="Center"
+           Clicked="OnInfoNfcClicked"/>
+    </StackLayout>
   </StackLayout>
 </ContentPage>

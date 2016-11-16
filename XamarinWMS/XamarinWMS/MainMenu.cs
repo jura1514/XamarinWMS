@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using XamarinWMS.View;
+using XamarinWMS.View.Info;
 using XamarinWMS.View.Move;
 using ZXing.Net.Mobile.Forms;
 
@@ -21,7 +22,6 @@ namespace XamarinWMS
             {
                 Text = "Info"
             };
-            //buttonInfo.Clicked += OnNextPageButtonClicked;
             var buttonReceive = new Button
             {
                 Text = "Receive"
@@ -52,13 +52,9 @@ namespace XamarinWMS
             buttonReceive.Clicked += (sender, args) => Navigation.PushAsync(new ManageDelivery());
             buttonStockMove.Clicked += (sender, args) => Navigation.PushAsync(new MoveWhat());
             buttonPickAndDispatch.Clicked += (sender, args) => Navigation.PushAsync(newPage);
-            buttonInfo.Clicked += (sender, args) => Navigation.PushAsync(new Info());
+            buttonInfo.Clicked += (sender, args) => Navigation.PushAsync(new InfoFind());
             buttonOther.Clicked += (sender, args) => Navigation.PushAsync(new Other());
 
         }
-        //async void OnNextPageButtonClicked(object sender, EventArgs e)
-        //{
-        //    await Navigation.PushAsync(new PageInfo());
-        //}
     }
 }

@@ -24,6 +24,10 @@ namespace XamarinWMS.Data
         {
             return _connection.Query<StockData>("Select * From [StockData]");
         }
+        public List<StockData> GetAllStockFromLocation(string LocId)
+        {
+            return _connection.Query<StockData>("Select * From [StockData] Where Location = ?", LocId);
+        }
         public StockData GetStock(int StockId)
         {
             return _connection.Find<StockData>(StockId);

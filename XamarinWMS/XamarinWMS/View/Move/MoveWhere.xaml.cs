@@ -15,7 +15,6 @@ namespace XamarinWMS.View.Move
         StockData mFoundStock;
         List<LocationData> Locations;
         string PickerLocationId;
-        string test;
 
         public MoveWhere(StockData aFoundStock)
         {

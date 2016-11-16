@@ -53,6 +53,12 @@
     </Compile>
     <Compile Include="App.cs" />
     <Compile Include="Data\DeliveryLineDatabase.cs" />
+    <Compile Include="View\Info\InfoLocationDisplay.xaml.cs">
+      <DependentUpon>InfoLocationDisplay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Info\InfoStockDisplay.xaml.cs">
+      <DependentUpon>InfoStockDisplay.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Location\AddLocation.xaml.cs">
       <DependentUpon>AddLocation.xaml</DependentUpon>
     </Compile>
@@ -65,8 +71,8 @@
     <Compile Include="View\Location\EditLocation.xaml.cs">
       <DependentUpon>EditLocation.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Info.xaml.cs">
-      <DependentUpon>Info.xaml</DependentUpon>
+    <Compile Include="View\Info\InfoFind.xaml.cs">
+      <DependentUpon>InfoFind.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ManageDelivery.xaml.cs">
       <DependentUpon>ManageDelivery.xaml</DependentUpon>
@@ -101,12 +107,10 @@
     <Compile Include="View\ShowDelivery.xaml.cs">
       <DependentUpon>ShowDelivery.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Data\ISQLite.cs" />
+    <Compile Include="ISQLite.cs" />
     <Compile Include="MainMenu.cs" />
     <Compile Include="Model\DeliveryData.cs" />
     <Compile Include="Model\DeliveryLineData.cs" />
-    <Compile Include="PageInfo.cs" />
-    <Compile Include="PageReceive.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Data\DeliveryDatabase.cs" />
     <Compile Include="View\ShowDeliveryLine.xaml.cs">
@@ -244,7 +248,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="View\Info.xaml">
+    <EmbeddedResource Include="View\Info\InfoFind.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -323,6 +327,18 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="View\Move\MoveWhere.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\Info\InfoStockDisplay.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\Info\InfoLocationDisplay.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

@@ -1,6 +1,50 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="XamarinWMS.View.Info.InfoLocationDisplay">
-  <Label Text="{Binding MainText}" VerticalOptions="Center" HorizontalOptions="Center" />
+             x:Class="XamarinWMS.View.Info.InfoLocationDisplay"
+             Title="Info">
+<ContentPage.Content>
+  <StackLayout Padding="30" Spacing="20">
+    <Label Text="Location Info:" FontSize="16"/>
+    
+    <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+      <Label Text="Location:"
+             HorizontalOptions="Center"
+             Font="18"/>
+      <Label Text="{Binding LocationId}"
+             HorizontalOptions="Center"
+             Font="Bold,18"/>
+    </StackLayout>
+    <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+      <Label Text="Location State:"
+             HorizontalOptions="Center"
+             Font="18"/>
+      <Label Text="{Binding LocState}"
+           HorizontalOptions="Center"
+           Font="Bold,18"/>
+    </StackLayout>
+        
+    <Label Text="Stock At Location:" FontSize="16"/>
+      
+    <ListView x:Name="lstData" HasUnevenRows="false" Footer="Footer" Header="Header" ItemSelected="OnSelection">
+      <ListView.Header>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Padding="10,5,0,5">
+          <Label Text="List of all stock at this location" Font="Bold,16" TextColor="#f4f142"/>
+        </StackLayout>
+      </ListView.Header>
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <TextCell Text="{Binding StockId}" Detail="{Binding Name}" />
+        </DataTemplate>
+      </ListView.ItemTemplate>
+      <ListView.FooterTemplate>
+        <DataTemplate>
+          <StackLayout Orientation="Horizontal" Padding="5,5,5,5">
+            <Button Text="Back" Clicked="OnBackClicked"/>
+          </StackLayout>
+        </DataTemplate>
+      </ListView.FooterTemplate>
+    </ListView>
+  </StackLayout>
+</ContentPage.Content>
 </ContentPage>

@@ -43,7 +43,7 @@
       <Label Grid.Row ="7" Grid.Column="1" Text="Stock Qty" />
       <Label Grid.Row="7" Grid.Column="2" Text ="{Binding Qty}"/>
       
-      <Button Grid.Row ="9" Grid.Column="1" Text="Back" Clicked="OnBackClicked" />
+      <Button Grid.Row ="9" Grid.Column="1" Text="Back to Info" Clicked="OnBackClicked" />
       <Button Grid.Row="9" Grid.Column="2" Text="Main Menu" Clicked="OnMainMenuClicked" />
     </Grid>
   </ContentView.Content>

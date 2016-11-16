@@ -41,14 +41,28 @@ namespace XamarinWMS.View.Info
                     if(isNumerical)
                     {
                         StockData fStock = App.StkDatabase.GetStock(foundStockid);
-                        Navigation.PushAsync(new InfoStockDisplay(fStock));
 
+                        if (fStock != null)
+                        {
+                            Navigation.PushAsync(new InfoStockDisplay(fStock));
+                        }
+                        else
+                        {
+                            DisplayAlert("Alert", "Stock not found!", "OK");
+                        }
                     }
                     else
                     {
-                        List<StockData> fStock = App.StkDatabase.GetAllStockFromLocation(result.Text);
                         LocationData fLoc = App.locDatabase.GetLocationById(result.Text);
-                        Navigation.PushAsync(new InfoLocationDisplay());
+
+                        if ( (fLoc != null) )
+                        {
+                            Navigation.PushAsync(new InfoLocationDisplay(fLoc));
+                        }
+                        else
+                        {
+                            DisplayAlert("Alert", "Location not found!", "OK");
+                        }
                     }
                 });
             };

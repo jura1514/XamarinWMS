@@ -92,6 +92,12 @@
     <Compile Include="View\Other.xaml.cs">
       <DependentUpon>Other.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Picking\ManageOrder.xaml.cs">
+      <DependentUpon>ManageOrder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Picking\OrderDetails.xaml.cs">
+      <DependentUpon>OrderDetails.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Product\AddProduct.xaml.cs">
       <DependentUpon>AddProduct.xaml</DependentUpon>
     </Compile>
@@ -339,6 +345,18 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="View\Info\InfoLocationDisplay.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\Picking\ManageOrder.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\Picking\OrderDetails.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

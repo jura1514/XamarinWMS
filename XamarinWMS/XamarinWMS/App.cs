@@ -15,6 +15,9 @@ namespace XamarinWMS
         static StockDatabase dbStock;
         static LocationDatabase dbLocation;
         static ProdDatabase dbProd;
+        static OrderDatabase dbOrder;
+        static PickDatabase dbPick;
+
         public App()
         {
 
@@ -78,6 +81,30 @@ namespace XamarinWMS
                     dbProd = new ProdDatabase();
                 }
                 return dbProd;
+            }
+        }
+
+        public static OrderDatabase orderDatabase
+        {
+            get
+            {
+                if (dbOrder == null)
+                {
+                    dbOrder = new OrderDatabase();
+                }
+                return dbOrder;
+            }
+        }
+
+        public static PickDatabase pickDatabase
+        {
+            get
+            {
+                if (dbPick == null)
+                {
+                    dbPick = new PickDatabase();
+                }
+                return dbPick;
             }
         }
 

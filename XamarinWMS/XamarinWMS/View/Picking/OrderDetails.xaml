@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinWMS.View.Picking.OrderDetails"
+             Title="Order Details">
+  <ContentPage.Content>
+    <StackLayout Padding="30" Spacing="20">
+      <Label Text="Order:" FontSize="16"/>
+
+      <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+        <Label Text="Order Id:"
+               HorizontalOptions="Center"
+               Font="18"/>
+        <Label Text="{Binding OrderId}"
+               HorizontalOptions="Center"
+               Font="Bold,18"/>
+      </StackLayout>
+      <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+        <Label Text="Order State:"
+               HorizontalOptions="Center"
+               Font="18"/>
+        <Label Text="{Binding OrderState}"
+             HorizontalOptions="Center"
+             Font="Bold,18"/>
+      </StackLayout>
+      <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+        <Label Text="Order Description:"
+               HorizontalOptions="Center"
+               Font="18"/>
+        <Label Text="{Binding Description}"
+               HorizontalOptions="Center"
+               Font="18"/>
+      </StackLayout>
+
+      <Label Text="Picks for this order:" FontSize="16"/>
+
+      <ListView x:Name="lstData" HasUnevenRows="false" Footer="Footer" Header="Header" ItemSelected="OnSelection">
+        <ListView.Header>
+          <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Padding="10,5,0,5">
+            <Label Text="List of all picks" Font="Bold,16" TextColor="#f4f142"/>
+          </StackLayout>
+        </ListView.Header>
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <TextCell Text="{Binding PickId}" Detail="{Binding PickState}" />
+          </DataTemplate>
+        </ListView.ItemTemplate>
+        <ListView.FooterTemplate>
+          <DataTemplate>
+            <StackLayout Orientation="Horizontal" Padding="5,5,5,5">
+              <Button Text="New Pick" Clicked="OnNewPickClicked"/>
+              <Button Text="Barcode Scan" Clicked="OnBarcodeClicked"/>
+            </StackLayout>
+          </DataTemplate>
+        </ListView.FooterTemplate>
+      </ListView>
+    </StackLayout>
+  </ContentPage.Content>
+</ContentPage>

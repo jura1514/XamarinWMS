@@ -14,13 +14,13 @@ namespace XamarinWMS.Model
         public int PickId { get; set; }
 
         [ForeignKey(typeof(OrderData))]
-        public string OrderId { get; set; }
+        public int OrderId { get; set; }
 
         [ForeignKey(typeof(DeliveryLineData))]
         public int DeliveryLineId { get; set; }
 
         [ForeignKey(typeof(ProductData))]
-        public int Product { get; set; }
+        public string Product { get; set; }
 
         public string PickState { get; set; }
 

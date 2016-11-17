@@ -23,6 +23,10 @@ namespace XamarinWMS.Data
         {
             return _connection.Query<PickData>("Select * From [PickData]");
         }
+        public List<PickData> GetAllPicksForOrder(int OrderId)
+        {
+            return _connection.Query<PickData>("Select * From [PickData] Where Orderid = ?", OrderId);
+        }
         public int SavePick(PickData aPick)
         {
             return _connection.Insert(aPick);

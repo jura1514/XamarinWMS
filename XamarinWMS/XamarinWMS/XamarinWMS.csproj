@@ -95,6 +95,9 @@
     <Compile Include="View\Picking\ManageOrder.xaml.cs">
       <DependentUpon>ManageOrder.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Picking\NewPick.xaml.cs">
+      <DependentUpon>NewPick.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Picking\OrderDetails.xaml.cs">
       <DependentUpon>OrderDetails.xaml</DependentUpon>
     </Compile>
@@ -357,6 +360,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="View\Picking\OrderDetails.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\Picking\NewPick.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

@@ -37,7 +37,7 @@ namespace XamarinWMS.View.Picking
 
         public void OnNewPickClicked(object sender, EventArgs args)
         {
-
+            Navigation.PushAsync(new NewPick(mOrder.OrderId));
         }
 
         public void OnBarcodeClicked(object sender, EventArgs args)

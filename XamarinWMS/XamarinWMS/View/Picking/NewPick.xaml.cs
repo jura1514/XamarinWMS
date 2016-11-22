@@ -13,36 +13,63 @@ namespace XamarinWMS.View.Picking
     public partial class NewPick : ContentPage
     {
         StockData fStock;
-        int orderId;
+        OrderData mOrder;
 
-        public NewPick(int selOrderId)
+        public NewPick(OrderData selOrder, StockData selStock)
         {
             InitializeComponent();
-            orderId = selOrderId;
+            mOrder = selOrder;
+            fStock = selStock;
             BindingContext = fStock;
 
         }
 
         public void OnCreateClicked(object sender, EventArgs args)
         {
+            int pickQty;
+            int plannedQty;
+            bool isNumerical = int.TryParse(txtPickQty.Text, out pickQty);
+            bool isPlannedNumerical = int.TryParse(txtPlannedQty.Text, out plannedQty);
 
+            if (isNumerical && isPlannedNumerical)
+            {
+                if (fStock != null)
+                {
+                    if(pickQty <= fStock.Qty)
+                    {
+                        PickCreate(fStock);
+                    }
+                    else
+                    {
+                        DisplayAlert("Alert", "Pick Quantity Can't be Higher than Selected Stock Quantity", "OK");
+                    }
+                }
+                else
+                {
+                    DisplayAlert("Alert", "Please scan Stock barcode!", "OK");
+                }
+            }
+            else
+            {
+                DisplayAlert("Alert", "Please enter a valid quantity for pick!", "OK");
+            }
         }
 
         public void PickCreate(StockData selStock)
         {
             var vPick = new PickData()
             {
-                OrderId = orderId,
+                OrderId = mOrder.OrderId,
                 DeliveryLineId = selStock.DeliveryLineId,
                 Product = selStock.Product,
                 PickState = "CREATED",
                 StateChangeTime = DateTime.Now,
-                Description = selStock.Description,
-                ActualQty = selStock.Qty,
-
-        };
+                Description = txtDesc.Text,
+                ActualQty = int.Parse(txtPickQty.Text),
+                PlannedQty = int.Parse(txtPlannedQty.Text),
+            };
             App.pickDatabase.SavePick(vPick);
-            Navigation.PushAsync(new NewPick(orderId));
+            Navigation.PushAsync(new OrderDetails(mOrder));
         }
 
         public async void OnBarcodeClicked(object sender, EventArgs e)
@@ -66,7 +93,8 @@ namespace XamarinWMS.View.Picking
 
                         if (fStock != null)
                         {
-                            PickCreate(fStock);
+                            Navigation.PushAsync(new NewPick(mOrder, fStock));
+                            DisplayAlert("Stock found:", result.Text, "OK");                           
                         }
                         else
                         {

@@ -49,7 +49,7 @@
           <DataTemplate>
             <StackLayout Orientation="Horizontal" Padding="5,5,5,5">
               <Button Text="New Pick" Clicked="OnNewPickClicked"/>
-              <Button Text="Barcode Scan" Clicked="OnBarcodeClicked"/>
+              <Button Text="Dispatch" Clicked="OnDispatchClicked"/>
             </StackLayout>
           </DataTemplate>
         </ListView.FooterTemplate>

@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinWMS.View.Picking.ShowPick"
+             Title="View Pick">
+  <ContentView.Content>
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="*"/>
+      </Grid.RowDefinitions>
+
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="10"/>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="10"/>
+      </Grid.ColumnDefinitions>
+
+      <Label Grid.Row ="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Pick Details" />
+      <Label Grid.Row ="1" Grid.Column="1" Text="Pick Id" />
+      <Label Grid.Row="1" Grid.Column="2" Text ="{Binding PickId}" />
+      <Label Grid.Row ="2" Grid.Column="1" Text="Order Id" />
+      <Label Grid.Row="2" Grid.Column="2" Text ="{Binding OrderId}"/>
+      <Label Grid.Row ="3" Grid.Column="1" Text="Delivery Line Id" />
+      <Label Grid.Row="3" Grid.Column="2" Text ="{Binding DeliveryLineId}"/>
+      <Label Grid.Row ="4" Grid.Column="1" Text="Product" />
+      <Label Grid.Row="4" Grid.Column="2" Text ="{Binding Product}"/>
+      <Label Grid.Row ="5" Grid.Column="1" Text="Pick State" />
+      <Label Grid.Row="5" Grid.Column="2" Text ="{Binding PickState}"/>
+      <Label Grid.Row ="6" Grid.Column="1" Text="State Change Time" />
+      <Label Grid.Row="6" Grid.Column="2" Text ="{Binding StateChangeTime}"/>
+      <Label Grid.Row ="7" Grid.Column="1" Text="Description" />
+      <Label Grid.Row="7" Grid.Column="2" Text ="{Binding Description}"/>
+      <Label Grid.Row ="8" Grid.Column="1" Text="Actual Qty" />
+      <Label Grid.Row="8" Grid.Column="2" Text ="{Binding ActualQty}"/>
+      <Label Grid.Row ="9" Grid.Column="1" Text="Planned Qty" />
+      <Label Grid.Row="9" Grid.Column="2" Text ="{Binding PlannedQty}"/>
+      <Button Grid.Row ="10" Grid.Column="1" Text="RETURN" Clicked="OnReturnClicked" />
+      <Button Grid.Row="10" Grid.Column="2" Text="UNPICK" Clicked="OnUnpickClicked" />
+    </Grid>
+  </ContentView.Content>
+</ContentPage>

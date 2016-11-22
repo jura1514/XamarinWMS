@@ -4,37 +4,60 @@
              x:Class="XamarinWMS.View.Picking.NewPick"
              Title="New Pick">
   <ContentView.Content>
-    <Grid>
-      <Grid.RowDefinitions>
-        <RowDefinition Height="*"/>
-        <RowDefinition Height="*"/>
-        <RowDefinition Height="*"/>
-        <RowDefinition Height="*"/>
-        <RowDefinition Height="*"/>
-        <RowDefinition Height="*"/>
-        <RowDefinition Height="*"/>
-        <RowDefinition Height="*"/>
-      </Grid.RowDefinitions>
-
-      <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="10"/>
-        <ColumnDefinition Width="*"/>
-        <ColumnDefinition Width="*"/>
-        <ColumnDefinition Width="10"/>
-      </Grid.ColumnDefinitions>
-
-      <Label Grid.Row ="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Pick Details" />
-      <Label Grid.Row ="1" Grid.Column="1" Text="Pick Qty" />
-      <Entry Grid.Row="1" Grid.Column="2" Text ="" />
-      <Label Grid.Row ="2" Grid.Column="4" Text="Stock Qty" />
-      <Label Grid.Row ="3" Grid.Column="1" Text="Stock Description" />
-      <Label Grid.Row="3" Grid.Column="2" Text ="{Binding Description}"/>
-      <Label Grid.Row ="4" Grid.Column="1" Text="Stock Qty" />
-      <Label Grid.Row="4" Grid.Column="2" Text ="{Binding Qty}"/>
-      <Label Grid.Row ="5" Grid.Column="1" Text="Stock Id" />
-      <Label Grid.Row="5" Grid.Column="2" Text ="{Binding StockId}" />
-      <Button Grid.Row ="6" Grid.Column="1" Text="Create" Clicked="OnCreateClicked" />
-      <Button Grid.Row="6" Grid.Column="2" Text="Barcode" Clicked="OnBarcodeClicked" />
-    </Grid>
+    <TableView Intent="Settings">
+      <TableRoot>
+        <TableSection Title="Pick Quantity:">
+          <EntryCell x:Name="txtPickQty" Label="Actual Qty" Keyboard="Numeric" />
+          <EntryCell x:Name="txtPlannedQty" Label="Planned Qty" Keyboard="Numeric" />
+          <EntryCell x:Name="txtDesc" Label="Description" Keyboard="Text" />
+        </TableSection>
+        <TableSection Title="Stock Details:">
+          <ViewCell>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+              <Label Text ="Stock Id:"
+                 HorizontalOptions="Center"
+                 Font="16"/>
+              <Label Text ="{Binding StockId}"
+                 HorizontalOptions="Center"
+                 Font="16"/>
+            </StackLayout>
+          </ViewCell>
+          <ViewCell>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+              <Label Text ="Description:"
+                 HorizontalOptions="Center"
+                 Font="16"/>
+              <Label Text="{Binding Description}"
+                HorizontalOptions="Center"
+                Font="16"/>
+            </StackLayout>
+          </ViewCell>
+          <ViewCell>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+              <Label Text="Stock Qty:"
+                HorizontalOptions="Center"
+                Font="16"/>
+              <Label Text ="{Binding Qty}"
+                HorizontalOptions="Center"
+                Font="16"/>
+            </StackLayout>
+          </ViewCell>
+          <ViewCell>
+            <ContentView Padding="0,0">
+              <ContentView.Content>
+                <Button Text="Barcode" Clicked="OnBarcodeClicked" />
+              </ContentView.Content>
+            </ContentView>
+          </ViewCell>
+          <ViewCell>
+            <ContentView Padding="0,0">
+              <ContentView.Content>
+                <Button Text="Create" Clicked="OnCreateClicked" />
+              </ContentView.Content>
+            </ContentView>
+          </ViewCell>
+        </TableSection>
+      </TableRoot>
+    </TableView>
   </ContentView.Content>
 </ContentPage>

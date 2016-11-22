@@ -92,6 +92,9 @@
     <Compile Include="View\Other.xaml.cs">
       <DependentUpon>Other.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Picking\DispatchOrder.xaml.cs">
+      <DependentUpon>DispatchOrder.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Picking\ManageOrder.xaml.cs">
       <DependentUpon>ManageOrder.xaml</DependentUpon>
     </Compile>
@@ -100,6 +103,9 @@
     </Compile>
     <Compile Include="View\Picking\OrderDetails.xaml.cs">
       <DependentUpon>OrderDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Picking\ShowPick.xaml.cs">
+      <DependentUpon>ShowPick.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Product\AddProduct.xaml.cs">
       <DependentUpon>AddProduct.xaml</DependentUpon>
@@ -366,6 +372,18 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="View\Picking\NewPick.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\Picking\ShowPick.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\Picking\DispatchOrder.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

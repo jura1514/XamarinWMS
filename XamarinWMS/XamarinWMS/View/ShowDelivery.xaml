@@ -34,9 +34,9 @@
       <Label Grid.Row="2" Grid.Column="2" Text ="{Binding Name}"/>
       <Label Grid.Row ="3" Grid.Column="1" Text="Exp.Date" />
       <Label Grid.Row="3" Grid.Column="2" Text ="{Binding ExpectedDate}"/>
-      <Label Grid.Row ="4" Grid.Column="1" Text="Status" />
+      <Label Grid.Row ="4" Grid.Column="1" Text="State" />
       <Label Grid.Row="4" Grid.Column="2" Text ="{Binding State}" />
-      <Label Grid.Row ="5" Grid.Column="1" Text="Status Change Time" />
+      <Label Grid.Row ="5" Grid.Column="1" Text="State Change Time" />
       <Label Grid.Row="5" Grid.Column="2" Text ="{Binding StateChangeTime}"/>
       <Button Grid.Row ="6" Grid.Column="1" Text="Edit Details" Clicked="OnEditClicked" />
       <Button Grid.Row="6" Grid.Column="2" Text="Delete" Clicked="OnDeleteClicked" />

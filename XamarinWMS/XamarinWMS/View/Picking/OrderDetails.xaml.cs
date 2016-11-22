@@ -12,6 +12,7 @@ namespace XamarinWMS.View.Picking
     public partial class OrderDetails : ContentPage
     {
         OrderData mOrder;
+        StockData fStock = null;
 
         public OrderDetails( OrderData selectedOrder )
         {
@@ -22,6 +23,7 @@ namespace XamarinWMS.View.Picking
             if (mOrder != null)
             {
                 var vList = App.pickDatabase.GetAllPicksForOrder(mOrder.OrderId);
+                lstData.ItemsSource = vList;
             }
         }
 
@@ -31,18 +33,18 @@ namespace XamarinWMS.View.Picking
             {
                 return;
             }
-           // var vSelStock = (StockData)e.SelectedItem;
-            Navigation.PushAsync(new ManageOrder());
+            var vSelPick = (PickData)e.SelectedItem;
+            Navigation.PushAsync(new ShowPick(vSelPick, mOrder));
         }
 
         public void OnNewPickClicked(object sender, EventArgs args)
         {
-            Navigation.PushAsync(new NewPick(mOrder.OrderId));
+            Navigation.PushAsync(new NewPick(mOrder, fStock));
         }
 
-        public void OnBarcodeClicked(object sender, EventArgs args)
+        public void OnDispatchClicked(object sender, EventArgs args)
         {
-
+            Navigation.PushAsync(new DispatchOrder(mOrder));
         }
     }
 }

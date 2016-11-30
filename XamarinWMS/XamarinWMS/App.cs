@@ -5,11 +5,14 @@ using System.Text;
 
 using Xamarin.Forms;
 using XamarinWMS.Data;
+using XamarinWMS.Data.Web_Service;
 
 namespace XamarinWMS
 {
     public class App : Application
     {
+        public static DeliveryManager DelManager { get; private set; }
+
         static DeliveryDatabase dbUtils;
         static DeliveryLineDatabase dbLineUtils;
         static StockDatabase dbStock;
@@ -20,7 +23,7 @@ namespace XamarinWMS
 
         public App()
         {
-
+            DelManager = new DeliveryManager(new RestService());
             // The root page of your application
             MainPage = new NavigationPage(new MainMenu());
 

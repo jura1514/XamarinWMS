@@ -29,7 +29,9 @@ namespace XamarinWMS.View.Picking
             bool accepted = await DisplayAlert("Confirm", "Are you Sure ?", "Yes", "No");
             if (accepted)
             {
-                App.orderDatabase.DeleteOrder(mSelOrder);
+                await App.OrderManager.SaveTaskAsync(mSelOrder);
+
+                //App.orderDatabase.DeleteOrder(mSelOrder);
             }
             await Navigation.PushAsync(new MainMenu());
         }

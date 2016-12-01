@@ -12,6 +12,8 @@ namespace XamarinWMS
     public class App : Application
     {
         public static DeliveryManager DelManager { get; private set; }
+        public static DeliveryLineManager DelLineManager { get; private set; }
+        public static OrderManager OrderManager { get; private set; }
 
         static DeliveryDatabase dbUtils;
         static DeliveryLineDatabase dbLineUtils;
@@ -24,6 +26,8 @@ namespace XamarinWMS
         public App()
         {
             DelManager = new DeliveryManager(new RestService());
+            DelLineManager = new DeliveryLineManager(new RestService());
+            OrderManager = new OrderManager(new RestService());
             // The root page of your application
             MainPage = new NavigationPage(new MainMenu());
 

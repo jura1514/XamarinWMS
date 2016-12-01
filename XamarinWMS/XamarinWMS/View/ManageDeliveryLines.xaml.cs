@@ -12,12 +12,38 @@ namespace XamarinWMS
     public partial class ManageDeliveryLines : ContentPage
     {
         DeliveryData dData;
+        bool alertShown = false;
+
         public ManageDeliveryLines(DeliveryData aSelectedDel)
         {
             InitializeComponent();
             var vList = App.DelLineDatabase.GetAllDelLinesForDelID(aSelectedDel);
             lstData.ItemsSource = vList;
             dData = aSelectedDel;
+        }
+
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            if (Constants.RestUrlDelLine.Contains("localhost"))
+            {
+                if (!alertShown)
+                {
+                    await DisplayAlert(
+                        "Hosted Back-End",
+                        "This app is running against Xamarin's read-only REST service. To create, edit, and delete Del Lines you must update the service endpoint to point to your own hosted REST service.",
+                        "OK");
+                    alertShown = true;
+                }
+            }
+
+            var restList = await App.DelLineManager.GetTasksAsync();
+
+            foreach ( var newList in restList)
+            {
+                await App.DelLineManager.SaveTaskAsync(newList);
+            }
         }
 
         void OnSelection(object sender, SelectedItemChangedEventArgs e)

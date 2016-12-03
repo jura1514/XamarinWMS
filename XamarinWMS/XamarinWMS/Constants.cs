@@ -9,9 +9,9 @@ namespace XamarinWMS
     public static class Constants
     {
         // URL of REST service
-        public static string RestUrlDel = "http://192.168.0.37:52326/api/DeliveryWeb";
-        public static string RestUrlDelLine = "http://192.168.0.37:52326/api/DeliveryLineWeb";
-        public static string RestUrlOrder = "http://192.168.0.37:52326/api/OrderWeb";
+        public static string RestUrlDel = "http://192.168.0.37:52326/api/Delivery";
+        public static string RestUrlDelLine = "http://192.168.0.37:52326/api/Delivery";
+        public static string RestUrlOrder = "http://192.168.0.37:52326/api/Delivery";
         // Credentials that are hard coded into the REST service
         public static string Username = "";
         public static string Password = "";

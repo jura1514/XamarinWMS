@@ -1,0 +1,63 @@
+﻿@model IEnumerable<WebWMS.Models.DeliveryLineModel>
+
+@{
+    ViewBag.Title = "Manage Delivery Lines";
+}
+
+<h2>Manage Delivery Lines</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Delivery.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Product)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExpectedQty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AcceptedQty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RejectedQty)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Delivery.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ExpectedQty)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AcceptedQty)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RejectedQty)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

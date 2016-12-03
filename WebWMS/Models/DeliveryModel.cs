@@ -1,12 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.ComponentModel.DataAnnotations;
 
 namespace WebWMS.Models
 {
-    public class DeliveryData
+    public partial class DeliveryModel
     {
+        public DeliveryModel()
+        {
+            DeliveryLines = new HashSet<DeliveryLineModel>();
+        }
+
+        [Key]
         public int DeliveryId { get; set; }
 
         public string Name { get; set; }
@@ -18,6 +23,8 @@ namespace WebWMS.Models
         public string State { get; set; }
 
         public DateTime StateChangeTime { get; set; }
+
+        public virtual ICollection<DeliveryLineModel> DeliveryLines { get; set; }
 
     }
 }

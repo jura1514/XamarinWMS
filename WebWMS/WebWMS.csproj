@@ -234,18 +234,32 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\DeliveryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\View\DeliveryLineModelController.cs" />
+    <Compile Include="Controllers\View\DeliveryModelController.cs" />
+    <Compile Include="Controllers\View\OrderModelController.cs" />
+    <Compile Include="Controllers\WebApi\DeliveryLineWebController.cs" />
+    <Compile Include="Controllers\WebApi\DeliveryWebController.cs" />
+    <Compile Include="Controllers\WebApi\OrderWebController.cs" />
+    <Compile Include="Data\WmsInitializer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\DeliveryData.cs" />
+    <Compile Include="Models\DeliveryModel.cs" />
+    <Compile Include="Models\DeliveryLineModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\OrderModel.cs" />
+    <Compile Include="Models\WMSContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
+    <Compile Include="Repository\DeliveryLineRepository.cs" />
+    <Compile Include="Repository\DeliveryRepository.cs" />
+    <Compile Include="Repository\IDeliveryLineRepository.cs" />
+    <Compile Include="Repository\IDeliveryRepository.cs" />
+    <Compile Include="Repository\IOrderRepository.cs" />
+    <Compile Include="Repository\OrderRepository.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -306,6 +320,21 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\DeliveryModel\Create.cshtml" />
+    <Content Include="Views\DeliveryModel\Delete.cshtml" />
+    <Content Include="Views\DeliveryModel\Details.cshtml" />
+    <Content Include="Views\DeliveryModel\Edit.cshtml" />
+    <Content Include="Views\DeliveryModel\Index.cshtml" />
+    <Content Include="Views\DeliveryLineModel\Create.cshtml" />
+    <Content Include="Views\DeliveryLineModel\Delete.cshtml" />
+    <Content Include="Views\DeliveryLineModel\Details.cshtml" />
+    <Content Include="Views\DeliveryLineModel\Edit.cshtml" />
+    <Content Include="Views\DeliveryLineModel\Index.cshtml" />
+    <Content Include="Views\OrderModel\Create.cshtml" />
+    <Content Include="Views\OrderModel\Delete.cshtml" />
+    <Content Include="Views\OrderModel\Details.cshtml" />
+    <Content Include="Views\OrderModel\Edit.cshtml" />
+    <Content Include="Views\OrderModel\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -26,6 +27,7 @@ namespace WebWMS.Models
 
         public bool isUsedForStock { get; set; }
 
+        [JsonIgnore]
         [ForeignKey("DeliveryId")]
         public virtual DeliveryModel DeliveryModel { get; set; }
 

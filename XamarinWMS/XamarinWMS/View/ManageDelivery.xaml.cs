@@ -16,8 +16,8 @@ namespace XamarinWMS
         public ManageDelivery()
         {
             InitializeComponent();
-            var vList = App.DelDatabase.GetAllDeliveries();
-            lstData.ItemsSource = vList;
+            //var vList = App.DelDatabase.GetAllDeliveries();
+            //lstData.ItemsSource = vList;
         }
 
         protected async override void OnAppearing()
@@ -35,12 +35,12 @@ namespace XamarinWMS
                     alertShown = true;
                 }
             }
-
+            lstData.ItemsSource = await App.DelManager.GetTasksAsync();
             var restList = await App.DelManager.GetTasksAsync();
 
             foreach (var newList in restList)
             {
-                await App.DelManager.SaveTaskAsync(newList);
+               App.DelDatabase.SaveDelivery(newList);
             }
         }
 

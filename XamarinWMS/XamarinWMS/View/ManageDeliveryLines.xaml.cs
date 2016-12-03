@@ -17,8 +17,8 @@ namespace XamarinWMS
         public ManageDeliveryLines(DeliveryData aSelectedDel)
         {
             InitializeComponent();
-            var vList = App.DelLineDatabase.GetAllDelLinesForDelID(aSelectedDel);
-            lstData.ItemsSource = vList;
+            //var vList = App.DelLineDatabase.GetAllDelLinesForDelID(aSelectedDel);
+            //lstData.ItemsSource = vList;
             dData = aSelectedDel;
         }
 
@@ -37,12 +37,12 @@ namespace XamarinWMS
                     alertShown = true;
                 }
             }
-
+            lstData.ItemsSource = await App.DelLineManager.GetTasksAsync();
             var restList = await App.DelLineManager.GetTasksAsync();
 
             foreach ( var newList in restList)
             {
-                await App.DelLineManager.SaveTaskAsync(newList);
+                App.DelLineDatabase.SaveDelLine(newList);
             }
         }
 

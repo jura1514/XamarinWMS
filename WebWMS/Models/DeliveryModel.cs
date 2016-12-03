@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -24,6 +25,7 @@ namespace WebWMS.Models
 
         public DateTime StateChangeTime { get; set; }
 
+        [JsonIgnore]
         public virtual ICollection<DeliveryLineModel> DeliveryLines { get; set; }
 
     }

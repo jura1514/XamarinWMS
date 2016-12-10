@@ -113,6 +113,7 @@
     <Compile Include="View\Picking\NewPick.xaml.cs">
       <DependentUpon>NewPick.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Picking\OrderDataTemplateSelector.cs" />
     <Compile Include="View\Picking\OrderDetails.xaml.cs">
       <DependentUpon>OrderDetails.xaml</DependentUpon>
     </Compile>

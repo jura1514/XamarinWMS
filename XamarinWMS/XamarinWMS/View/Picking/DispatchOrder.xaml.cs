@@ -71,13 +71,14 @@ namespace XamarinWMS.View.Picking
                     if (mSelOrder.IsDispatched)
                     {
                         isNewOrder = true;
+                        mSelOrder.IsDispatched = true;
                         await App.OrderManager.SaveTaskAsync(mSelOrder, isNewOrder);
                         App.orderDatabase.EditOrder(mSelOrder);
                     }
                 }
                 else
                 {
-                    mSelOrder.IsDispatched = false;
+                    mSelOrder.InQueue = true;
                 }
             }
             await Navigation.PushAsync(new MainMenu());

@@ -18,15 +18,7 @@ namespace XamarinWMS.View.Picking
             InitializeComponent();
             var vList = App.orderDatabase.GetAllOrders();
             lstData.ItemsSource = vList;
-            
-            for( int i=0; i < vList.Count(); i++ )
-            {
-                if( vList[i].IsDispatched == false )
-                {
-
-                }
-
-            }        
+                 
         }
 
         void OnSelection(object sender, SelectedItemChangedEventArgs e)
@@ -44,7 +36,8 @@ namespace XamarinWMS.View.Picking
             {
                 OrderState = "CREATED",
                 StateChangeTime = DateTime.Now,
-                IsDispatched = true,
+                IsDispatched = false,
+                InQueue = false,
             };
             App.orderDatabase.SaveOrder(vOrder);
             Navigation.PushAsync(new OrderDetails(vOrder));

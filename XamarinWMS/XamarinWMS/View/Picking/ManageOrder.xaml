@@ -2,24 +2,39 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="XamarinWMS.View.Picking.ManageOrder"
+             xmlns:local="clr-namespace:XamarinWMS.View.Picking"
              Title="Manage Order">
-  <ContentPage.Content>
-    <StackLayout Padding="30">
-      <Label Text="Orders:" FontSize="20"/>
-      <ListView x:Name="lstData" HasUnevenRows="false" Footer="Footer" ItemSelected="OnSelection" >
-        <ListView.ItemTemplate>
-          <DataTemplate>
-            <TextCell Text="{Binding OrderId}" Detail="{Binding OrderState}" />
-          </DataTemplate>
-        </ListView.ItemTemplate>
-        <ListView.FooterTemplate>
-          <DataTemplate>
-            <StackLayout Orientation="Horizontal" Padding="5,5,5,5">
-              <Button Text="New Order" Clicked="OnNewOrderClicked" />
-            </StackLayout>
-          </DataTemplate>
-        </ListView.FooterTemplate>
-      </ListView>
-    </StackLayout>
-  </ContentPage.Content>
+
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <DataTemplate x:Key="invalidOrderTemplate">
+
+        <TextCell Text="{Binding OrderId}" Detail="{Binding OrderState}"/>
+
+      </DataTemplate>invalidPersonTemplate
+
+      <DataTemplate x:Key="validOrderTemplate">
+
+        <TextCell Text="{Binding OrderId}" Detail="{Binding OrderState}" TextColor="Red"/>
+
+      </DataTemplate>
+
+      <local:OrderDataTemplateSelector x:Key="orderDataTemplateSelector" ValidTemplate="{StaticResource validOrderTemplate}" InvalidTemplate="{StaticResource invalidOrderTemplate}" />
+    </ResourceDictionary>
+
+  </ContentPage.Resources>
+
+
+  <StackLayout Padding="30">
+    <Label Text="Orders:" FontSize="20"/>
+    <ListView x:Name="lstData" HasUnevenRows="false" Footer="Footer" ItemSelected="OnSelection" ItemTemplate="{StaticResource orderDataTemplateSelector}">
+      <ListView.FooterTemplate>
+        <DataTemplate>
+          <StackLayout Orientation="Horizontal" Padding="5,5,5,5">
+            <Button Text="New Order" Clicked="OnNewOrderClicked" />
+          </StackLayout>
+        </DataTemplate>
+      </ListView.FooterTemplate>
+    </ListView>
+  </StackLayout>
 </ContentPage>

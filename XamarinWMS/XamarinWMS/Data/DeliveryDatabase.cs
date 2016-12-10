@@ -23,6 +23,10 @@ namespace XamarinWMS
         {
             return _connection.Query<DeliveryData>("Select * From [DeliveryData]");
         }
+        public DeliveryData GetDeliveryById(int aSelectedDelId)
+        {
+            return _connection.Find<DeliveryData>(aSelectedDelId);
+        }
         public int SaveDelivery(DeliveryData aDelivery)
         {
             return _connection.Insert(aDelivery);

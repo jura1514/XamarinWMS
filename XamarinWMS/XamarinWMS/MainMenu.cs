@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Plugin.Connectivity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -51,6 +52,27 @@ namespace XamarinWMS
             buttonInfo.Clicked += (sender, args) => Navigation.PushAsync(new InfoFind());
             buttonOther.Clicked += (sender, args) => Navigation.PushAsync(new Other());
 
+
+            CrossConnectivity.Current.ConnectivityChanged += Current_ConnectivityChanged;
+        }
+
+        private async void Current_ConnectivityChanged(object sender, Plugin.Connectivity.Abstractions.ConnectivityChangedEventArgs e)
+        {
+            if(!e.IsConnected)
+            {
+               await DisplayAlert("Error", "Check for your connection.", "OK");
+            }
+        }
+
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            if(!CrossConnectivity.Current.IsConnected)
+            {
+                await DisplayAlert("Error", "Check for your connection.", "OK");
+
+            }
         }
     }
 }

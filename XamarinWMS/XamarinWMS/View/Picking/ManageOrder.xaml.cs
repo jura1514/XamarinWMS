@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 using XamarinWMS.Model;
 
 namespace XamarinWMS.View.Picking
@@ -16,6 +18,15 @@ namespace XamarinWMS.View.Picking
             InitializeComponent();
             var vList = App.orderDatabase.GetAllOrders();
             lstData.ItemsSource = vList;
+            
+            for( int i=0; i < vList.Count(); i++ )
+            {
+                if( vList[i].IsDispatched == false )
+                {
+
+                }
+
+            }        
         }
 
         void OnSelection(object sender, SelectedItemChangedEventArgs e)
@@ -33,6 +44,7 @@ namespace XamarinWMS.View.Picking
             {
                 OrderState = "CREATED",
                 StateChangeTime = DateTime.Now,
+                IsDispatched = true,
             };
             App.orderDatabase.SaveOrder(vOrder);
             Navigation.PushAsync(new OrderDetails(vOrder));

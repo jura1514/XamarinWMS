@@ -19,7 +19,7 @@ namespace XamarinWMS
         }
         public void OnSaveClicked(object sender, EventArgs args)
         {
-            var vDelivery = new DeliveryLineData()
+            var vDeliveryLine = new DeliveryLineData()
             {
                 DeliveryLineId = int.Parse(txtDelLineId.Text),
                 DeliveryId = int.Parse(txtDelId.Text),
@@ -30,7 +30,7 @@ namespace XamarinWMS
                 RejectedQty = int.Parse(txtRejQty.Text),
                 isUsedForStock = false
             };
-            App.DelLineDatabase.SaveDelLine(vDelivery);
+            App.DelLineDatabase.SaveDelLine(vDeliveryLine);
             Navigation.PushAsync(new ManageDeliveryLines(dData));
         }
     }

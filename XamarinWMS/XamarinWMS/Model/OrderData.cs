@@ -17,5 +17,7 @@ namespace XamarinWMS.Model
         public string Description { get; set; }
 
         public DateTime StateChangeTime { get; set; }
+
+        public bool IsDispatched { get; set; }
     }
 }

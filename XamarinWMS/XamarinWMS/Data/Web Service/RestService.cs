@@ -2,7 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -246,6 +248,39 @@ namespace XamarinWMS.Data.Web_Service
                 if (response.IsSuccessStatusCode)
                 {
                     Debug.WriteLine(@"				Order successfully deleted.");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"				ERROR {0}", ex.Message);
+            }
+        }
+
+        /* User REST Functions */
+
+        public async Task SaveUserAsync(UserData user, bool isNewUser = false)
+        {
+            var uri = new Uri(string.Format(Constants.RestUrlUserRegister, user.UserName));
+
+            try
+            {
+                var json = JsonConvert.SerializeObject(user);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = null;
+                if (isNewUser)
+                {
+                    response = await client.PostAsync(uri, content);
+                }
+                else
+                {
+                    response = await client.PutAsync(uri, content);
+                }
+
+                if (response.IsSuccessStatusCode)
+                {
+                    Debug.WriteLine(@"				User successfully saved.");
                 }
 
             }

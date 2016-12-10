@@ -11,23 +11,29 @@ namespace XamarinWMS
 {
     public class App : Application
     {
+        //connections to RestApi
         public static DeliveryManager DelManager { get; private set; }
         public static DeliveryLineManager DelLineManager { get; private set; }
         public static OrderManager OrderManager { get; private set; }
+        public static UserManager UserManager { get; private set; }
 
-        static DeliveryDatabase dbUtils;
-        static DeliveryLineDatabase dbLineUtils;
+
+        //connections to phone Db
+        static DeliveryDatabase dbDelivery;
+        static DeliveryLineDatabase dbDelLine;
         static StockDatabase dbStock;
         static LocationDatabase dbLocation;
         static ProdDatabase dbProd;
         static OrderDatabase dbOrder;
         static PickDatabase dbPick;
+        static UserDatabase dbUser;
 
         public App()
         {
             DelManager = new DeliveryManager(new RestService());
             DelLineManager = new DeliveryLineManager(new RestService());
             OrderManager = new OrderManager(new RestService());
+            UserManager = new UserManager(new RestService());
             // The root page of your application
             MainPage = new NavigationPage(new MainMenu());
 
@@ -36,22 +42,22 @@ namespace XamarinWMS
         {
             get
             {
-                if (dbUtils == null)
+                if (dbDelivery == null)
                 {
-                    dbUtils = new DeliveryDatabase();
+                    dbDelivery = new DeliveryDatabase();
                 }
-                return dbUtils;
+                return dbDelivery;
             }
         }
         public static DeliveryLineDatabase DelLineDatabase
         {
             get
             {
-                if (dbLineUtils == null)
+                if (dbDelLine == null)
                 {
-                    dbLineUtils = new DeliveryLineDatabase();
+                    dbDelLine = new DeliveryLineDatabase();
                 }
-                return dbLineUtils;
+                return dbDelLine;
             }
         }
 
@@ -112,6 +118,17 @@ namespace XamarinWMS
                     dbPick = new PickDatabase();
                 }
                 return dbPick;
+            }
+        }
+        public static UserDatabase UserDatabase
+        {
+            get
+            {
+                if (dbUser == null)
+                {
+                    dbUser = new UserDatabase();
+                }
+                return dbUser;
             }
         }
 

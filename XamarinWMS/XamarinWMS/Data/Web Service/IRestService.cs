@@ -30,5 +30,13 @@ namespace XamarinWMS.Data.Web_Service
         Task SaveOrderAsync(OrderData order, bool isNewOrder);
 
         Task DeleteOrderAsync(int id);
+
+        /* User REST */
+
+        //Task<List<UserData>> RefreshUsersAsync();
+
+        Task SaveUserAsync(UserData user, bool isNewUser);
+
+        //Task DeleteUserAsync(string userName);
     }
 }

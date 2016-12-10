@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinWMS.View.Login.Signup"
+             Title="Sign Up">
+  <ContentView.Content>
+    <StackLayout VerticalOptions="Center" Padding="30" Spacing="10">
+      <Label Text="Enter Your Credentials"
+              HorizontalOptions="Center"/>
+      <Entry x:Name="email" Placeholder="Email">
+      </Entry>
+      <Entry x:Name="password"
+             Placeholder="Password"
+             IsPassword="true">
+      </Entry>
+      <Button Text="Sign Up"
+            HorizontalOptions="Center"
+            Clicked="OnSignUpClicked"/>
+    </StackLayout>
+  </ContentView.Content>
+</ContentPage>

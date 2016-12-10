@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using XamarinWMS.Model;
 using XamarinWMS.View;
 using XamarinWMS.View.Info;
 using XamarinWMS.View.Move;
@@ -15,6 +16,9 @@ namespace XamarinWMS
 {
     class MainMenu : ContentPage
     {
+        //check if phone has access to network
+        bool isConnected = false;
+
         public MainMenu()
         {
             Title = "Main Menu";
@@ -54,6 +58,8 @@ namespace XamarinWMS
 
 
             CrossConnectivity.Current.ConnectivityChanged += Current_ConnectivityChanged;
+
+
         }
 
         private async void Current_ConnectivityChanged(object sender, Plugin.Connectivity.Abstractions.ConnectivityChangedEventArgs e)
@@ -61,6 +67,11 @@ namespace XamarinWMS
             if(!e.IsConnected)
             {
                await DisplayAlert("Error", "Check for your connection.", "OK");
+                isConnected = false;
+            }
+            else
+            {
+                isConnected = true;
             }
         }
 
@@ -71,7 +82,31 @@ namespace XamarinWMS
             if(!CrossConnectivity.Current.IsConnected)
             {
                 await DisplayAlert("Error", "Check for your connection.", "OK");
+                isConnected = false;
+            }
+            else
+            {
+                isConnected = true;
+            }
+        }
 
+        public async void CheckForOrders()
+        {
+            if (isConnected)
+            {
+                List<OrderData> allOrders = App.orderDatabase.GetAllOrders();
+                bool isNewOrder;
+
+                for (int i = 0; i < allOrders.Count(); i++)
+                {
+                    if (allOrders[i].InQueue == true)
+                    {
+                        isNewOrder = true;
+                        allOrders[i].IsDispatched = true;
+                        await App.OrderManager.SaveTaskAsync(allOrders[i], isNewOrder);
+                        App.orderDatabase.EditOrder(allOrders[i]);
+                    }
+                }
             }
         }
     }

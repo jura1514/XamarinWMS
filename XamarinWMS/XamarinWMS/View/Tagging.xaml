@@ -11,6 +11,8 @@
            HorizontalOptions="Center"
            WidthRequest="200"
            HorizontalTextAlignment="Center"/>
+    <Label Text="Used for Stock"
+        HorizontalOptions="Center"/>
     <Label Text="{Binding isUsedForStock}"
            HorizontalOptions="Center"
            WidthRequest="200"

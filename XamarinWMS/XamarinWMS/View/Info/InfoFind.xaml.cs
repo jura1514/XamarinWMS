@@ -13,15 +13,15 @@ namespace XamarinWMS.View.Info
             InitializeComponent();
         }
 
-        public void OnStockInfoClicked(object sender, EventArgs e)
-        {
-            DisplayAlert("Alert", "This feature is coming soon!", "OK");
-        }
+        //public void OnStockInfoClicked(object sender, EventArgs e)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public void OnLocationInfoClicked(object sender, EventArgs e)
-        {
-            DisplayAlert("Alert", "This feature is coming soon!", "OK");
-        }
+        //public void OnLocationInfoClicked(object sender, EventArgs e)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         public async void OnInfoBarcodeClicked(object sender, EventArgs e)
         {

@@ -29,7 +29,23 @@ namespace XamarinWMS
 
         public void OnContinueClicked(object sender, EventArgs args)
         {
-            Navigation.PushAsync(new Tagging(mSelDelLine));
+            int accQty = 0;
+            accQty += mSelDelLine.AcceptedQty;
+
+            int rejQty = 0;
+            rejQty += mSelDelLine.RejectedQty;
+
+            int extQty = 0;
+            extQty += mSelDelLine.ExpectedQty;
+
+            if ((accQty + rejQty) == extQty)
+            {
+                Navigation.PushAsync(new Tagging(mSelDelLine));
+            }
+            else
+            {
+                DisplayAlert("Error", "The sum of acc. qty and rej. qty is not equal to expected qty!", "OK");
+            }
         }
 
         public async void OnDeleteClicked(object sender, EventArgs args)

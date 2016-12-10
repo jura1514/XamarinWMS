@@ -1,10 +1,4 @@
-﻿using Plugin.Connectivity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using XamarinWMS.Data;
 using XamarinWMS.Data.Web_Service;
 
@@ -12,9 +6,6 @@ namespace XamarinWMS
 {
     public class App : Application
     {
-        //check if phone has access to network
-        bool isConnected = false;
-
         //connections to RestApi
         public static DeliveryManager DelManager { get; private set; }
         public static DeliveryLineManager DelLineManager { get; private set; }
@@ -41,8 +32,6 @@ namespace XamarinWMS
             // The root page of your application
             MainPage = new NavigationPage(new MainMenu());
 
-            //check if current network status changed
-            CrossConnectivity.Current.ConnectivityChanged += Current_ConnectivityChanged;
         }
         public static DeliveryDatabase DelDatabase
         {
@@ -135,18 +124,6 @@ namespace XamarinWMS
                     dbUser = new UserDatabase();
                 }
                 return dbUser;
-            }
-        }
-
-        private void Current_ConnectivityChanged(object sender, Plugin.Connectivity.Abstractions.ConnectivityChangedEventArgs e)
-        {
-            if (!e.IsConnected)
-            {
-                isConnected = false;
-            }
-            else
-            {
-                isConnected = true;
             }
         }
 

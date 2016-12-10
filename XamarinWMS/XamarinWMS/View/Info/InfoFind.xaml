@@ -10,9 +10,9 @@
 
   <StackLayout VerticalOptions="Center" Spacing="10">
     
-    <Label Text="Stock Info from entry"
+    <!--<Label Text="Stock Info from entry"
            HorizontalOptions="Center"/>
-    <Entry Text="Binding StockId"
+    <Entry 
            HorizontalOptions="Center"
            Keyboard="Text"
            WidthRequest="200"
@@ -23,12 +23,12 @@
     
     <Label Text="Location Info from entry"
        HorizontalOptions="Center"/>
-    <Entry Text="Binding LocationId"
+    <Entry 
            HorizontalOptions="Center"
            Keyboard="Text"/>
     <Button Text="Location Info"
               HorizontalOptions="Center"
-              Clicked="OnLocationInfoClicked"/>
+              Clicked="OnLocationInfoClicked"/>-->
 
     <Label Text="Find Stock or Location Using Barcode and NFC"
         HorizontalOptions="Center"/>

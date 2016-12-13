@@ -336,9 +336,10 @@ namespace XamarinWMS.Data.Web_Service
 
         /* User REST Functions */
 
-        public async Task SaveUserAsync(UserData user, bool isNewUser = false)
+        public async Task<bool> SaveUserAsync(UserData user, bool isNewUser = false)
         {
-            var uri = new Uri(string.Format(Constants.RestUrlUserRegister, user.UserName));
+            var uri = new Uri(string.Format(Constants.RestUrlUserRegister, user.ConfirmPassword));
+            bool _respMsg = false;
 
             try
             {
@@ -358,6 +359,7 @@ namespace XamarinWMS.Data.Web_Service
                 if (response.IsSuccessStatusCode)
                 {
                     Debug.WriteLine(@"				User successfully saved.");
+                    _respMsg = true;
                 }
 
             }
@@ -365,6 +367,35 @@ namespace XamarinWMS.Data.Web_Service
             {
                 Debug.WriteLine(@"				ERROR {0}", ex.Message);
             }
+            return _respMsg;
         }
-    }
+
+        //public async Task<string> LoginUserAsync( UserData user )
+        //{
+        //    HttpWebRequest request = new HttpWebRequest(new Uri(String.Format("{0}Token", Constants.BaseAddress)));
+        //    request.Method = "POST";
+
+        //    string postString = String.Format("username={0}&password={1}&grant_type=password", HttpUtility.HtmlEncode(username), HttpUtility.HtmlEncode(password));
+        //    byte[] bytes = Encoding.UTF8.GetBytes(postString);
+        //    using (Stream requestStream = await request.GetRequestStreamAsync())
+        //    {
+        //        requestStream.Write(bytes, 0, bytes.Length);
+        //    }
+
+        //    try
+        //    {
+        //        HttpWebResponse httpResponse = (HttpWebResponse)(await request.GetResponseAsync());
+        //        string json;
+        //        using (Stream responseStream = httpResponse.GetResponseStream())
+        //        {
+        //            json = new StreamReader(responseStream).ReadToEnd();
+        //        }
+        //        TokenResponseModel tokenResponse = JsonConvert.DeserializeObject<TokenResponseModel>(json);
+        //        return tokenResponse.AccessToken;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new SecurityException("Bad credentials", ex);
+        //    }
+        }
 }

@@ -1,6 +1,7 @@
 ﻿using Xamarin.Forms;
 using XamarinWMS.Data;
 using XamarinWMS.Data.Web_Service;
+using XamarinWMS.View.Login;
 
 namespace XamarinWMS
 {
@@ -32,7 +33,7 @@ namespace XamarinWMS
             PickManager = new PickManager(new RestService());
             UserManager = new UserManager(new RestService());
             // The root page of your application
-            MainPage = new NavigationPage(new MainMenu());
+            MainPage = new NavigationPage(new Signup());
 
         }
         public static DeliveryDatabase DelDatabase

@@ -43,7 +43,7 @@ namespace XamarinWMS.Data.Web_Service
 
         //Task<List<UserData>> RefreshUsersAsync();
 
-        Task SaveUserAsync(UserData user, bool isNewUser);
+        Task<bool> SaveUserAsync(UserData user, bool isNewUser);
 
         //Task DeleteUserAsync(string userName);
     }

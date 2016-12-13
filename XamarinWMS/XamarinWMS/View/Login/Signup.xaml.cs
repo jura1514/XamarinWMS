@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using UIKit;
 using Xamarin.Forms;
 using XamarinWMS.Model;
 
@@ -26,17 +26,35 @@ namespace XamarinWMS.View.Login
 
         public async void SignUp(string username, string password)
         {
+
             var vUser = new UserData()
             {
-                UserName = username,
+                Email = username,
                 Password = password,
                 ConfirmPassword = password,
             };
-            App.UserDatabase.SaveUser(vUser);
 
-            bool isNewUser = true;
-            await App.UserManager.SaveTaskAsync(vUser, isNewUser);
+            List<UserData> _users = App.UserDatabase.GetAllUsers();
 
+            for( int i = 0; i < _users.Count(); i++ )
+            {
+                if( _users[i].Email != vUser.Email )
+                {
+                    App.UserDatabase.SaveUser(vUser);
+                }
+            }
+
+            bool succ = await App.UserManager.SaveTaskAsync( vUser, true );
+
+            if (!succ)
+            {
+                await DisplayAlert("Error", "Register Failed!", "OK");
+            }
+            else
+            {
+                await DisplayAlert("Success", "User Regitered", "OK");
+            }
         }
+
     }
 }

@@ -21,7 +21,7 @@ namespace XamarinWMS.Data.Web_Service
         //    return restService.RefreshUsersAsync();
         //}
 
-        public Task SaveTaskAsync(UserData user, bool isNewUser = false)
+        public Task<bool> SaveTaskAsync(UserData user, bool isNewUser )
         {
             return restService.SaveUserAsync(user, isNewUser);
         }

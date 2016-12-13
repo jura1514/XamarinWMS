@@ -20,6 +20,7 @@ namespace XamarinWMS.Data.Web_Service
         public List<DeliveryData> Deliveries { get; private set; }
         public List<DeliveryLineData> DeliveryLines { get; private set; }
         public List<OrderData> Orders { get; private set; }
+        public List<PickData> Picks { get; private set; }
 
         public RestService()
         {
@@ -248,6 +249,82 @@ namespace XamarinWMS.Data.Web_Service
                 if (response.IsSuccessStatusCode)
                 {
                     Debug.WriteLine(@"				Order successfully deleted.");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"				ERROR {0}", ex.Message);
+            }
+        }
+
+        /* Pick REST Functions */
+
+        public async Task<List<PickData>> RefreshPicksAsync()
+        {
+            Picks = new List<PickData>();
+
+            var uri = new Uri(string.Format(Constants.RestUrlPick, string.Empty));
+
+            try
+            {
+                var response = await client.GetAsync(uri);
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    Picks = JsonConvert.DeserializeObject<List<PickData>>(content);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"				ERROR {0}", ex.Message);
+            }
+
+            return Picks;
+        }
+
+        public async Task SavePickAsync(PickData pick, bool isNewPick = false)
+        {
+            var uri = new Uri(string.Format(Constants.RestUrlPick, pick.PickId));
+
+            try
+            {
+                var json = JsonConvert.SerializeObject(pick);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = null;
+                if (isNewPick)
+                {
+                    response = await client.PostAsync(uri, content);
+                }
+                else
+                {
+                    response = await client.PutAsync(uri, content);
+                }
+
+                if (response.IsSuccessStatusCode)
+                {
+                    Debug.WriteLine(@"				Pick successfully saved.");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"				ERROR {0}", ex.Message);
+            }
+        }
+
+        public async Task DeletePickAsync(int id)
+        {
+            var uri = new Uri(string.Format(Constants.RestUrlPick, id));
+
+            try
+            {
+                var response = await client.DeleteAsync(uri);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    Debug.WriteLine(@"				Pick successfully deleted.");
                 }
 
             }

@@ -68,12 +68,18 @@ namespace XamarinWMS.View.Picking
             {
                 if (isConnected)
                 {
-                    if (mSelOrder.IsDispatched)
+                    if (!mSelOrder.IsDispatched)
                     {
                         isNewOrder = true;
                         mSelOrder.IsDispatched = true;
                         await App.OrderManager.SaveTaskAsync(mSelOrder, isNewOrder);
+                        SendPicks(mSelOrder.OrderId);
+
                         App.orderDatabase.EditOrder(mSelOrder);
+                    }
+                    else
+                    {
+                        await DisplayAlert("Error", "Order has been dispatched already!", "OK");
                     }
                 }
                 else
@@ -82,6 +88,16 @@ namespace XamarinWMS.View.Picking
                 }
             }
             await Navigation.PushAsync(new MainMenu());
+        }
+
+        public async void SendPicks(int orderId)
+        {
+            List<PickData> allPicks = App.pickDatabase.GetAllPicksForOrder(orderId);
+
+            for (int k = 0; k < allPicks.Count(); k++)
+            {
+                await App.PickManager.SaveTaskAsync(allPicks[k], true);
+            }
         }
 
         private async void Current_ConnectivityChanged(object sender, Plugin.Connectivity.Abstractions.ConnectivityChangedEventArgs e)

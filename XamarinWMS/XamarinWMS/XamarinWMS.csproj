@@ -46,6 +46,7 @@
     <Compile Include="Data\StockDatabase.cs" />
     <Compile Include="Data\Web Service\IRestService.cs" />
     <Compile Include="Data\Web Service\OrderManager.cs" />
+    <Compile Include="Data\Web Service\PickManager.cs" />
     <Compile Include="Data\Web Service\RestService.cs" />
     <Compile Include="Data\Web Service\UserManager.cs" />
     <Compile Include="Model\LocationData.cs" />

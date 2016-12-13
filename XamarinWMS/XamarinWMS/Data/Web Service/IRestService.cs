@@ -31,6 +31,14 @@ namespace XamarinWMS.Data.Web_Service
 
         Task DeleteOrderAsync(int id);
 
+        /* Pick REST */
+
+        Task<List<PickData>> RefreshPicksAsync();
+
+        Task SavePickAsync(PickData pick, bool isNewPick);
+
+        Task DeletePickAsync(int pick);
+
         /* User REST */
 
         //Task<List<UserData>> RefreshUsersAsync();

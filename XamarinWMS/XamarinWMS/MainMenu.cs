@@ -59,6 +59,7 @@ namespace XamarinWMS
 
             CrossConnectivity.Current.ConnectivityChanged += Current_ConnectivityChanged;
 
+            CheckForOrdersAndPicks();
 
         }
 
@@ -90,7 +91,7 @@ namespace XamarinWMS
             }
         }
 
-        public async void CheckForOrders()
+        public async void CheckForOrdersAndPicks()
         {
             if (isConnected)
             {
@@ -103,11 +104,25 @@ namespace XamarinWMS
                     {
                         isNewOrder = true;
                         allOrders[i].IsDispatched = true;
+
                         await App.OrderManager.SaveTaskAsync(allOrders[i], isNewOrder);
+                        SendPicks(allOrders[i].OrderId);
+
                         App.orderDatabase.EditOrder(allOrders[i]);
                     }
                 }
             }
         }
+
+        public async void SendPicks( int orderId)
+        {
+            List<PickData> allPicks = App.pickDatabase.GetAllPicksForOrder(orderId);
+
+            for (int k = 0; k < allPicks.Count(); k++)
+            {
+                await App.PickManager.SaveTaskAsync(allPicks[k], true);
+            }
+        }
+
     }
 }

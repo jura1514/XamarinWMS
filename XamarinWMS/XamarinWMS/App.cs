@@ -10,6 +10,7 @@ namespace XamarinWMS
         public static DeliveryManager DelManager { get; private set; }
         public static DeliveryLineManager DelLineManager { get; private set; }
         public static OrderManager OrderManager { get; private set; }
+        public static PickManager PickManager { get; private set; }
         public static UserManager UserManager { get; private set; }
 
 
@@ -28,6 +29,7 @@ namespace XamarinWMS
             DelManager = new DeliveryManager(new RestService());
             DelLineManager = new DeliveryLineManager(new RestService());
             OrderManager = new OrderManager(new RestService());
+            PickManager = new PickManager(new RestService());
             UserManager = new UserManager(new RestService());
             // The root page of your application
             MainPage = new NavigationPage(new MainMenu());

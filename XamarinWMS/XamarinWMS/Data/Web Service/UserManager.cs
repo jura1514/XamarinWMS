@@ -16,10 +16,10 @@ namespace XamarinWMS.Data.Web_Service
             restService = service;
         }
 
-        //public Task<List<UserData>> GetTasksAsync()
-        //{
-        //    return restService.RefreshUsersAsync();
-        //}
+        public Task<string> LoginTaskAsync( string username, string password )
+        {
+            return restService.LoginUserAsync( username, password );
+        }
 
         public Task<bool> SaveTaskAsync(UserData user, bool isNewUser )
         {

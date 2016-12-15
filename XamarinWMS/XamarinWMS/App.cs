@@ -33,7 +33,7 @@ namespace XamarinWMS
             PickManager = new PickManager(new RestService());
             UserManager = new UserManager(new RestService());
             // The root page of your application
-            MainPage = new NavigationPage(new Signup());
+            MainPage = new NavigationPage(new Login());
 
         }
         public static DeliveryDatabase DelDatabase

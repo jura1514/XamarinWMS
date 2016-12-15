@@ -23,7 +23,7 @@ namespace XamarinWMS.Data
         {
             return _connection.Query<UserData>("Select * From [UserData]");
         }
-        public UserData GetUserById(int aSelectedUser)
+        public UserData GetUserById(string aSelectedUser)
         {
             return _connection.Find<UserData>(aSelectedUser);
         }

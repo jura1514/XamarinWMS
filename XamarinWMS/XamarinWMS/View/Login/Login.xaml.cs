@@ -5,11 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
+using XamarinWMS.Model;
 
 namespace XamarinWMS.View.Login
 {
     public partial class Login : ContentPage
     {
+        private string _accessToken = "";
+
         public Login()
         {
             InitializeComponent();
@@ -18,7 +21,7 @@ namespace XamarinWMS.View.Login
         public void OnLoginClicked(object sender, EventArgs e)
         {
             //Navigation.PushAsync(new Login());
-          //  SignUp(email.Text, password.Text);
+            ProcessLogin(email.Text, password.Text);
 
         }
 
@@ -27,19 +30,21 @@ namespace XamarinWMS.View.Login
             Navigation.PushAsync(new Signup());
         }
 
-        //public async void SignUp(string username, string password)
-        //{
-        //    var vUser = new UserData()
-        //    {
-        //        Email = username,
-        //        Password = password,
-        //        ConfirmPassword = password,
-        //    };
-        //    App.UserDatabase.SaveUser(vUser);
+        public async void ProcessLogin(string username, string password)
+        {
+            UserData _user = App.UserDatabase.GetUserById(username);
 
-        //    bool isNewUser = true;
-        //    await App.UserManager.SaveTaskAsync(vUser, isNewUser);
+            _accessToken = await App.UserManager.LoginTaskAsync(username, password);
 
-        //}
+            if (_accessToken != null)
+            {
+                await DisplayAlert("Success", "Login complete", "OK");
+                await Navigation.PushAsync(new MainMenu());
+            }
+            else
+            {
+                await DisplayAlert("Error", "Login failed", "OK");
+            }
+        }
     }
 }

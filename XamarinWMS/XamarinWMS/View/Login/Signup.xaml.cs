@@ -33,16 +33,16 @@ namespace XamarinWMS.View.Login
                 Password = password,
                 ConfirmPassword = password,
             };
+            App.UserDatabase.SaveUser(vUser);
+            //List<UserData> _users = App.UserDatabase.GetAllUsers();
 
-            List<UserData> _users = App.UserDatabase.GetAllUsers();
-
-            for( int i = 0; i < _users.Count(); i++ )
-            {
-                if( _users[i].Email != vUser.Email )
-                {
-                    App.UserDatabase.SaveUser(vUser);
-                }
-            }
+            //for( int i = 0; i < _users.Count(); i++ )
+            //{
+            //    if( _users[i].Email != vUser.Email )
+            //    {
+            //        App.UserDatabase.SaveUser(vUser);
+            //    }
+            //}
 
             bool succ = await App.UserManager.SaveTaskAsync( vUser, true );
 
@@ -53,6 +53,7 @@ namespace XamarinWMS.View.Login
             else
             {
                 await DisplayAlert("Success", "User Regitered", "OK");
+                await Navigation.PushAsync(new Login());
             }
         }
 

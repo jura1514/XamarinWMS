@@ -14,6 +14,7 @@ namespace XamarinWMS
         public static string RestUrlOrder = "http://192.168.0.37:52326/api/OrderWeb";
         public static string RestUrlPick = "http://192.168.0.37:52326/api/PickWeb";
         public static string RestUrlUserRegister = "http://192.168.0.37:52326/api/Account/Register";
+        public static string RestUrlLogin = "http://192.168.0.37:52326/Token";
         // Credentials that are hard coded into the REST service
         public static string Username = "";
         public static string Password = "";

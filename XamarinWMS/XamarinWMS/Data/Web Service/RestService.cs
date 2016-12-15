@@ -7,8 +7,10 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using XamarinWMS.Model;
 
 namespace XamarinWMS.Data.Web_Service
@@ -22,9 +24,12 @@ namespace XamarinWMS.Data.Web_Service
         public List<OrderData> Orders { get; private set; }
         public List<PickData> Picks { get; private set; }
 
+        public static string Username = "";
+        public static string Password = "";
+
         public RestService()
         {
-            var authData = string.Format("{0}:{1}", Constants.Username, Constants.Password);
+            var authData = string.Format("{0}:{1}", Username, Password);
             var authHeaderValue = Convert.ToBase64String(Encoding.UTF8.GetBytes(authData));
 
             client = new HttpClient();
@@ -370,32 +375,45 @@ namespace XamarinWMS.Data.Web_Service
             return _respMsg;
         }
 
-        //public async Task<string> LoginUserAsync( UserData user )
-        //{
-        //    HttpWebRequest request = new HttpWebRequest(new Uri(String.Format("{0}Token", Constants.BaseAddress)));
-        //    request.Method = "POST";
+        public async Task<string> LoginUserAsync(string username, string password)
+        {
+            string _resp = "";
 
-        //    string postString = String.Format("username={0}&password={1}&grant_type=password", HttpUtility.HtmlEncode(username), HttpUtility.HtmlEncode(password));
-        //    byte[] bytes = Encoding.UTF8.GetBytes(postString);
-        //    using (Stream requestStream = await request.GetRequestStreamAsync())
-        //    {
-        //        requestStream.Write(bytes, 0, bytes.Length);
-        //    }
+            var uri = new Uri(string.Format(Constants.RestUrlLogin));
+            string str = "grant_type=password";
+            str += "&username="+username;
+            str += "&password="+password;
+            try
+            {
+              //  var json = JsonConvert.SerializeObject(postString);
+                var content = new StringContent(str, Encoding.UTF8, "application/x-www-form-urlencoded");
 
-        //    try
-        //    {
-        //        HttpWebResponse httpResponse = (HttpWebResponse)(await request.GetResponseAsync());
-        //        string json;
-        //        using (Stream responseStream = httpResponse.GetResponseStream())
-        //        {
-        //            json = new StreamReader(responseStream).ReadToEnd();
-        //        }
-        //        TokenResponseModel tokenResponse = JsonConvert.DeserializeObject<TokenResponseModel>(json);
-        //        return tokenResponse.AccessToken;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw new SecurityException("Bad credentials", ex);
-        //    }
+                HttpResponseMessage response = null;
+
+                response = await client.PostAsync(uri, content);
+
+                if (response.IsSuccessStatusCode)
+                {
+
+                    Debug.WriteLine(@"				Credentials are Correct.");
+
+                    var tokenContent = await response.Content.ReadAsStringAsync();
+
+                    TokenResponseModel tokenResponse = JsonConvert.DeserializeObject<TokenResponseModel>(tokenContent);
+
+                    Username += tokenResponse.Username;
+                    Password += tokenResponse.AccessToken;
+
+                    return tokenResponse.AccessToken;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"				ERROR {0}", ex.Message);
+                throw new SecurityException("Bad credentials", ex);
+            }
+            return _resp;
         }
+    }
 }

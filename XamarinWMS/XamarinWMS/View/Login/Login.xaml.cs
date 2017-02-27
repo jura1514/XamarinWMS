@@ -12,17 +12,31 @@ namespace XamarinWMS.View.Login
     public partial class Login : ContentPage
     {
         private string _accessToken = "";
+        //TokenResponseModel _response;
 
         public Login()
         {
             InitializeComponent();
+            _accessToken = "";
+           // _response.AccessToken = "";
+           // _response = null;
+
+            var existingPages = Navigation.NavigationStack.ToList();
+            if (Navigation.NavigationStack.Count != 0)
+            {
+                Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 1]);
+            }
+        }
+
+        protected override bool OnBackButtonPressed()
+        {
+            base.OnBackButtonPressed();
+            return true;
         }
 
         public void OnLoginClicked(object sender, EventArgs e)
         {
-            //Navigation.PushAsync(new Login());
             ProcessLogin(email.Text, password.Text);
-
         }
 
         public void OnRegisterClicked(object sender, EventArgs e)
@@ -32,11 +46,10 @@ namespace XamarinWMS.View.Login
 
         public async void ProcessLogin(string username, string password)
         {
-            UserData _user = App.UserDatabase.GetUserById(username);
 
             _accessToken = await App.UserManager.LoginTaskAsync(username, password);
 
-            if (_accessToken != null)
+            if (!string.IsNullOrEmpty(_accessToken))
             {
                 await DisplayAlert("Success", "Login complete", "OK");
                 await Navigation.PushAsync(new MainMenu());

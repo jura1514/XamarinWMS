@@ -29,6 +29,12 @@ namespace XamarinWMS
             CrossConnectivity.Current.ConnectivityChanged += Current_ConnectivityChanged;
         }
 
+        protected override bool OnBackButtonPressed()
+        {
+            Navigation.PushAsync(new MainMenu());
+            return true;
+        }
+
         protected async override void OnAppearing()
         {
             base.OnAppearing();

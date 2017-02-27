@@ -36,6 +36,7 @@ namespace XamarinWMS
             MainPage = new NavigationPage(new Login());
 
         }
+
         public static DeliveryDatabase DelDatabase
         {
             get

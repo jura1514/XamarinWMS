@@ -37,6 +37,12 @@ namespace XamarinWMS.Data.Web_Service
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", authHeaderValue);
         }
 
+        public void ResetUserDetails()
+        {
+            Username = "";
+            Password = "";
+        }
+
         public async Task<List<DeliveryData>> RefreshDataAsync()
         {
             Deliveries = new List<DeliveryData>();
@@ -415,5 +421,30 @@ namespace XamarinWMS.Data.Web_Service
             }
             return _resp;
         }
+
+        //public async Task LogOutTaskAsync()
+        //{
+        //    var uri = new Uri(string.Format(Constants.RestUrlLogOut));
+
+        //    try
+        //    {
+        //        //var json = JsonConvert.SerializeObject(item);
+        //        var content = new StringContent("", Encoding.UTF8, "application/json");
+
+        //        HttpResponseMessage response = null;
+
+        //        response = await client.PostAsync(uri, content);
+
+        //        if (response.IsSuccessStatusCode)
+        //        {
+        //            Debug.WriteLine(@"				User successfully log out.");
+        //        }
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Debug.WriteLine(@"				ERROR {0}", ex.Message);
+        //    }
+        //}
     }
 }

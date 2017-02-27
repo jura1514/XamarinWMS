@@ -8,6 +8,7 @@ using Xamarin.Forms;
 using XamarinWMS.Model;
 using XamarinWMS.View;
 using XamarinWMS.View.Info;
+using XamarinWMS.View.Login;
 using XamarinWMS.View.Move;
 using XamarinWMS.View.Picking;
 using ZXing.Net.Mobile.Forms;
@@ -16,11 +17,26 @@ namespace XamarinWMS
 {
     class MainMenu : ContentPage
     {
+
         //check if phone has access to network
         bool isConnected = false;
 
         public MainMenu()
         {
+            NavigationPage.SetHasBackButton(this, false);
+
+            ToolbarItems.Add(new ToolbarItem("Log Out", "filter.png", async () =>
+            {
+                var page = new ContentPage();
+                var result = await page.DisplayAlert("LogOut", "Are you sure you want to Log Out?", "Accept", "Cancel");
+
+                if( result )
+                {
+                    App.UserManager.ResetUserDetails();
+                    await Navigation.PushAsync(new Login());
+                }
+            }));
+
             Title = "Main Menu";
             var rootLabel = new Label { Text = "XamarinWMS" };
 
@@ -61,6 +77,12 @@ namespace XamarinWMS
 
             CheckForOrdersAndPicks();
 
+        }
+
+        protected override bool OnBackButtonPressed()
+        {
+            base.OnBackButtonPressed();
+            return true;
         }
 
         private async void Current_ConnectivityChanged(object sender, Plugin.Connectivity.Abstractions.ConnectivityChangedEventArgs e)

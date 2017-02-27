@@ -26,9 +26,14 @@ namespace XamarinWMS.Data.Web_Service
             return restService.SaveUserAsync(user, isNewUser);
         }
 
-        //public Task DeleteTaskAsync(UserData user)
+        public void ResetUserDetails()
+        {
+            restService.ResetUserDetails();
+        }
+
+        //public Task LogOutTaskAsync()
         //{
-        //    return restService.DeleteUserAsync(user.UserName);
+        //    return restService.LogOutTaskAsync();
         //}
 
     }

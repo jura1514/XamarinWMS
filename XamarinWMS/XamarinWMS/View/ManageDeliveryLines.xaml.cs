@@ -25,6 +25,12 @@ namespace XamarinWMS
 
         }
 
+        protected override bool OnBackButtonPressed()
+        {
+            Navigation.PushAsync(new ManageDelivery());
+            return true;
+        }
+
         void OnSelection(object sender, SelectedItemChangedEventArgs e)
         {
             if (e.SelectedItem == null)

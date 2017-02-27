@@ -45,5 +45,9 @@ namespace XamarinWMS.Data.Web_Service
 
         Task<string> LoginUserAsync( string username, string password );
 
+        void ResetUserDetails();
+
+        //Task LogOutTaskAsync();
+
     }
 }

@@ -1,10 +1,5 @@
-﻿using SQLite.Net.Attributes;
-using SQLiteNetExtensions.Attributes;
+﻿using SQLite;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace XamarinWMS.Model
 {
@@ -13,13 +8,13 @@ namespace XamarinWMS.Model
         [PrimaryKey, AutoIncrement]
         public int PickId { get; set; }
 
-        [ForeignKey(typeof(OrderData))]
+        //[ForeignKey(typeof(OrderData))]
         public int OrderId { get; set; }
 
-        [ForeignKey(typeof(DeliveryLineData))]
+        //[ForeignKey(typeof(DeliveryLineData))]
         public int DeliveryLineId { get; set; }
 
-        [ForeignKey(typeof(ProductData))]
+       // [ForeignKey(typeof(ProductData))]
         public string Product { get; set; }
 
         public string PickState { get; set; }

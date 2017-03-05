@@ -1,11 +1,5 @@
-﻿using SQLite.Net;
-using SQLite.Net.Attributes;
-using System;
+﻿using SQLite;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xamarin.Forms;
 using XamarinWMS.Model;
 
 namespace XamarinWMS.Data
@@ -14,9 +8,9 @@ namespace XamarinWMS.Data
     {
         private SQLiteConnection _connection;
 
-        public LocationDatabase()
+        public LocationDatabase(string dbPath)
         {
-            _connection = DependencyService.Get<ISQLite>().GetConnection();
+            _connection = new SQLiteConnection(dbPath);
             _connection.CreateTable<LocationData>();
         }
 

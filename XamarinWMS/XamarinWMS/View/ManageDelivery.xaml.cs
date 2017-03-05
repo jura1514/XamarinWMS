@@ -50,7 +50,7 @@ namespace XamarinWMS
                 isConnected = true;
             }
 
-            if (Constants.RestUrlDel.Contains("192.168.0.37:52326"))
+            if (Constants.RestUrlDel.Contains("mywebwms.azurewebsites.net"))
             {
                 if (!alertShown)
                 {

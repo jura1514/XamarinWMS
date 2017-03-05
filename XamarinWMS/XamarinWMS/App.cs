@@ -33,7 +33,7 @@ namespace XamarinWMS
             PickManager = new PickManager(new RestService());
             UserManager = new UserManager(new RestService());
             // The root page of your application
-            MainPage = new NavigationPage(new Login());
+            MainPage = new NavigationPage(new MainMenu());
 
         }
 
@@ -43,7 +43,7 @@ namespace XamarinWMS
             {
                 if (dbDelivery == null)
                 {
-                    dbDelivery = new DeliveryDatabase();
+                    dbDelivery = new DeliveryDatabase(DependencyService.Get<IFileHelper>().GetLocalFilePath("XamarinWMS.db3"));
                 }
                 return dbDelivery;
             }
@@ -54,7 +54,7 @@ namespace XamarinWMS
             {
                 if (dbDelLine == null)
                 {
-                    dbDelLine = new DeliveryLineDatabase();
+                    dbDelLine = new DeliveryLineDatabase(DependencyService.Get<IFileHelper>().GetLocalFilePath("XamarinWMS.db3"));
                 }
                 return dbDelLine;
             }
@@ -66,7 +66,7 @@ namespace XamarinWMS
             {
                 if (dbStock == null)
                 {
-                    dbStock = new StockDatabase();
+                    dbStock = new StockDatabase(DependencyService.Get<IFileHelper>().GetLocalFilePath("XamarinWMS.db3"));
                 }
                 return dbStock;
             }
@@ -78,7 +78,7 @@ namespace XamarinWMS
             {
                 if (dbLocation == null)
                 {
-                    dbLocation = new LocationDatabase();
+                    dbLocation = new LocationDatabase(DependencyService.Get<IFileHelper>().GetLocalFilePath("XamarinWMS.db3"));
                 }
                 return dbLocation;
             }
@@ -90,7 +90,7 @@ namespace XamarinWMS
             {
                 if (dbProd == null)
                 {
-                    dbProd = new ProdDatabase();
+                    dbProd = new ProdDatabase(DependencyService.Get<IFileHelper>().GetLocalFilePath("XamarinWMS.db3"));
                 }
                 return dbProd;
             }
@@ -102,7 +102,7 @@ namespace XamarinWMS
             {
                 if (dbOrder == null)
                 {
-                    dbOrder = new OrderDatabase();
+                    dbOrder = new OrderDatabase(DependencyService.Get<IFileHelper>().GetLocalFilePath("XamarinWMS.db3"));
                 }
                 return dbOrder;
             }
@@ -114,7 +114,7 @@ namespace XamarinWMS
             {
                 if (dbPick == null)
                 {
-                    dbPick = new PickDatabase();
+                    dbPick = new PickDatabase(DependencyService.Get<IFileHelper>().GetLocalFilePath("XamarinWMS.db3"));
                 }
                 return dbPick;
             }
@@ -125,7 +125,7 @@ namespace XamarinWMS
             {
                 if (dbUser == null)
                 {
-                    dbUser = new UserDatabase();
+                    dbUser = new UserDatabase(DependencyService.Get<IFileHelper>().GetLocalFilePath("XamarinWMS.db3"));
                 }
                 return dbUser;
             }

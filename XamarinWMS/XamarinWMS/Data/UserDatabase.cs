@@ -1,5 +1,4 @@
-﻿using SQLite.Net;
-using System;
+﻿using SQLite;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,9 +12,9 @@ namespace XamarinWMS.Data
     {
         private SQLiteConnection _connection;
 
-        public UserDatabase()
+        public UserDatabase(string dbPath)
         {
-            _connection = DependencyService.Get<ISQLite>().GetConnection();
+            _connection = new SQLiteConnection(dbPath);
             _connection.CreateTable<UserData>();
         }
 

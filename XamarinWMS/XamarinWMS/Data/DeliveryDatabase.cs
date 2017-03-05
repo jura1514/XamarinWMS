@@ -1,10 +1,7 @@
-﻿using SQLite.Net;
-using System;
+﻿using SQLite;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xamarin.Forms;
+using System.IO;
+using Windows.Storage;
 using XamarinWMS.Model;
 
 namespace XamarinWMS
@@ -13,9 +10,9 @@ namespace XamarinWMS
     {
         private SQLiteConnection _connection;
 
-        public DeliveryDatabase()
+        public DeliveryDatabase(string dbPath)
         {
-            _connection = DependencyService.Get<ISQLite>().GetConnection();
+            _connection = new SQLiteConnection(dbPath);
             _connection.CreateTable<DeliveryData>();
         }
 

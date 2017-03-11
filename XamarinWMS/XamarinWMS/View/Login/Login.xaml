@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="XamarinWMS.View.Login.Login" 
              NavigationPage.HasBackButton="False"
-             Title="Sign Up">
+             Title="Log In">
   <ContentView.Content>
     <StackLayout VerticalOptions="Center" Padding="30" Spacing="10">
       <Label Text="Enter Your Credentials"

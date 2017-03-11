@@ -11,7 +11,7 @@
 
         <TextCell Text="{Binding OrderId}" Detail="{Binding OrderState}"/>
 
-      </DataTemplate>invalidPersonTemplate
+      </DataTemplate>
 
       <DataTemplate x:Key="validOrderTemplate">
 

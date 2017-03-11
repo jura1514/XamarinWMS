@@ -13,15 +13,11 @@ namespace XamarinWMS.View.Info
             InitializeComponent();
         }
 
-        //public void OnStockInfoClicked(object sender, EventArgs e)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public void OnLocationInfoClicked(object sender, EventArgs e)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        protected override bool OnBackButtonPressed()
+        {
+            Navigation.PushAsync(new MainMenu());
+            return true;
+        }
 
         public async void OnInfoBarcodeClicked(object sender, EventArgs e)
         {

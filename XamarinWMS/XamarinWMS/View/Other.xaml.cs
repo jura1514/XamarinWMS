@@ -17,6 +17,12 @@ namespace XamarinWMS.View
             InitializeComponent();
         }
 
+        protected override bool OnBackButtonPressed()
+        {
+            Navigation.PushAsync(new MainMenu());
+            return true;
+        }
+
         public void OnManageStockClicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new ManageStock());

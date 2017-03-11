@@ -12,7 +12,6 @@ namespace XamarinWMS
 {
     public partial class ManageDelivery : ContentPage
     {
-        bool alertShown = false;
         bool isConnected = false;
 
         public ManageDelivery()
@@ -50,16 +49,12 @@ namespace XamarinWMS
                 isConnected = true;
             }
 
-            if (Constants.RestUrlDel.Contains("mywebwms.azurewebsites.net"))
+            if (!Constants.RestUrlDel.Contains("mywebwms.azurewebsites.net"))
             {
-                if (!alertShown)
-                {
-                    await DisplayAlert(
-                        "Hosted Back-End",
-                        "This app is running against Xamarin's read-only REST service. To create, edit, and delete Deliveries you must update the service endpoint to point to your own hosted REST service.",
-                        "OK");
-                    alertShown = true;
-                }
+                await DisplayAlert(
+                    "Hosted Back-End",
+                    "This app is running against Xamarin's read-only REST service. To create, edit, and delete Deliveries you must update the service endpoint to point to your own hosted REST service.",
+                    "OK");
             }
 
             if( isConnected )

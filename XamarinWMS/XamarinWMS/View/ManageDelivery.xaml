@@ -4,39 +4,23 @@
              x:Class="XamarinWMS.ManageDelivery"
              NavigationPage.HasBackButton="False"
              Title="Manage Deliveries">
-<ContentPage.Content>
-  <ListView x:Name="lstData" HasUnevenRows="false" Header="Header Value" Footer="Footer" ItemSelected="OnSelection" >
-    <ListView.HeaderTemplate>
-      <DataTemplate>
-        <StackLayout Orientation="Horizontal" BackgroundColor="Blue" Padding="5,5,5,5">
-          <Label Text="Delivery Id" FontSize="Medium" FontAttributes="Bold"/>
-          <Label Text="Name" FontSize="Medium" FontAttributes="Bold"/>
-          <Label Text="Exp. Date" FontSize="Medium" FontAttributes="Bold"/>
-          <Label Text="State" FontSize="Medium" FontAttributes="Bold"/>
-          <Label Text="State Change Time" FontSize="Medium" FontAttributes="Bold"/>
-        </StackLayout>
-      </DataTemplate>
-    </ListView.HeaderTemplate>
-    <ListView.ItemTemplate>
-      <DataTemplate>
-        <ViewCell>
-          <StackLayout Orientation="Horizontal">
-            <Label Text="{Binding DeliveryId}" FontSize="Medium" />
-            <Label Text="{Binding Name}" FontSize="Medium" />
-            <Label Text="{Binding ExpectedDate}" FontSize="Medium" />
-            <Label Text="{Binding State}" FontSize="Medium" />
-            <Label Text="{Binding StateChangeTime}" FontSize="Medium" />
-          </StackLayout>
-        </ViewCell>
-      </DataTemplate>
-    </ListView.ItemTemplate>
-    <ListView.FooterTemplate>
-      <DataTemplate>
-        <StackLayout Orientation="Horizontal" Padding="5,5,5,5">
-          <Button Text="Add New Delivery" Clicked="OnNewClicked" />
-        </StackLayout>
-      </DataTemplate>
-    </ListView.FooterTemplate>
-  </ListView>
-</ContentPage.Content>
+  <ContentPage.Content>
+    <StackLayout Padding="30">
+      <Label Text="Deliveries" FontSize="20"/>
+      <ListView x:Name="lstData" HasUnevenRows="false" Footer="Footer" ItemSelected="OnSelection" >
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <TextCell Text="{Binding DeliveryId}" Detail="{Binding Name}" />
+          </DataTemplate>
+        </ListView.ItemTemplate>
+        <ListView.FooterTemplate>
+          <DataTemplate>
+            <StackLayout Orientation="Horizontal" Padding="5,5,5,5">
+              <Button Text="Add New Delivery" Clicked="OnNewClicked" />
+            </StackLayout>
+          </DataTemplate>
+        </ListView.FooterTemplate>
+      </ListView>
+    </StackLayout>
+  </ContentPage.Content>
 </ContentPage>

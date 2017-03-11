@@ -18,14 +18,30 @@ namespace XamarinWMS.View
 
         public void OnSaveClicked(object sender, EventArgs args)
         {
-            var vLocation = new LocationData()
+            if (!string.IsNullOrEmpty(txtLocId.Text) && !string.IsNullOrEmpty(txtState.Text))
             {
-                LocationId = txtLocId.Text,
-                LocState = txtState.Text,
-                StateChangeTime = DateTime.Now,
-            };
-            App.locDatabase.SaveLoc(vLocation);
-            Navigation.PushAsync(new ManageLocation());
+                LocationData existentLoc = App.locDatabase.GetLocationById(txtLocId.Text);
+
+                if (existentLoc == null)
+                {
+                    var vLocation = new LocationData()
+                    {
+                    LocationId = txtLocId.Text,
+                    LocState = txtState.Text,
+                    StateChangeTime = DateTime.Now,
+                    };
+                    App.locDatabase.SaveLoc(vLocation);
+                    Navigation.PushAsync(new ManageLocation());
+                }
+                else
+                {
+                    DisplayAlert("Error", "Product already exist in database", "OK");
+                }
+            }
+            else
+            {
+                DisplayAlert("Error", "All fields are mandatory!", "OK");
+            }
         }
     }
 }

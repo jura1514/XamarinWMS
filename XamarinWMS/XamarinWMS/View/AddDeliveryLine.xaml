@@ -10,7 +10,6 @@
           <EntryCell x:Name="txtDelLineId" Label="Delivery Line Id" Keyboard="Numeric" />
           <EntryCell x:Name="txtName" Label="Name" Keyboard="Text" />
           <EntryCell x:Name="txtProd" Label="Product" Keyboard="Text" />
-          <EntryCell x:Name="txtDelId" Label="Delivery Id" Keyboard="Numeric" />
           <EntryCell x:Name="txtAccQty" Label="Acc. Qty" Keyboard="Numeric" />
           <EntryCell x:Name="txtExpQty" Label="Exp. Qty" Keyboard="Numeric" />
           <EntryCell x:Name="txtRejQty" Label="Rej. Qty" Keyboard="Numeric" />

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Plugin.Connectivity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,20 +13,16 @@ namespace XamarinWMS.View.Login
     public partial class Login : ContentPage
     {
         private string _accessToken = "";
-        //TokenResponseModel _response;
+
+        //check if phone has access to network
+        bool isConnected = false;
 
         public Login()
         {
             InitializeComponent();
             _accessToken = "";
-           // _response.AccessToken = "";
-           // _response = null;
 
-            var existingPages = Navigation.NavigationStack.ToList();
-            if (Navigation.NavigationStack.Count != 0)
-            {
-                Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 1]);
-            }
+            CrossConnectivity.Current.ConnectivityChanged += Current_ConnectivityChanged;
         }
 
         protected override bool OnBackButtonPressed()
@@ -46,17 +43,51 @@ namespace XamarinWMS.View.Login
 
         public async void ProcessLogin(string username, string password)
         {
-
-            _accessToken = await App.UserManager.LoginTaskAsync(username, password);
-
-            if (!string.IsNullOrEmpty(_accessToken))
+            if (isConnected)
             {
-                await DisplayAlert("Success", "Login complete", "OK");
-                await Navigation.PushAsync(new MainMenu());
+                _accessToken = await App.UserManager.LoginTaskAsync(username, password);
+
+                if (!string.IsNullOrEmpty(_accessToken))
+                {
+                    await DisplayAlert("Success", "Login complete", "OK");
+                    await Navigation.PushAsync(new MainMenu());
+                }
+                else
+                {
+                    await DisplayAlert("Error", "Login failed", "OK");
+                }
             }
             else
             {
-                await DisplayAlert("Error", "Login failed", "OK");
+                await DisplayAlert("Error", "Cannot login without connection!", "OK");
+            }
+        }
+
+        private async void Current_ConnectivityChanged(object sender, Plugin.Connectivity.Abstractions.ConnectivityChangedEventArgs e)
+        {
+            if (!e.IsConnected)
+            {
+                await DisplayAlert("Error", "Check for your connection.", "OK");
+                isConnected = false;
+            }
+            else
+            {
+                isConnected = true;
+            }
+        }
+
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            if (!CrossConnectivity.Current.IsConnected)
+            {
+                await DisplayAlert("Error", "Check for your connection.", "OK");
+                isConnected = false;
+            }
+            else
+            {
+                isConnected = true;
             }
         }
     }

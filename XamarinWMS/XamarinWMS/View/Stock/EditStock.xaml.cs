@@ -31,7 +31,7 @@ namespace XamarinWMS.View.Stock
             mSelStock.Qty = int.Parse(txtQty.Text);
             mSelStock.StateChangeTime = DateTime.Now;
             App.StkDatabase.EditStock(mSelStock);
-            Navigation.PushAsync(new ManageDelivery());
+            Navigation.PushAsync(new ManageStock());
         }
     }
 }

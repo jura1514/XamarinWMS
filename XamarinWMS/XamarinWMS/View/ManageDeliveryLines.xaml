@@ -2,25 +2,32 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="XamarinWMS.ManageDeliveryLines"
+             xmlns:local="clr-namespace:XamarinWMS.View"
              NavigationPage.HasBackButton="False"
              Title="Delivery Lines">
-  <ContentPage.Content>
-    <StackLayout Padding="30">
-      <Label Text="Delivery Lines" FontSize="20"/>
-      <ListView x:Name="lstData" HasUnevenRows="false" Footer="Footer" ItemSelected="OnSelection" >
-        <ListView.ItemTemplate>
-          <DataTemplate>      
-                  <TextCell Text="{Binding DeliveryLineId}" Detail="{Binding Name}" />   
-          </DataTemplate>
-        </ListView.ItemTemplate>
-        <ListView.FooterTemplate>
-          <DataTemplate>
-            <StackLayout Orientation="Horizontal" Padding="5,5,5,5">
-              <Button Text="Add New Delivery Line" Clicked="OnNewClicked" />
-            </StackLayout>
-          </DataTemplate>
-        </ListView.FooterTemplate>
-      </ListView>
-    </StackLayout>
-  </ContentPage.Content>
-</ContentPage>   
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <DataTemplate x:Key="invalidDelLineTemplate">
+        <TextCell Text="{Binding DeliveryLineId}" Detail="{Binding Name}"/>
+      </DataTemplate>
+      <DataTemplate x:Key="validDelLineTemplate">
+        <TextCell Text="{Binding DeliveryLineId}" Detail="{Binding Name}" TextColor="Red"/>
+      </DataTemplate>
+      <local:DelLineTemplateSelector x:Key="delLineTemplateSelector" ValidTemplate="{StaticResource validDelLineTemplate}" InvalidTemplate="{StaticResource invalidDelLineTemplate}" />
+    </ResourceDictionary>
+  </ContentPage.Resources>
+
+
+  <StackLayout Padding="30">
+    <Label Text="Delivery Lines:" FontSize="20"/>
+    <ListView x:Name="lstData" HasUnevenRows="false" Footer="Footer" ItemSelected="OnSelection" ItemTemplate="{StaticResource delLineTemplateSelector}">
+      <ListView.FooterTemplate>
+        <DataTemplate>
+          <StackLayout Orientation="Horizontal" Padding="5,5,5,5">
+            <Button Text="Add New Delivery Line" Clicked="OnNewClicked" />
+          </StackLayout>
+        </DataTemplate>
+      </ListView.FooterTemplate>
+    </ListView>
+  </StackLayout>
+</ContentPage>  

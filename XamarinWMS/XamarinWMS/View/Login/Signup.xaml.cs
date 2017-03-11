@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Plugin.Connectivity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,27 +13,39 @@ namespace XamarinWMS.View.Login
 {
     public partial class Signup : ContentPage
     {
+        //check if phone has access to network
+        bool isConnected = false;
+
         public Signup()
         {
             InitializeComponent();
+
+            CrossConnectivity.Current.ConnectivityChanged += Current_ConnectivityChanged;
         }
 
         public void OnSignUpClicked(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(email.Text) && !string.IsNullOrEmpty(password.Text) && !string.IsNullOrEmpty(confPassword.Text))
+            if (isConnected)
             {
-                if (password.Text != confPassword.Text)
+                if (!string.IsNullOrEmpty(email.Text) && !string.IsNullOrEmpty(password.Text) && !string.IsNullOrEmpty(confPassword.Text))
                 {
-                    DisplayAlert("Error", "Passwords do not match!", "OK");
+                    if (password.Text != confPassword.Text)
+                    {
+                        DisplayAlert("Error", "Passwords do not match!", "OK");
+                    }
+                    else
+                    {
+                        SignUp(email.Text, password.Text, confPassword.Text);
+                    }
                 }
                 else
                 {
-                    SignUp(email.Text, password.Text, confPassword.Text);
+                    DisplayAlert("Error", "All fields are mandatory!", "OK");
                 }
             }
             else
             {
-                DisplayAlert("Error", "All fields are mandatory!", "OK");
+                DisplayAlert("Error", "Cannot login without connection!", "OK");
             }
         }
 
@@ -76,6 +89,35 @@ namespace XamarinWMS.View.Login
             {
                 await DisplayAlert("Success", "User Regitered", "OK");
                 await Navigation.PushAsync(new Login());
+            }
+        }
+
+
+        private async void Current_ConnectivityChanged(object sender, Plugin.Connectivity.Abstractions.ConnectivityChangedEventArgs e)
+        {
+            if (!e.IsConnected)
+            {
+                await DisplayAlert("Error", "Check for your connection.", "OK");
+                isConnected = false;
+            }
+            else
+            {
+                isConnected = true;
+            }
+        }
+
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            if (!CrossConnectivity.Current.IsConnected)
+            {
+                await DisplayAlert("Error", "Check for your connection.", "OK");
+                isConnected = false;
+            }
+            else
+            {
+                isConnected = true;
             }
         }
 

@@ -16,7 +16,7 @@ namespace XamarinWMS.View
         DeliveryLineData mSelDelLine;
         List<LocationData> Locations;
         string LocationId;
-        
+
         public Tagging(DeliveryLineData aSelectedDelLine)
         {
             InitializeComponent();
@@ -88,15 +88,28 @@ namespace XamarinWMS.View
                                 if ((FoundDelLine.DeliveryLineId != 0) &&
                                         FoundDelLine.DeliveryLineId > 0)
                                 {
-                                    if (FoundDelLine.isUsedForStock == false)
+                                    int accQty = 0;
+                                    accQty += FoundDelLine.AcceptedQty;
+                                    int extQty = 0;
+                                    extQty += FoundDelLine.ExpectedQty;
+                                    int rejQty = 0;
+                                    rejQty += FoundDelLine.RejectedQty;
+                                    if ((accQty + rejQty) == extQty)
                                     {
-                                        CreateStock(FoundDelLine);
-                                        DisplayAlert("Stock Created, Scanned Barcode:", result.Text, "OK");
-                                        Navigation.PushAsync(new MainMenu());
+                                        if (FoundDelLine.isUsedForStock == false)
+                                        {
+                                            CreateStock(FoundDelLine);
+                                            DisplayAlert("Stock Created, Scanned Barcode:", result.Text, "OK");
+                                            Navigation.PushAsync(new MainMenu());
+                                        }
+                                        else
+                                        {
+                                            DisplayAlert("Error", "The sum of acc. qty and rej. qty is not equal to expected qty!", "OK");
+                                        }
                                     }
                                     else
                                     {
-                                        DisplayAlert("Alert", "Stock with this delivery line id already in use", "OK");
+
                                     }
                                 }
                                 else

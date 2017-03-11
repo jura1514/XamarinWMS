@@ -18,14 +18,30 @@ namespace XamarinWMS.View.Product
 
         public void OnSaveClicked(object sender, EventArgs args)
         {
-            var vProduct = new ProductData()
+            if (!string.IsNullOrEmpty(txtProdId.Text) && !string.IsNullOrEmpty(txtState.Text))
             {
-                ProdId = txtProdId.Text,
-                ProdState = txtState.Text,
-                StateChangeTime = DateTime.Now,
-            };
-            App.prodDatabase.SaveProduct(vProduct);
-            Navigation.PushAsync(new ManageProduct());
+                ProductData existentProd = App.prodDatabase.GetProdById(int.Parse(txtProdId.Text));
+
+                if (existentProd == null)
+                {
+                    var vProduct = new ProductData()
+                    {
+                        ProdId = txtProdId.Text,
+                        ProdState = txtState.Text,
+                        StateChangeTime = DateTime.Now,
+                    };
+                    App.prodDatabase.SaveProduct(vProduct);
+                    Navigation.PushAsync(new ManageProduct());
+                }
+                else
+                {
+                    DisplayAlert("Error", "Product already exist in database", "OK");
+                }
+            }
+            else
+            {
+                DisplayAlert("Error", "All fields are mandatory!", "OK");
+            }
         }
     }
 }

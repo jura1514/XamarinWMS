@@ -18,6 +18,10 @@ namespace XamarinWMS.Data
         {
             return _connection.Query<ProductData>("Select * From [ProductData]");
         }
+        public ProductData GetProdById(int aSelectedProdId)
+        {
+            return _connection.Find<ProductData>(aSelectedProdId);
+        }
         public int SaveProduct(ProductData aProd)
         {
             return _connection.Insert(aProd);

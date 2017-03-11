@@ -65,6 +65,7 @@
     </Compile>
     <Compile Include="App.cs" />
     <Compile Include="Data\DeliveryLineDatabase.cs" />
+    <Compile Include="View\DelLineTemplateSelector.cs" />
     <Compile Include="View\Info\InfoLocationDisplay.xaml.cs">
       <DependentUpon>InfoLocationDisplay.xaml</DependentUpon>
     </Compile>

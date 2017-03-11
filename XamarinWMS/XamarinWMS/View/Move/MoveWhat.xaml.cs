@@ -66,16 +66,22 @@ namespace XamarinWMS.View.Move
                     if (isNumeric)
                     {
                         StockData foundStock = App.StkDatabase.GetStock(resultId);
-
-                        if ((foundStock.StockId != 0) &&
-                                foundStock.StockId > 0)
+                        if (foundStock != null)
                         {
-                            DisplayAlert("Stock Found: ", result.Text, "OK");
-                            Navigation.PushAsync(new MoveWhere(foundStock));
+                            if ((foundStock.StockId != 0) &&
+                                foundStock.StockId > 0)
+                            {
+                                DisplayAlert("Stock Found: ", result.Text, "OK");
+                                Navigation.PushAsync(new MoveWhere(foundStock));
+                            }
+                            else
+                            {
+                                DisplayAlert("Alert", "Could not find a Stock", "OK");
+                            }
                         }
                         else
                         {
-                            DisplayAlert("Alert", "Could not find a Stock", "OK");
+                            DisplayAlert("Alert", "Could not find a Stock!", "OK");
                         }
                     }
                     else

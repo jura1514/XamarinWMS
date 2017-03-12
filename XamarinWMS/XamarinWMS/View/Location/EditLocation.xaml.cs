@@ -21,11 +21,17 @@ namespace XamarinWMS.View
 
         public void OnSaveClicked(object sender, EventArgs args)
         {
-            mSelLoc.LocationId = txtLocId.Text;
-            mSelLoc.LocState = txtState.Text;
-            mSelLoc.StateChangeTime = DateTime.Now;
-            App.locDatabase.EditLoc(mSelLoc);
-            Navigation.PushAsync(new ManageLocation());
+            if (!string.IsNullOrEmpty(txtState.Text))
+            {
+                mSelLoc.LocState = txtState.Text;
+                mSelLoc.StateChangeTime = DateTime.Now;
+                App.locDatabase.EditLoc(mSelLoc);
+                Navigation.PushAsync(new ManageLocation());
+            }
+            else
+            {
+                DisplayAlert("Error", "Enter State", "OK");
+            }
         }
     }
 }

@@ -45,8 +45,10 @@
     <Compile Include="Data\ProdDatabase.cs" />
     <Compile Include="Data\StockDatabase.cs" />
     <Compile Include="Data\Web Service\IRestService.cs" />
+    <Compile Include="Data\Web Service\LocationManager.cs" />
     <Compile Include="Data\Web Service\OrderManager.cs" />
     <Compile Include="Data\Web Service\PickManager.cs" />
+    <Compile Include="Data\Web Service\ProductManager.cs" />
     <Compile Include="Data\Web Service\RestService.cs" />
     <Compile Include="Data\Web Service\UserManager.cs" />
     <Compile Include="IFIleHelper.cs" />
@@ -458,6 +460,7 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Forms.2.3.2.127\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.3.2.127\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

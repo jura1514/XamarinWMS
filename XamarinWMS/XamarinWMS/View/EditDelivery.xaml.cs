@@ -21,13 +21,23 @@ namespace XamarinWMS
 
         public void OnSaveClicked(object sender, EventArgs args)
         {
-            mSelDelivery.DeliveryId = int.Parse(txtDelId.Text);
-            mSelDelivery.Name = txtName.Text;
-            mSelDelivery.State = txtState.Text;
-            mSelDelivery.ExpectedDate = DateTime.Now;/*DateTime.Parse(txtExpDate.Text);*/
-            mSelDelivery.StateChangeTime = DateTime.Now;/*DateTime.Parse(txtChangeTime.Text);*/
-            App.DelDatabase.EditDelivery(mSelDelivery);
-            Navigation.PushAsync(new ManageDelivery());
+            if (!string.IsNullOrEmpty(txtName.Text) && !string.IsNullOrEmpty(txtState.Text))
+            {
+                //var exptDate;
+                //exptDate = datePicker.Date.Date;
+                //exptDate = datePicker.Date.TimeOfDay;
+
+                mSelDelivery.Name = txtName.Text;
+                mSelDelivery.State = txtState.Text;
+                mSelDelivery.ExpectedDate = datePicker.Date.Date;
+                mSelDelivery.StateChangeTime = DateTime.Now;
+                App.DelDatabase.EditDelivery(mSelDelivery);
+                Navigation.PushAsync(new ManageDelivery());
+            }
+            else
+            {
+                DisplayAlert("Error", "All fields are mandatory!", "OK");
+            }
         }
     }
 }

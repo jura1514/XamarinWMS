@@ -21,11 +21,17 @@ namespace XamarinWMS.View.Product
 
         public void OnSaveClicked(object sender, EventArgs args)
         {
-            mSelProd.ProdId = txtProdId.Text;
-            mSelProd.ProdState = txtState.Text;
-            mSelProd.StateChangeTime = DateTime.Now;
-            App.prodDatabase.EditProduct(mSelProd);
-            Navigation.PushAsync(new ManageProduct());
+            if (!string.IsNullOrEmpty(txtState.Text))
+            {
+                mSelProd.ProdState = txtState.Text;
+                mSelProd.StateChangeTime = DateTime.Now;
+                App.prodDatabase.EditProduct(mSelProd);
+                Navigation.PushAsync(new ManageProduct());
+            }
+            else
+            {
+                DisplayAlert("Error", "Enter State", "OK");
+            }
         }
     }
 }

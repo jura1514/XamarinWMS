@@ -20,7 +20,7 @@ namespace XamarinWMS.View.Product
         {
             if (!string.IsNullOrEmpty(txtProdId.Text) && !string.IsNullOrEmpty(txtState.Text))
             {
-                ProductData existentProd = App.prodDatabase.GetProdById(int.Parse(txtProdId.Text));
+                ProductData existentProd = App.prodDatabase.GetProdById(txtProdId.Text);
 
                 if (existentProd == null)
                 {

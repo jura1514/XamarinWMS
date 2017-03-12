@@ -16,6 +16,9 @@ namespace XamarinWMS
         public static string RestUrlUserRegister = "http://mywebwms.azurewebsites.net/api/Account/Register";
         public static string RestUrlLogin = "http://mywebwms.azurewebsites.net/Token";
         public static string RestUrlLogOut = "http://mywebwms.azurewebsites.net/api/Account/Logout";
+        public static string RestUrlLoc = "http://mywebwms.azurewebsites.net/api/LocationModelApi";
+        public static string RestUrlProd = "http://mywebwms.azurewebsites.net/api/ProductModelApi";
+
         // Credentials that are hard coded into the REST service
         public static string Username = "";
         public static string Password = "";

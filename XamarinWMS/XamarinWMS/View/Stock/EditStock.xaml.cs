@@ -21,17 +21,23 @@ namespace XamarinWMS.View.Stock
 
         public void OnSaveClicked(object sender, EventArgs args)
         {
-            mSelStock.StockId = int.Parse(txtStockId.Text);
-            mSelStock.Name = txtName.Text;
-            mSelStock.DeliveryLineId = int.Parse(txtDelLineId.Text);
-            mSelStock.Name = txtName.Text;
-            mSelStock.StockState = txtState.Text;
-            mSelStock.Product = txtProduct.Text;
-            mSelStock.Location = txtLocation.Text;
-            mSelStock.Qty = int.Parse(txtQty.Text);
-            mSelStock.StateChangeTime = DateTime.Now;
-            App.StkDatabase.EditStock(mSelStock);
-            Navigation.PushAsync(new ManageStock());
+            if (!string.IsNullOrEmpty(txtName.Text) && !string.IsNullOrEmpty(txtDelLineId.Text) && !string.IsNullOrEmpty(txtState.Text)
+                && !string.IsNullOrEmpty(txtProduct.Text) && !string.IsNullOrEmpty(txtLocation.Text) && !string.IsNullOrEmpty(txtQty.Text))
+            {
+                mSelStock.Name = txtName.Text;
+                mSelStock.DeliveryLineId = int.Parse(txtDelLineId.Text);
+                mSelStock.StockState = txtState.Text;
+                mSelStock.Product = txtProduct.Text;
+                mSelStock.Location = txtLocation.Text;
+                mSelStock.Qty = int.Parse(txtQty.Text);
+                mSelStock.StateChangeTime = DateTime.Now;
+                App.StkDatabase.EditStock(mSelStock);
+                Navigation.PushAsync(new ManageStock());
+            }
+            else
+            {
+                DisplayAlert("Error", "All fields are mandatory!", "OK");
+            }
         }
     }
 }

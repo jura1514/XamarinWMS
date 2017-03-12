@@ -7,7 +7,7 @@
     <TableView Intent="Settings">
       <TableRoot>
         <TableSection Title="Edit Product">
-          <EntryCell x:Name="txtProdId" Label="Product Id" Text ="{Binding ProdId}" Keyboard="Text" />
+          <TextCell Text ="{Binding ProdId}" />
           <EntryCell x:Name="txtState" Label="State" Text ="{Binding ProdState}" Keyboard="Text" />
           <ViewCell>
             <ContentView Padding="0,0">

@@ -18,7 +18,7 @@ namespace XamarinWMS.Data
         {
             return _connection.Query<ProductData>("Select * From [ProductData]");
         }
-        public ProductData GetProdById(int aSelectedProdId)
+        public ProductData GetProdById(string aSelectedProdId)
         {
             return _connection.Find<ProductData>(aSelectedProdId);
         }

@@ -23,6 +23,8 @@ namespace XamarinWMS.Data.Web_Service
         public List<DeliveryLineData> DeliveryLines { get; private set; }
         public List<OrderData> Orders { get; private set; }
         public List<PickData> Picks { get; private set; }
+        public List<LocationData> Locations { get; private set; }
+        public List<ProductData> Products { get; private set; }
 
         public static string Username = "";
         public static string Password = "";
@@ -422,29 +424,156 @@ namespace XamarinWMS.Data.Web_Service
             return _resp;
         }
 
-        //public async Task LogOutTaskAsync()
-        //{
-        //    var uri = new Uri(string.Format(Constants.RestUrlLogOut));
+        /* Locations REST Functions */
 
-        //    try
-        //    {
-        //        //var json = JsonConvert.SerializeObject(item);
-        //        var content = new StringContent("", Encoding.UTF8, "application/json");
+        public async Task<List<LocationData>> RefreshLocDataAsync()
+        {
+            Locations = new List<LocationData>();
 
-        //        HttpResponseMessage response = null;
+            var uri = new Uri(string.Format(Constants.RestUrlLoc, string.Empty));
 
-        //        response = await client.PostAsync(uri, content);
+            try
+            {
+                var response = await client.GetAsync(uri);
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    Locations = JsonConvert.DeserializeObject<List<LocationData>>(content);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"				ERROR {0}", ex.Message);
+            }
 
-        //        if (response.IsSuccessStatusCode)
-        //        {
-        //            Debug.WriteLine(@"				User successfully log out.");
-        //        }
+            return Locations;
+        }
 
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Debug.WriteLine(@"				ERROR {0}", ex.Message);
-        //    }
-        //}
+        public async Task SaveLocationAsync(LocationData Loc, bool isNewLoc = false)
+        {
+            var uri = new Uri(string.Format(Constants.RestUrlLoc, Loc.LocationId));
+
+            try
+            {
+                var json = JsonConvert.SerializeObject(Loc);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = null;
+                if (isNewLoc)
+                {
+                    response = await client.PostAsync(uri, content);
+                }
+                else
+                {
+                    response = await client.PutAsync(uri, content);
+                }
+
+                if (response.IsSuccessStatusCode)
+                {
+                    Debug.WriteLine(@"				Location successfully saved.");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"				ERROR {0}", ex.Message);
+            }
+        }
+
+        public async Task DeleteLocationAsync(string Locid)
+        {
+            var uri = new Uri(string.Format(Constants.RestUrlLoc, Locid));
+
+            try
+            {
+                var response = await client.DeleteAsync(uri);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    Debug.WriteLine(@"				Location successfully deleted.");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"				ERROR {0}", ex.Message);
+            }
+        }
+
+        /* Product REST Functions */
+
+        public async Task<List<ProductData>> RefreshProdDataAsync()
+        {
+            Products = new List<ProductData>();
+
+            var uri = new Uri(string.Format(Constants.RestUrlProd, string.Empty));
+
+            try
+            {
+                var response = await client.GetAsync(uri);
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    Products = JsonConvert.DeserializeObject<List<ProductData>>(content);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"				ERROR {0}", ex.Message);
+            }
+
+            return Products;
+        }
+
+        public async Task SaveProdAsync(ProductData Prod, bool isNewProd = false)
+        {
+            var uri = new Uri(string.Format(Constants.RestUrlProd, Prod.ProdId));
+
+            try
+            {
+                var json = JsonConvert.SerializeObject(Prod);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = null;
+                if (isNewProd)
+                {
+                    response = await client.PostAsync(uri, content);
+                }
+                else
+                {
+                    response = await client.PutAsync(uri, content);
+                }
+
+                if (response.IsSuccessStatusCode)
+                {
+                    Debug.WriteLine(@"				Product successfully saved.");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"				ERROR {0}", ex.Message);
+            }
+        }
+
+        public async Task DeleteProdAsync(string ProdId)
+        {
+            var uri = new Uri(string.Format(Constants.RestUrlProd, ProdId));
+
+            try
+            {
+                var response = await client.DeleteAsync(uri);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    Debug.WriteLine(@"				Product successfully deleted.");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"				ERROR {0}", ex.Message);
+            }
+        }
     }
 }

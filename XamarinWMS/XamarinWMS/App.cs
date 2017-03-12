@@ -13,6 +13,8 @@ namespace XamarinWMS
         public static OrderManager OrderManager { get; private set; }
         public static PickManager PickManager { get; private set; }
         public static UserManager UserManager { get; private set; }
+        public static LocationManager LocManager { get; private set; }
+        public static ProductManager ProdManager { get; private set; }
 
 
         //connections to phone Db
@@ -32,8 +34,10 @@ namespace XamarinWMS
             OrderManager = new OrderManager(new RestService());
             PickManager = new PickManager(new RestService());
             UserManager = new UserManager(new RestService());
+            LocManager = new LocationManager(new RestService());
+            ProdManager = new ProductManager(new RestService());
             // The root page of your application
-            MainPage = new NavigationPage(new Login());
+            MainPage = new NavigationPage(new MainMenu());
 
         }
 

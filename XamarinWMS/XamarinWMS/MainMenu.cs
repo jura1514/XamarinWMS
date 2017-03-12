@@ -77,6 +77,10 @@ namespace XamarinWMS
 
             CheckForOrdersAndPicks();
 
+            // Get Locations and Products
+            CreateOrUpdateLocations();
+            CreateOrUpdateProducts();
+
         }
 
         protected override bool OnBackButtonPressed()
@@ -143,6 +147,70 @@ namespace XamarinWMS
             for (int k = 0; k < allPicks.Count(); k++)
             {
                 await App.PickManager.SaveTaskAsync(allPicks[k], true);
+            }
+        }
+
+        public async void CreateOrUpdateLocations()
+        {
+            var restList = await App.LocManager.GetTasksAsync();
+
+            bool isEmpty = !restList.Any();
+            if (!isEmpty)
+            {
+                for (int k = 0; k < restList.Count(); k++)
+                {
+                    var existentLoc = App.locDatabase.GetLocationById(restList[k].LocationId);
+
+                    if (existentLoc != null)
+                    {
+                        if (restList[k].LocationId == existentLoc.LocationId)
+                        {
+                            App.locDatabase.EditLoc(existentLoc);
+                        }
+                    }
+                    else
+                    {
+                        var vLoc = new LocationData()
+                        {
+                            LocationId = restList[k].LocationId,
+                            StateChangeTime = restList[k].StateChangeTime,
+                            LocState = restList[k].LocState,
+                        };
+                        App.locDatabase.SaveLoc(vLoc);
+                    }
+                }
+            }
+        }
+
+        public async void CreateOrUpdateProducts()
+        {
+            var restList = await App.ProdManager.GetTasksAsync();
+
+            bool isEmpty = !restList.Any();
+            if (!isEmpty)
+            {
+                for (int k = 0; k < restList.Count(); k++)
+                {
+                    var existentProd = App.prodDatabase.GetProdById(restList[k].ProdId);
+
+                    if (existentProd != null)
+                    {
+                        if (restList[k].ProdId == existentProd.ProdId)
+                        {
+                            App.prodDatabase.EditProduct(existentProd);
+                        }
+                    }
+                    else
+                    {
+                        var vProd = new ProductData()
+                        {
+                            ProdId = restList[k].ProdId,
+                            StateChangeTime = restList[k].StateChangeTime,
+                            ProdState = restList[k].ProdState,
+                        };
+                        App.prodDatabase.SaveProduct(vProd);
+                    }
+                }
             }
         }
 

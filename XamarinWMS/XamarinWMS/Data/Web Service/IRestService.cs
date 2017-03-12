@@ -47,7 +47,21 @@ namespace XamarinWMS.Data.Web_Service
 
         void ResetUserDetails();
 
-        //Task LogOutTaskAsync();
+        /* Location REST */
+
+        Task<List<LocationData>> RefreshLocDataAsync();
+
+        Task SaveLocationAsync(LocationData loc, bool isNewLoc);
+
+        Task DeleteLocationAsync(string LocId);
+
+        /* Product REST */
+
+        Task<List<ProductData>> RefreshProdDataAsync();
+
+        Task SaveProdAsync(ProductData prod, bool isNewLoc);
+
+        Task DeleteProdAsync(string ProdId);
 
     }
 }

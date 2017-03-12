@@ -7,7 +7,7 @@
     <TableView Intent="Settings">
       <TableRoot>
         <TableSection Title="Edit Location">
-          <EntryCell x:Name="txtLocId" Label="Location Id" Text ="{Binding LocationId}" Keyboard="Text" />
+          <TextCell Text ="{Binding LocationId}" />
           <EntryCell x:Name="txtState" Label="State" Text ="{Binding LocState}" Keyboard="Text" />
           <ViewCell>
             <ContentView Padding="0,0">

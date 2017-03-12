@@ -1,15 +1,42 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              x:Class="XamarinWMS.EditDelivery"
              Title="Edit Delivery">
   <ContentView.Content>
     <TableView Intent="Settings">
       <TableRoot>
         <TableSection Title="Edit Delivery">
-          <EntryCell x:Name="txtDelId" Label="Delivery Id" Text ="{Binding DeliveryId}" Keyboard="Numeric" />
+          <TextCell Text ="{Binding DeliveryId}"/>
           <EntryCell x:Name="txtName" Label="Name" Text ="{Binding Name}" Keyboard="Text" />
           <EntryCell x:Name="txtState" Label="State" Text ="{Binding State}" Keyboard="Text" />
+
+          <TextCell Text ="Choose Expecte Date:"/>
+          <ViewCell>
+            <ContentView>
+              <ContentView.Content>
+                <DatePicker x:Name="datePicker" VerticalOptions="CenterAndExpand" Date="{x:Static sys:DateTime.Now}">
+                  <DatePicker.Format>yyyy-MM-dd</DatePicker.Format>
+                  <DatePicker.MinimumDate>
+                    <sys:DateTime x:FactoryMethod="Parse">
+                      <x:Arguments>
+                        <x:String>Jan 1 2000</x:String>
+                      </x:Arguments>
+                    </sys:DateTime>
+                  </DatePicker.MinimumDate>
+                  <DatePicker.MaximumDate>
+                    <sys:DateTime x:FactoryMethod="Parse">
+                      <x:Arguments>
+                        <x:String>Dec 31 2050</x:String>
+                      </x:Arguments>
+                    </sys:DateTime>
+                  </DatePicker.MaximumDate>
+                </DatePicker>
+              </ContentView.Content>
+            </ContentView>
+          </ViewCell>
+
           <ViewCell>
             <ContentView Padding="0,0">
               <ContentView.Content>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Plugin.Connectivity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -50,12 +51,22 @@ namespace XamarinWMS
 
         public async void OnDeleteClicked(object sender, EventArgs args)
         {
-            bool accepted = await DisplayAlert("Confirm", "Are you Sure ?", "Yes", "No");
-            if (accepted)
+            bool isConnected = CrossConnectivity.Current.IsConnected;
+
+            if (isConnected)
             {
-                App.DelLineDatabase.DeleteDelLine(mSelDelLine);
+                bool accepted = await DisplayAlert("Confirm", "Are you Sure ?", "Yes", "No");
+                if (accepted)
+                {
+                    App.DelLineDatabase.DeleteDelLine(mSelDelLine);
+                    await App.DelLineManager.DeleteTaskAsync(mSelDelLine);
+                }
+                await Navigation.PushAsync(new ManageDeliveryLines(mSelectedDel));
             }
-            await Navigation.PushAsync(new ManageDeliveryLines(mSelectedDel));
+            else
+            {
+                await DisplayAlert("Error", "Cannot delete a record without connection!", "OK");
+            }
         }
     }
 }

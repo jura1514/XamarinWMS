@@ -59,6 +59,8 @@ namespace XamarinWMS.View
             // update delivery line that we would not use it again
             mSelDelLine.isUsedForStock = true;
             App.DelLineDatabase.EditDelLine(mSelDelLine);
+            //update on a server
+            App.DelLineManager.SaveTaskAsync(mSelDelLine, false);
         }
 
         public async void OnBarcodeClicked(object sender, EventArgs e)

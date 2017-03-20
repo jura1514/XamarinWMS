@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Plugin.Connectivity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,22 +22,33 @@ namespace XamarinWMS
 
         public void OnSaveClicked(object sender, EventArgs args)
         {
-            if (!string.IsNullOrEmpty(txtName.Text) && !string.IsNullOrEmpty(txtState.Text))
-            {
-                //var exptDate;
-                //exptDate = datePicker.Date.Date;
-                //exptDate = datePicker.Date.TimeOfDay;
+            bool isConnected = CrossConnectivity.Current.IsConnected;
 
-                mSelDelivery.Name = txtName.Text;
-                mSelDelivery.State = txtState.Text;
-                mSelDelivery.ExpectedDate = datePicker.Date.Date;
-                mSelDelivery.StateChangeTime = DateTime.Now;
-                App.DelDatabase.EditDelivery(mSelDelivery);
-                Navigation.PushAsync(new ManageDelivery());
+            if (isConnected)
+            {
+                if (!string.IsNullOrEmpty(txtName.Text) && !string.IsNullOrEmpty(txtState.Text) && !string.IsNullOrEmpty(txtCustomer.Text))
+                {
+                    mSelDelivery.Name = txtName.Text;
+                    mSelDelivery.Customer = txtCustomer.Text;
+                    mSelDelivery.State = txtState.Text;
+                    mSelDelivery.ExpectedDate = datePicker.Date.Date;
+                    mSelDelivery.StateChangeTime = DateTime.Now;
+                    //update locally
+                    App.DelDatabase.EditDelivery(mSelDelivery);
+                    //update on a server
+                    App.DelManager.SaveTaskAsync(mSelDelivery,false);
+
+                    Navigation.PushAsync(new ManageDelivery());
+                }
+                else
+                {
+                    DisplayAlert("Error", "All fields are mandatory!", "OK");
+                }
             }
             else
             {
-                DisplayAlert("Error", "All fields are mandatory!", "OK");
+                DisplayAlert("Error", "Cannot update a record without connection!", "OK");
+
             }
         }
     }

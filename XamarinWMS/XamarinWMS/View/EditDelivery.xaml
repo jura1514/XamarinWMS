@@ -10,6 +10,7 @@
         <TableSection Title="Edit Delivery">
           <TextCell Text ="{Binding DeliveryId}"/>
           <EntryCell x:Name="txtName" Label="Name" Text ="{Binding Name}" Keyboard="Text" />
+          <EntryCell x:Name="txtCustomer" Label="Customer" Text ="{Binding Customer}" Keyboard="Text" />
           <EntryCell x:Name="txtState" Label="State" Text ="{Binding State}" Keyboard="Text" />
 
           <TextCell Text ="Choose Expecte Date:"/>

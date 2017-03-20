@@ -4,7 +4,7 @@
              x:Class="XamarinWMS.View.Picking.OrderDetails"
              Title="Order Details">
   <ContentPage.Content>
-    <StackLayout Padding="30" Spacing="20">
+    <StackLayout Padding="35" Spacing="10">
       <Label Text="Order:" FontSize="16"/>
 
       <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
@@ -25,11 +25,17 @@
       </StackLayout>
       <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
         <Label Text="Order Description:"
-               HorizontalOptions="Center"
-               Font="18"/>
+               HorizontalOptions="Fill"
+               VerticalOptions="Fill"
+               HorizontalTextAlignment="Center"
+               VerticalTextAlignment="Center"
+               Font="12"/>
         <Label Text="{Binding Description}"
-               HorizontalOptions="Center"
-               Font="18"/>
+               HorizontalOptions="Fill"
+               VerticalOptions="Fill"
+               HorizontalTextAlignment="Center"
+               VerticalTextAlignment="Center"
+               Font="12"/>
       </StackLayout>
 
       <Label Text="Picks for this order:" FontSize="16"/>

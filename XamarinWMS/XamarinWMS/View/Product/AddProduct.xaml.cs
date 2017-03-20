@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Plugin.Connectivity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,29 +19,40 @@ namespace XamarinWMS.View.Product
 
         public void OnSaveClicked(object sender, EventArgs args)
         {
-            if (!string.IsNullOrEmpty(txtProdId.Text) && !string.IsNullOrEmpty(txtState.Text))
-            {
-                ProductData existentProd = App.prodDatabase.GetProdById(txtProdId.Text);
+            bool isConnected = CrossConnectivity.Current.IsConnected;
 
-                if (existentProd == null)
+            if (isConnected)
+            {
+                if (!string.IsNullOrEmpty(txtProdId.Text) && !string.IsNullOrEmpty(txtState.Text))
                 {
-                    var vProduct = new ProductData()
+                    ProductData existentProd = App.prodDatabase.GetProdById(txtProdId.Text);
+
+                    if (existentProd == null)
                     {
-                        ProdId = txtProdId.Text,
-                        ProdState = txtState.Text,
-                        StateChangeTime = DateTime.Now,
-                    };
-                    App.prodDatabase.SaveProduct(vProduct);
-                    Navigation.PushAsync(new ManageProduct());
+                        var vProduct = new ProductData()
+                        {
+                            ProdId = txtProdId.Text,
+                            ProdState = txtState.Text,
+                            StateChangeTime = DateTime.Now,
+                        };
+                       // App.prodDatabase.SaveProduct(vProduct);
+                        App.ProdManager.SaveTaskAsync(vProduct, true);
+                        Navigation.PushAsync(new MainMenu());
+                    }
+                    else
+                    {
+                        DisplayAlert("Error", "Product already exist in database", "OK");
+                    }
                 }
                 else
                 {
-                    DisplayAlert("Error", "Product already exist in database", "OK");
+                    DisplayAlert("Error", "All fields are mandatory!", "OK");
                 }
             }
             else
             {
-                DisplayAlert("Error", "All fields are mandatory!", "OK");
+                DisplayAlert("Error", "Cannot create a record without connection!", "OK");
+
             }
         }
     }

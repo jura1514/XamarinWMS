@@ -9,6 +9,7 @@
         <TableSection Title="Add New Delivery">
           <EntryCell x:Name="txtDelId" Label="Delivery Id" Keyboard="Numeric" />
           <EntryCell x:Name="txtName" Label="Name" Keyboard="Text" />
+          <EntryCell x:Name="txtCustomer" Label="Customer" Keyboard="Text" />
           <EntryCell x:Name="txtState" Label="State" Keyboard="Text" />
           <ViewCell>
             <ContentView Padding="0,0">

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Plugin.Connectivity;
+using Plugin.Connectivity.Abstractions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,16 +23,30 @@ namespace XamarinWMS.View
 
         public void OnSaveClicked(object sender, EventArgs args)
         {
-            if (!string.IsNullOrEmpty(txtState.Text))
+            bool isConnected = CrossConnectivity.Current.IsConnected;
+
+            if (isConnected)
             {
-                mSelLoc.LocState = txtState.Text;
-                mSelLoc.StateChangeTime = DateTime.Now;
-                App.locDatabase.EditLoc(mSelLoc);
-                Navigation.PushAsync(new ManageLocation());
+                if (!string.IsNullOrEmpty(txtState.Text))
+                {
+                    mSelLoc.LocState = txtState.Text;
+                    mSelLoc.StateChangeTime = DateTime.Now;
+                    //update locally
+                    App.locDatabase.EditLoc(mSelLoc);
+                    //update on a server
+                    App.LocManager.SaveTaskAsync(mSelLoc, false);
+
+                    Navigation.PushAsync(new ManageLocation());
+                }
+                else
+                {
+                    DisplayAlert("Error", "Enter State", "OK");
+                }
             }
             else
             {
-                DisplayAlert("Error", "Enter State", "OK");
+                DisplayAlert("Error", "Cannot update a record without connection!", "OK");
+
             }
         }
     }

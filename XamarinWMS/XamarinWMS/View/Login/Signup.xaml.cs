@@ -45,7 +45,7 @@ namespace XamarinWMS.View.Login
             }
             else
             {
-                DisplayAlert("Error", "Cannot login without connection!", "OK");
+                DisplayAlert("Error", "Cannot signup without connection!", "OK");
             }
         }
 

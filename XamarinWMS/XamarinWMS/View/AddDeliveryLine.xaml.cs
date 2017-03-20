@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Plugin.Connectivity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,35 +20,48 @@ namespace XamarinWMS
         }
         public void OnSaveClicked(object sender, EventArgs args)
         {
-            if (!string.IsNullOrEmpty(txtDelLineId.Text) && !string.IsNullOrEmpty(txtAccQty.Text) && !string.IsNullOrEmpty(txtExpQty.Text)
-                && !string.IsNullOrEmpty(txtRejQty.Text) && !string.IsNullOrEmpty(txtProd.Text) && !string.IsNullOrEmpty(txtName.Text))
-            {
-                DeliveryLineData existantDelLine = App.DelLineDatabase.GetDeliveryLine(int.Parse(txtDelLineId.Text));
+            bool isConnected = CrossConnectivity.Current.IsConnected;
 
-                if (existantDelLine == null)
+            if (isConnected)
+            {
+                if (!string.IsNullOrEmpty(txtDelLineId.Text) && !string.IsNullOrEmpty(txtAccQty.Text) && !string.IsNullOrEmpty(txtExpQty.Text)
+                && !string.IsNullOrEmpty(txtRejQty.Text) && !string.IsNullOrEmpty(txtProd.Text) && !string.IsNullOrEmpty(txtName.Text))
                 {
-                    var vDeliveryLine = new DeliveryLineData()
+                    DeliveryLineData existantDelLine = App.DelLineDatabase.GetDeliveryLine(int.Parse(txtDelLineId.Text));
+
+                    if (existantDelLine == null)
                     {
-                        DeliveryLineId = int.Parse(txtDelLineId.Text),
-                        DeliveryId = dData.DeliveryId,
-                        Name = txtName.Text,
-                        Product = txtProd.Text,
-                        AcceptedQty = int.Parse(txtAccQty.Text),
-                        ExpectedQty = int.Parse(txtExpQty.Text),
-                        RejectedQty = int.Parse(txtRejQty.Text),
-                        isUsedForStock = false
-                    };
-                    App.DelLineDatabase.SaveDelLine(vDeliveryLine);
-                    Navigation.PushAsync(new ManageDeliveryLines(dData));
+                        var vDeliveryLine = new DeliveryLineData()
+                        {
+                            DeliveryLineId = int.Parse(txtDelLineId.Text),
+                            DeliveryId = dData.DeliveryId,
+                            Name = txtName.Text,
+                            Product = txtProd.Text,
+                            AcceptedQty = int.Parse(txtAccQty.Text),
+                            ExpectedQty = int.Parse(txtExpQty.Text),
+                            RejectedQty = int.Parse(txtRejQty.Text),
+                            isUsedForStock = false
+                        };
+                        //create locally
+                       // App.DelLineDatabase.SaveDelLine(vDeliveryLine);
+                        //create on a server
+                        App.DelLineManager.SaveTaskAsync(vDeliveryLine, true);
+                        Navigation.PushAsync(new ManageDeliveryLines(dData));
+                    }
+                    else
+                    {
+                        DisplayAlert("Error", "Delivery Line already exist in database!", "OK");
+                    }
                 }
                 else
                 {
-                    DisplayAlert("Error", "Delivery Line already exist in database!", "OK");
+                    DisplayAlert("Error", "All fields are mandatory!", "OK");
                 }
             }
             else
             {
-                DisplayAlert("Error", "All fields are mandatory!", "OK");
+                DisplayAlert("Error", "Cannot create a record without connection!", "OK");
+
             }
         }
     }

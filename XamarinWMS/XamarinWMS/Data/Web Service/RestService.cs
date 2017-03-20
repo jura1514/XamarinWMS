@@ -70,7 +70,14 @@ namespace XamarinWMS.Data.Web_Service
 
         public async Task SaveDeliveryAsync(DeliveryData del, bool isNewDel = false)
         {
+            string delId = del.DeliveryId.ToString();
             var uri = new Uri(string.Format(Constants.RestUrlDel, del.DeliveryId));
+
+            if (!isNewDel)
+            {
+                Constants.PutDeleteRestUrlDel += delId;
+                uri = new Uri(string.Format(Constants.PutDeleteRestUrlDel));
+            }
 
             try
             {
@@ -97,11 +104,18 @@ namespace XamarinWMS.Data.Web_Service
             {
                 Debug.WriteLine(@"				ERROR {0}", ex.Message);
             }
+
+            if (!isNewDel)
+            {
+                Constants.PutDeleteRestUrlDel = Constants.PutDeleteRestUrlDel.Replace(delId, "");
+            }
         }
 
         public async Task DeleteDeliveryAsync(int id)
         {
-            var uri = new Uri(string.Format(Constants.RestUrlDel, id));
+            string delId = id.ToString();
+            Constants.PutDeleteRestUrlDel += delId;
+            var uri = new Uri(string.Format(Constants.PutDeleteRestUrlDel));
 
             try
             {
@@ -117,6 +131,8 @@ namespace XamarinWMS.Data.Web_Service
             {
                 Debug.WriteLine(@"				ERROR {0}", ex.Message);
             }
+
+            Constants.PutDeleteRestUrlDel = Constants.PutDeleteRestUrlDel.Replace(delId, "");
         }
 
         /* Delivery Line REST Functions */
@@ -147,6 +163,13 @@ namespace XamarinWMS.Data.Web_Service
         public async Task SaveDeliveryLineAsync(DeliveryLineData delLine, bool isNewDelLine = false)
         {
             var uri = new Uri(string.Format(Constants.RestUrlDelLine, delLine.DeliveryLineId));
+            string delLineId = delLine.DeliveryLineId.ToString();
+
+            if (!isNewDelLine)
+            {
+                Constants.PutDeleteRestUrlDelLine += delLineId;
+                uri = new Uri(string.Format(Constants.PutDeleteRestUrlDelLine));
+            }
 
             try
             {
@@ -173,11 +196,19 @@ namespace XamarinWMS.Data.Web_Service
             {
                 Debug.WriteLine(@"				ERROR {0}", ex.Message);
             }
+
+            if (!isNewDelLine)
+            {
+                Constants.PutDeleteRestUrlDelLine = Constants.PutDeleteRestUrlDelLine.Replace(delLineId, "");
+            }
         }
 
         public async Task DeleteDeliveryLineAsync(int id)
         {
-            var uri = new Uri(string.Format(Constants.RestUrlDelLine, id));
+            string delLineId = id.ToString();
+            Constants.PutDeleteRestUrlDelLine += delLineId;
+
+            var uri = new Uri(string.Format(Constants.PutDeleteRestUrlDelLine));
 
             try
             {
@@ -193,6 +224,8 @@ namespace XamarinWMS.Data.Web_Service
             {
                 Debug.WriteLine(@"				ERROR {0}", ex.Message);
             }
+
+            Constants.PutDeleteRestUrlDelLine = Constants.PutDeleteRestUrlDelLine.Replace(delLineId, "");
         }
 
         /* Order REST Functions */
@@ -224,6 +257,14 @@ namespace XamarinWMS.Data.Web_Service
         {
             var uri = new Uri(string.Format(Constants.RestUrlOrder, order.OrderId));
 
+            string orderId = order.OrderId.ToString();
+
+            if (!isNewOrder)
+            {
+                Constants.PutDeleteRestUrlOrder += orderId;
+                uri = new Uri(string.Format(Constants.PutDeleteRestUrlOrder));
+            }
+
             try
             {
                 var json = JsonConvert.SerializeObject(order);
@@ -249,11 +290,19 @@ namespace XamarinWMS.Data.Web_Service
             {
                 Debug.WriteLine(@"				ERROR {0}", ex.Message);
             }
+
+            if (!isNewOrder)
+            {
+                Constants.PutDeleteRestUrlOrder = Constants.PutDeleteRestUrlOrder.Replace(orderId, "");
+            }
         }
 
         public async Task DeleteOrderAsync(int id)
         {
-            var uri = new Uri(string.Format(Constants.RestUrlOrder, id));
+            string orderId = id.ToString();
+            Constants.PutDeleteRestUrlOrder += orderId;
+
+            var uri = new Uri(string.Format(Constants.PutDeleteRestUrlOrder));
 
             try
             {
@@ -269,6 +318,8 @@ namespace XamarinWMS.Data.Web_Service
             {
                 Debug.WriteLine(@"				ERROR {0}", ex.Message);
             }
+
+            Constants.PutDeleteRestUrlOrder = Constants.PutDeleteRestUrlOrder.Replace(orderId, "");
         }
 
         /* Pick REST Functions */
@@ -300,6 +351,14 @@ namespace XamarinWMS.Data.Web_Service
         {
             var uri = new Uri(string.Format(Constants.RestUrlPick, pick.PickId));
 
+            string pickId = pick.PickId.ToString();
+
+            if (!isNewPick)
+            {
+                Constants.PutDeleteRestUrlPick += pickId;
+                uri = new Uri(string.Format(Constants.PutDeleteRestUrlPick));
+            }
+
             try
             {
                 var json = JsonConvert.SerializeObject(pick);
@@ -325,11 +384,19 @@ namespace XamarinWMS.Data.Web_Service
             {
                 Debug.WriteLine(@"				ERROR {0}", ex.Message);
             }
+
+            if (!isNewPick)
+            {
+                Constants.PutDeleteRestUrlPick = Constants.PutDeleteRestUrlPick.Replace(pickId, "");
+            }
         }
 
         public async Task DeletePickAsync(int id)
         {
-            var uri = new Uri(string.Format(Constants.RestUrlPick, id));
+            string pickId = id.ToString();
+            Constants.PutDeleteRestUrlPick += pickId;
+
+            var uri = new Uri(string.Format(Constants.PutDeleteRestUrlPick));
 
             try
             {
@@ -345,6 +412,8 @@ namespace XamarinWMS.Data.Web_Service
             {
                 Debug.WriteLine(@"				ERROR {0}", ex.Message);
             }
+
+            Constants.PutDeleteRestUrlPick = Constants.PutDeleteRestUrlPick.Replace(pickId, "");
         }
 
         /* User REST Functions */
@@ -453,6 +522,12 @@ namespace XamarinWMS.Data.Web_Service
         {
             var uri = new Uri(string.Format(Constants.RestUrlLoc, Loc.LocationId));
 
+            if (!isNewLoc)
+            {
+                Constants.PutDeleteRestUrlLoc += Loc.LocationId;
+                uri = new Uri(string.Format(Constants.PutDeleteRestUrlLoc));
+            }
+
             try
             {
                 var json = JsonConvert.SerializeObject(Loc);
@@ -478,11 +553,18 @@ namespace XamarinWMS.Data.Web_Service
             {
                 Debug.WriteLine(@"				ERROR {0}", ex.Message);
             }
+
+            if (!isNewLoc)
+            {
+                Constants.PutDeleteRestUrlLoc = Constants.PutDeleteRestUrlLoc.Replace(Loc.LocationId, "");
+            }
         }
 
         public async Task DeleteLocationAsync(string Locid)
         {
-            var uri = new Uri(string.Format(Constants.RestUrlLoc, Locid));
+            Constants.PutDeleteRestUrlLoc += Locid;
+
+            var uri = new Uri(string.Format(Constants.PutDeleteRestUrlLoc));
 
             try
             {
@@ -498,6 +580,8 @@ namespace XamarinWMS.Data.Web_Service
             {
                 Debug.WriteLine(@"				ERROR {0}", ex.Message);
             }
+
+            Constants.PutDeleteRestUrlLoc = Constants.PutDeleteRestUrlLoc.Replace(Locid, "");
         }
 
         /* Product REST Functions */
@@ -529,6 +613,12 @@ namespace XamarinWMS.Data.Web_Service
         {
             var uri = new Uri(string.Format(Constants.RestUrlProd, Prod.ProdId));
 
+            if (!isNewProd)
+            {
+                Constants.PutDeleteRestUrlProd += Prod.ProdId;
+                uri = new Uri(string.Format(Constants.PutDeleteRestUrlProd));
+            }
+
             try
             {
                 var json = JsonConvert.SerializeObject(Prod);
@@ -554,11 +644,18 @@ namespace XamarinWMS.Data.Web_Service
             {
                 Debug.WriteLine(@"				ERROR {0}", ex.Message);
             }
+
+            if (!isNewProd)
+            {
+                Constants.PutDeleteRestUrlProd = Constants.PutDeleteRestUrlProd.Replace(Prod.ProdId, "");
+            }
         }
 
         public async Task DeleteProdAsync(string ProdId)
         {
-            var uri = new Uri(string.Format(Constants.RestUrlProd, ProdId));
+            Constants.PutDeleteRestUrlProd += ProdId;
+
+            var uri = new Uri(string.Format(Constants.PutDeleteRestUrlProd));
 
             try
             {
@@ -574,6 +671,8 @@ namespace XamarinWMS.Data.Web_Service
             {
                 Debug.WriteLine(@"				ERROR {0}", ex.Message);
             }
+
+            Constants.PutDeleteRestUrlProd = Constants.PutDeleteRestUrlProd.Replace(ProdId, "");
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Rg.Plugins.Popup.Extensions;
+using Rg.Plugins.Popup.Services;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -30,17 +32,25 @@ namespace XamarinWMS.View.Picking
             var vSelOrder = (OrderData)e.SelectedItem;
             Navigation.PushAsync(new OrderDetails(vSelOrder));
         }
-        public void OnNewOrderClicked(object sender, EventArgs args)
+        public async void OnNewOrderClicked(object sender, EventArgs args)
         {
-            var vOrder = new OrderData()
-            {
-                OrderState = "CREATED",
-                StateChangeTime = DateTime.Now,
-                IsDispatched = false,
-                InQueue = false,
-            };
-            App.orderDatabase.SaveOrder(vOrder);
-            Navigation.PushAsync(new OrderDetails(vOrder));
+
+            var page = new OrderPopUp();
+
+            await Navigation.PushPopupAsync(page);
+            // or
+          //  await PopupNavigation.PushAsync(page);
+
+
+            //var vOrder = new OrderData()
+            //{
+            //    OrderState = "CREATED",
+            //    StateChangeTime = DateTime.Now,
+            //    IsDispatched = false,
+            //    InQueue = false,
+            //};
+            //App.orderDatabase.SaveOrder(vOrder);
+            //Navigation.PushAsync(new OrderDetails(vOrder));
         }
     }
 }

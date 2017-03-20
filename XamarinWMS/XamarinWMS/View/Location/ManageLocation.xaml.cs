@@ -18,6 +18,12 @@ namespace XamarinWMS.View
             lstData.ItemsSource = vList;
         }
 
+        protected override bool OnBackButtonPressed()
+        {
+            Navigation.PushAsync(new Other());
+            return true;
+        }
+
         void OnSelection(object sender, SelectedItemChangedEventArgs e)
         {
             if (e.SelectedItem == null)

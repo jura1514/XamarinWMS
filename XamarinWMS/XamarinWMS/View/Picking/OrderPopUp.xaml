@@ -42,6 +42,7 @@
 
            <Button
               Margin="10, 5"
+              BackgroundColor="#21272B"
               HorizontalOptions="Fill"
               Clicked="OnActionStateClicked"
               x:Name="StateButton"
@@ -53,6 +54,7 @@
 
            <Button
              Margin="10, 5"
+             BackgroundColor="#21272B"
              HorizontalOptions="Fill"
              Clicked="OnCreate"
              x:Name="CreateButton"

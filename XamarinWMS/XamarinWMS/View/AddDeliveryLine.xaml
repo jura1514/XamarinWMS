@@ -9,7 +9,13 @@
         <TableSection Title="Add New Delivery Line">
           <EntryCell x:Name="txtDelLineId" Label="Delivery Line Id" Keyboard="Numeric" />
           <EntryCell x:Name="txtName" Label="Name" Keyboard="Text" />
-          <EntryCell x:Name="txtProd" Label="Product" Keyboard="Text" />
+          <ViewCell>
+            <ContentView Padding="0,0">
+              <ContentView.Content>
+                <Picker x:Name="ProdPicker" Title=" Select Product" HorizontalOptions="Center"></Picker>
+              </ContentView.Content>
+            </ContentView>
+          </ViewCell>                 
           <EntryCell x:Name="txtAccQty" Label="Acc. Qty" Keyboard="Numeric" />
           <EntryCell x:Name="txtExpQty" Label="Exp. Qty" Keyboard="Numeric" />
           <EntryCell x:Name="txtRejQty" Label="Rej. Qty" Keyboard="Numeric" />

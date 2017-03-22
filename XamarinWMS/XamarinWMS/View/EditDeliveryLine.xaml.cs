@@ -14,12 +14,38 @@ namespace XamarinWMS
     {
         DeliveryLineData mSelDelLine;
         DeliveryData mSelDel;
+        List<ProductData> Products;
+        string ProdId;
+
         public EditDeliveryLine(DeliveryLineData aSelectedDelLine, DeliveryData aSelDel)
         {
             InitializeComponent();
             mSelDelLine = aSelectedDelLine;
             mSelDel = aSelDel;
             BindingContext = mSelDelLine;
+
+            ProdId = mSelDelLine.Product;
+            Products = App.prodDatabase.GetAllProducts();
+
+            for (int i = 0; i < Products.Count; i++)
+            {
+                ProdPicker.Items.Add(Products[i].ProdId);
+
+            }
+            ProdPicker.SelectedIndex = ProdPicker.Items.IndexOf(ProdId);
+
+            ProdPicker.SelectedIndexChanged += (sender, args) =>
+            {
+                if (ProdPicker.SelectedIndex == -1)
+                {
+                    string defaultValue = "Click to select";
+                    defaultValue = ProdPicker.Items[ProdPicker.SelectedIndex];
+                }
+                else
+                {
+                    ProdId = ProdPicker.Items[ProdPicker.SelectedIndex];
+                }
+            };
         }
 
         public void OnSaveClicked(object sender, EventArgs args)
@@ -28,12 +54,12 @@ namespace XamarinWMS
 
             if (isConnected)
             {
-                if (!string.IsNullOrEmpty(txtName.Text) && !string.IsNullOrEmpty(txtDelId.Text) && !string.IsNullOrEmpty(txtProd.Text)
+                if (!string.IsNullOrEmpty(txtName.Text) && !string.IsNullOrEmpty(txtDelId.Text) && !string.IsNullOrEmpty(ProdId)
                  && !string.IsNullOrEmpty(txtAccQty.Text) && !string.IsNullOrEmpty(txtExpQty.Text) && !string.IsNullOrEmpty(txtRejQty.Text))
                 {
                     mSelDelLine.DeliveryId = int.Parse(txtDelId.Text);
                     mSelDelLine.Name = txtName.Text;
-                    mSelDelLine.Product = txtProd.Text;
+                    mSelDelLine.Product = ProdId;
                     mSelDelLine.AcceptedQty = int.Parse(txtAccQty.Text);
                     mSelDelLine.ExpectedQty = int.Parse(txtExpQty.Text);
                     mSelDelLine.RejectedQty = int.Parse(txtRejQty.Text);

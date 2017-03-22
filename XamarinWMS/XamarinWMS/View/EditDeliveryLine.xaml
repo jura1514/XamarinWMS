@@ -9,7 +9,13 @@
         <TableSection Title="Edit Delivery Line">
           <TextCell Text ="{Binding DeliveryLineId}" />
           <EntryCell x:Name="txtName" Label="Name" Text ="{Binding Name}" Keyboard="Text" />
-          <EntryCell x:Name="txtProd" Label="Product" Text ="{Binding Product}" Keyboard="Text" />
+          <ViewCell>
+            <ContentView Padding="0,0">
+              <ContentView.Content>
+                <Picker x:Name="ProdPicker" Title="{Binding Product}" SelectedIndex="{Binding Product}" HorizontalOptions="Center"></Picker>
+              </ContentView.Content>
+            </ContentView>
+          </ViewCell>
           <EntryCell x:Name="txtDelId" Label="Delivery Id" Text ="{Binding DeliveryId}" Keyboard="Numeric" />
           <EntryCell x:Name="txtAccQty" Label="Acc. Qty" Text ="{Binding AcceptedQty}" Keyboard="Numeric" />
           <EntryCell x:Name="txtExpQty" Label="Exp. Qty" Text ="{Binding ExpectedQty}" Keyboard="Numeric" />

@@ -13,10 +13,33 @@ namespace XamarinWMS
     public partial class AddDeliveryLine : ContentPage
     {
         DeliveryData dData;
+        List<ProductData> Products;
+        string ProdId;
+
         public AddDeliveryLine(DeliveryData dSelectedData)
         {
             InitializeComponent();
             dData = dSelectedData;
+
+            Products = App.prodDatabase.GetAllProducts();
+
+            for (int i = 0; i < Products.Count; i++)
+            {
+                ProdPicker.Items.Add(Products[i].ProdId);
+
+            }
+            ProdPicker.SelectedIndexChanged += (sender, args) =>
+            {
+                if (ProdPicker.SelectedIndex == -1)
+                {
+                    string defaultValue = "Click to select";
+                    defaultValue = ProdPicker.Items[ProdPicker.SelectedIndex];
+                }
+                else
+                {
+                    ProdId = ProdPicker.Items[ProdPicker.SelectedIndex];
+                }
+            };
         }
         public void OnSaveClicked(object sender, EventArgs args)
         {
@@ -25,7 +48,7 @@ namespace XamarinWMS
             if (isConnected)
             {
                 if (!string.IsNullOrEmpty(txtDelLineId.Text) && !string.IsNullOrEmpty(txtAccQty.Text) && !string.IsNullOrEmpty(txtExpQty.Text)
-                && !string.IsNullOrEmpty(txtRejQty.Text) && !string.IsNullOrEmpty(txtProd.Text) && !string.IsNullOrEmpty(txtName.Text))
+                && !string.IsNullOrEmpty(txtRejQty.Text) && !string.IsNullOrEmpty(ProdId) && !string.IsNullOrEmpty(txtName.Text))
                 {
                     DeliveryLineData existantDelLine = App.DelLineDatabase.GetDeliveryLine(int.Parse(txtDelLineId.Text));
 
@@ -36,7 +59,7 @@ namespace XamarinWMS
                             DeliveryLineId = int.Parse(txtDelLineId.Text),
                             DeliveryId = dData.DeliveryId,
                             Name = txtName.Text,
-                            Product = txtProd.Text,
+                            Product = ProdId,
                             AcceptedQty = int.Parse(txtAccQty.Text),
                             ExpectedQty = int.Parse(txtExpQty.Text),
                             RejectedQty = int.Parse(txtRejQty.Text),
@@ -46,7 +69,7 @@ namespace XamarinWMS
                        // App.DelLineDatabase.SaveDelLine(vDeliveryLine);
                         //create on a server
                         App.DelLineManager.SaveTaskAsync(vDeliveryLine, true);
-                        Navigation.PushAsync(new ManageDeliveryLines(dData));
+                        Navigation.PushAsync(new ManageDelivery());
                     }
                     else
                     {

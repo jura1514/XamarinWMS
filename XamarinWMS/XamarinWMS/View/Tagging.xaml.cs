@@ -106,12 +106,12 @@ namespace XamarinWMS.View
                                         }
                                         else
                                         {
-                                            DisplayAlert("Error", "The sum of acc. qty and rej. qty is not equal to expected qty!", "OK");
+                                            DisplayAlert("Error", "Delivery Line already used for Stock!", "OK");
                                         }
                                     }
                                     else
                                     {
-
+                                        DisplayAlert("Error", "The sum of acc. qty and rej. qty is not equal to expected qty!", "OK");
                                     }
                                 }
                                 else

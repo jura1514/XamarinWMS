@@ -39,18 +39,18 @@ namespace XamarinWMS.View.Picking
 
             await Navigation.PushPopupAsync(page);
             // or
-          //  await PopupNavigation.PushAsync(page);
+                    //  await PopupNavigation.PushAsync(page);
 
 
-            //var vOrder = new OrderData()
-            //{
-            //    OrderState = "CREATED",
-            //    StateChangeTime = DateTime.Now,
-            //    IsDispatched = false,
-            //    InQueue = false,
-            //};
-            //App.orderDatabase.SaveOrder(vOrder);
-            //Navigation.PushAsync(new OrderDetails(vOrder));
+                    //var vOrder = new OrderData()
+                    //{
+                    //    OrderState = "CREATED",
+                    //    StateChangeTime = DateTime.Now,
+                    //    IsDispatched = false,
+                    //    InQueue = false,
+                    //};
+                    //App.orderDatabase.SaveOrder(vOrder);
+                    //Navigation.PushAsync(new OrderDetails(vOrder));
         }
     }
 }

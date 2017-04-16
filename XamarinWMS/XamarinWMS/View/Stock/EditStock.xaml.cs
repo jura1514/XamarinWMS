@@ -80,20 +80,46 @@ namespace XamarinWMS.View.Stock
             if (!string.IsNullOrEmpty(txtName.Text) && !string.IsNullOrEmpty(txtDelLineId.Text) && !string.IsNullOrEmpty(txtState.Text)
                 && !string.IsNullOrEmpty(ProdId) && !string.IsNullOrEmpty(LocId) && !string.IsNullOrEmpty(txtQty.Text))
             {
-                mSelStock.Name = txtName.Text;
-                mSelStock.DeliveryLineId = int.Parse(txtDelLineId.Text);
-                mSelStock.StockState = txtState.Text;
-                mSelStock.Product = ProdId;
-                mSelStock.Location = LocId;
-                mSelStock.Qty = int.Parse(txtQty.Text);
-                mSelStock.StateChangeTime = DateTime.Now;
-                App.StkDatabase.EditStock(mSelStock);
-                Navigation.PushAsync(new ManageStock());
+                int delLineId = int.Parse(txtDelLineId.Text);
+
+                if (validDelLine(delLineId))
+                {
+                    mSelStock.Name = txtName.Text;
+                    mSelStock.DeliveryLineId = delLineId;
+                    mSelStock.StockState = txtState.Text;
+                    mSelStock.Product = ProdId;
+                    mSelStock.Location = LocId;
+                    mSelStock.Qty = int.Parse(txtQty.Text);
+                    mSelStock.StateChangeTime = DateTime.Now;
+                    App.StkDatabase.EditStock(mSelStock);
+                    Navigation.PushAsync(new ManageStock());
+                }
+                else
+                {
+                    DisplayAlert("Error", "Delivery Line with this ID does not exist!", "OK");
+                }
             }
             else
             {
                 DisplayAlert("Error", "All fields are mandatory!", "OK");
             }
+        }
+
+        public bool validDelLine(int delLineId)
+        {
+            bool foundDelLineId = false;
+            var listOfDelLines = App.DelLineDatabase.GetAllDelLines();
+
+            for (int i = 0; i < listOfDelLines.Count; i++)
+            {
+                if (listOfDelLines[i].DeliveryLineId == delLineId)
+                {
+                    foundDelLineId = true;
+                    break;
+                }
+            }
+
+            return foundDelLineId;
         }
     }
 }

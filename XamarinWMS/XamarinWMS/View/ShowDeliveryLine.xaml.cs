@@ -39,13 +39,13 @@ namespace XamarinWMS
             int extQty = 0;
             extQty += mSelDelLine.ExpectedQty;
 
-            if ((accQty + rejQty) == extQty)
+            if ((accQty - rejQty) == extQty)
             {
                 Navigation.PushAsync(new Tagging(mSelDelLine));
             }
             else
             {
-                DisplayAlert("Error", "The sum of acc. qty and rej. qty is not equal to expected qty!", "OK");
+                DisplayAlert("Error", "The acc. qty and rej. qty is not equal to expected qty!", "OK");
             }
         }
 

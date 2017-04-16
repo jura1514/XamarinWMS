@@ -12,7 +12,7 @@
           <ViewCell>
             <ContentView Padding="0,0">
               <ContentView.Content>
-                <Picker x:Name="ProdPicker" Title="{Binding Product}" SelectedIndex="{Binding Product}" HorizontalOptions="Center"></Picker>
+                <Picker x:Name="ProdPicker" Title="Select Product" HorizontalOptions="Center"></Picker>
               </ContentView.Content>
             </ContentView>
           </ViewCell>

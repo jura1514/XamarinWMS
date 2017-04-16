@@ -10,8 +10,20 @@
           <TextCell  Text ="{Binding StockId}" />
           <EntryCell x:Name="txtName" Label="Name" Text ="{Binding Name}" Keyboard="Text" />
           <EntryCell x:Name="txtDelLineId" Label="Del. Line Id" Text ="{Binding DeliveryLineId}" Keyboard="Numeric" />
-          <EntryCell x:Name="txtProduct" Label="Product" Text ="{Binding Product}" Keyboard="Text" />
-          <EntryCell x:Name="txtLocation" Label="Location" Text ="{Binding Location}" Keyboard="Text" />
+          <ViewCell>
+            <ContentView Padding="0,0">
+              <ContentView.Content>
+                <Picker x:Name="ProdPicker" Title="Select Product" HorizontalOptions="Center"></Picker>
+              </ContentView.Content>
+            </ContentView>
+          </ViewCell>
+          <ViewCell>
+            <ContentView Padding="0,0">
+              <ContentView.Content>
+                <Picker x:Name="LocPicker" Title="Select Location" HorizontalOptions="Center"></Picker>
+              </ContentView.Content>
+            </ContentView>
+          </ViewCell>
           <EntryCell x:Name="txtState" Label="State" Text ="{Binding StockState}" Keyboard="Text" />
           <EntryCell x:Name="txtQty" Label="Qty" Text ="{Binding Qty}" Keyboard="Numeric" />
           <ViewCell>

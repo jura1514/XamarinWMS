@@ -25,7 +25,7 @@ namespace XamarinWMS
         {
             NavigationPage.SetHasBackButton(this, false);
 
-            ToolbarItems.Add(new ToolbarItem("Log Out", "filter.png", async () =>
+            ToolbarItems.Add(new ToolbarItem("Log Out", "", async () =>
             {
                 var page = new ContentPage();
                 var result = await page.DisplayAlert("LogOut", "Are you sure you want to Log Out?", "Accept", "Cancel");

@@ -37,7 +37,7 @@ namespace XamarinWMS
             LocManager = new LocationManager(new RestService());
             ProdManager = new ProductManager(new RestService());
             // The root page of your application
-            MainPage = new NavigationPage(new MainMenu());
+            MainPage = new NavigationPage(new Login());
 
         }
 

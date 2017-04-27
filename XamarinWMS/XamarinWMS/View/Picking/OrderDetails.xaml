@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="XamarinWMS.View.Picking.OrderDetails"
+             NavigationPage.HasBackButton="False"
              Title="Order Details">
   <ContentPage.Content>
     <StackLayout Padding="35" Spacing="10">

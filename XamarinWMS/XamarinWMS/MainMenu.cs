@@ -19,7 +19,7 @@ namespace XamarinWMS
     {
 
         //check if phone has access to network
-        bool isConnected = false;
+        bool isConnected = true;
 
         public MainMenu()
         {
@@ -75,8 +75,6 @@ namespace XamarinWMS
 
             CrossConnectivity.Current.ConnectivityChanged += Current_ConnectivityChanged;
 
-            CheckForOrdersAndPicks();
-
             // Get Locations and Products
             CreateOrUpdateLocations();
             CreateOrUpdateProducts();
@@ -89,24 +87,26 @@ namespace XamarinWMS
             return true;
         }
 
-        private async void Current_ConnectivityChanged(object sender, Plugin.Connectivity.Abstractions.ConnectivityChangedEventArgs e)
+        protected async override void OnAppearing()
         {
-            if(!e.IsConnected)
+            base.OnAppearing();
+
+            if(!CrossConnectivity.Current.IsConnected)
             {
-               await DisplayAlert("Error", "Check for your connection.", "OK");
+                await DisplayAlert("Error", "Check for your connection.", "OK");
                 isConnected = false;
             }
             else
             {
                 isConnected = true;
             }
+
+            CheckForOrdersAndPicks();
         }
 
-        protected async override void OnAppearing()
+        private async void Current_ConnectivityChanged(object sender, Plugin.Connectivity.Abstractions.ConnectivityChangedEventArgs e)
         {
-            base.OnAppearing();
-
-            if(!CrossConnectivity.Current.IsConnected)
+            if (!e.IsConnected)
             {
                 await DisplayAlert("Error", "Check for your connection.", "OK");
                 isConnected = false;
@@ -130,7 +130,7 @@ namespace XamarinWMS
                     {
                         isNewOrder = true;
                         allOrders[i].IsDispatched = true;
-
+                        allOrders[i].InQueue = false;
                         await App.OrderManager.SaveTaskAsync(allOrders[i], isNewOrder);
                         SendPicks(allOrders[i].OrderId);
 

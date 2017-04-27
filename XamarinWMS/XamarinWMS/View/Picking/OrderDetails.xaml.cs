@@ -27,6 +27,12 @@ namespace XamarinWMS.View.Picking
             }
         }
 
+        protected override bool OnBackButtonPressed()
+        {
+            Navigation.PushAsync(new ManageOrder());
+            return true;
+        }
+
         void OnSelection(object sender, SelectedItemChangedEventArgs e)
         {
             if (e.SelectedItem == null)

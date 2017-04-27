@@ -85,6 +85,7 @@ namespace XamarinWMS.View.Picking
                 else
                 {
                     mSelOrder.InQueue = true;
+                    App.orderDatabase.EditOrder(mSelOrder);
                 }
             }
             await Navigation.PushAsync(new MainMenu());

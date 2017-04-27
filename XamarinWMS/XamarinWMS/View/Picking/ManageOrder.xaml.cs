@@ -23,6 +23,12 @@ namespace XamarinWMS.View.Picking
                  
         }
 
+        protected override bool OnBackButtonPressed()
+        {
+            Navigation.PushAsync(new MainMenu());
+            return true;
+        }
+
         void OnSelection(object sender, SelectedItemChangedEventArgs e)
         {
             if (e.SelectedItem == null)
@@ -32,6 +38,7 @@ namespace XamarinWMS.View.Picking
             var vSelOrder = (OrderData)e.SelectedItem;
             Navigation.PushAsync(new OrderDetails(vSelOrder));
         }
+
         public async void OnNewOrderClicked(object sender, EventArgs args)
         {
 

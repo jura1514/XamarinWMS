@@ -378,6 +378,10 @@ namespace XamarinWMS.Data.Web_Service
                 {
                     Debug.WriteLine(@"				Pick successfully saved.");
                 }
+                else
+                {
+                    Debug.WriteLine(@"				Pick is not saved.");
+                }
 
             }
             catch (Exception ex)

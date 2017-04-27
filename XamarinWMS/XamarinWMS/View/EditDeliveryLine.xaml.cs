@@ -57,18 +57,27 @@ namespace XamarinWMS
                 if (!string.IsNullOrEmpty(txtName.Text) && !string.IsNullOrEmpty(txtDelId.Text) && !string.IsNullOrEmpty(ProdId)
                  && !string.IsNullOrEmpty(txtAccQty.Text) && !string.IsNullOrEmpty(txtExpQty.Text) && !string.IsNullOrEmpty(txtRejQty.Text))
                 {
-                    mSelDelLine.DeliveryId = int.Parse(txtDelId.Text);
-                    mSelDelLine.Name = txtName.Text;
-                    mSelDelLine.Product = ProdId;
-                    mSelDelLine.AcceptedQty = int.Parse(txtAccQty.Text);
-                    mSelDelLine.ExpectedQty = int.Parse(txtExpQty.Text);
-                    mSelDelLine.RejectedQty = int.Parse(txtRejQty.Text);
-                    //update in local db
-                    App.DelLineDatabase.EditDelLine(mSelDelLine);
-                    //update on a server
-                    App.DelLineManager.SaveTaskAsync(mSelDelLine, false);
+                    int delId = int.Parse(txtDelId.Text);
 
-                    Navigation.PushAsync(new ManageDeliveryLines(mSelDel));
+                    if (validDel(delId))
+                    {
+                        mSelDelLine.DeliveryId = delId;
+                        mSelDelLine.Name = txtName.Text;
+                        mSelDelLine.Product = ProdId;
+                        mSelDelLine.AcceptedQty = int.Parse(txtAccQty.Text);
+                        mSelDelLine.ExpectedQty = int.Parse(txtExpQty.Text);
+                        mSelDelLine.RejectedQty = int.Parse(txtRejQty.Text);
+                        //update in local db
+                        App.DelLineDatabase.EditDelLine(mSelDelLine);
+                        //update on a server
+                        App.DelLineManager.SaveTaskAsync(mSelDelLine, false);
+
+                        Navigation.PushAsync(new ManageDeliveryLines(mSelDel));
+                    }
+                    else
+                    {
+                        DisplayAlert("Error", "Delivery with this ID does not exist!", "OK");
+                    }
                 }
                 else
                 {
@@ -80,6 +89,23 @@ namespace XamarinWMS
                 DisplayAlert("Error", "Cannot update a record without connection!", "OK");
 
             }
+        }
+
+        public bool validDel(int delId)
+        {
+            bool foundDelId = false;
+            var listOfDels = App.DelDatabase.GetAllDeliveries();
+
+            for (int i = 0; i < listOfDels.Count; i++)
+            {
+                if (listOfDels[i].DeliveryId == delId)
+                {
+                    foundDelId = true;
+                    break;
+                }
+            }
+
+            return foundDelId;
         }
     }
 }
